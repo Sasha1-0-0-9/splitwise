@@ -3,6 +3,7 @@ package com.example.repository;
 import java.util.Map;
 import java.util.Set;
 
+;
 public interface Repository<T> {
 
     void save(T t);

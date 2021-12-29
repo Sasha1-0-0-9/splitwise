@@ -14,7 +14,15 @@ public class AccountCreationValidator implements Predicate<Account> {
             return false;
         }
 
-        if (account.getUser() == null) {
+        if (account.getName() == null || account.getName().isBlank()) {
+            return false;
+        }
+
+        if (account.getTelephoneNumber() == null || account.getTelephoneNumber().isBlank()) {
+            return false;
+        }
+
+        if (account.getEmail() == null || account.getEmail().isBlank()) {
             return false;
         }
 

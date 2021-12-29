@@ -1,36 +1,44 @@
 package com.example.repository;
 
 import com.example.entity.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
-import static com.example.common.IdGenerator.getAccountCounter;
+@Repository
+public class AccountRepository {
 
-@org.springframework.stereotype.Repository
-public class AccountRepository implements Repository<Account> {
+    private final JdbcTemplate jdbcTemplate;
 
-    private final static String FILE_NAME = "accounts.txt";
+    @Autowired
+    public AccountRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
-    @Override
     public void save(Account account) {
-        int newAccountId = getAccountCounter();
-        account.setAccountId(newAccountId);
-        RepositoryTemplate.save(newAccountId, account, FILE_NAME);
+        jdbcTemplate.update("INSERT INTO Account VALUES(?, ?, ?)", account.getName(), account.getTelephoneNumber(),
+                account.getEmail());
     }
 
-    @Override
-    public Map<Integer, Account> getAll() {
-        return RepositoryTemplate.getItems(FILE_NAME);
+    public List<Account> getAll() {
+        return jdbcTemplate.query("SELECT * FROM Account", new BeanPropertyRowMapper<>(Account.class));
     }
 
-    @Override
-    public void deleteAll(Set<Integer> ids) {
-        RepositoryTemplate.deleteAll(ids, FILE_NAME);
+    public Account get(int id) {
+        return jdbcTemplate.query("SELECT * FROM Account WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Account.class))
+                .stream().findAny().orElse(null);
     }
 
-    @Override
-    public int getSize() {
-        return RepositoryTemplate.getSize(FILE_NAME);
+    public void update(int id, Account updatedAccount) {
+        jdbcTemplate.update("UPDATE Account SET name=?, telephoneNumber=?, email=? WHERE id=?", updatedAccount.getName(),
+                updatedAccount.getTelephoneNumber(), updatedAccount.getEmail(), id);
+    }
+
+    public void delete(Integer id) {
+        jdbcTemplate.update("DELETE FROM Account WHERE id=?", id);
+
     }
 }

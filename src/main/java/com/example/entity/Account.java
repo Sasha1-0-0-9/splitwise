@@ -1,51 +1,48 @@
 package com.example.entity;
 
-import com.example.common.Identifiable;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-public class Account implements Identifiable, Serializable {
-
+public class Account {
     private Integer accountId;
-    private final User user;
 
-    public Account(User user) {
-        this.user = user;
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
+    private final String name;
+
+    @NotEmpty(message = "Telephone number should not be empty")
+    @Pattern(regexp="(^$|[0-9]{10})")
+    private final String telephoneNumber;
+
+    @NotEmpty(message = "Email should not be empty")
+    @Email(message = "Email should be valid")
+    private final String email;
+
+    public Account(User user, String name, String telephoneNumber, String email) {
+        this.name = name;
+        this.telephoneNumber = telephoneNumber;
+        this.email = email;
     }
 
-    public User getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    @Override
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public Integer getId() {
         return accountId;
     }
 
     public void setAccountId(Integer accountId) {
         this.accountId = accountId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Account)) return false;
-        Account account = (Account) o;
-        return Objects.equals(accountId, account.accountId) &&
-                Objects.equals(getUser(), account.getUser());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(accountId, getUser());
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "accountId=" + accountId +
-                ", userName=" + user.getName() +
-                '}';
     }
 }

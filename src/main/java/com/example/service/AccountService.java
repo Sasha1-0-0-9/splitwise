@@ -6,22 +6,23 @@ import com.example.entity.AccountGroupInfo;
 import com.example.entity.AccountRole;
 import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
-import com.example.repository.Repository;
+import com.example.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
-@org.springframework.stereotype.Service
-public class AccountService implements Service<Account> {
+@Service
+public class AccountService {
 
-    private final Repository<Account> accountRepository;
+    private final AccountRepository accountRepository;
     private final AccountGroupInfoService accountGroupInfoService;
     private final GroupService groupService;
     private final AccountCreationValidator accountCreationValidator;
 
     @Autowired
-    public AccountService(Repository<Account> accountRepository, GroupService groupService,
+    public AccountService(AccountRepository accountRepository, GroupService groupService,
                           AccountGroupInfoService accountGroupInfoService, AccountCreationValidator accountCreationValidator) {
         this.accountRepository = accountRepository;
         this.groupService = groupService;
@@ -29,7 +30,6 @@ public class AccountService implements Service<Account> {
         this.accountCreationValidator = accountCreationValidator;
     }
 
-    @Override
     public void delete(Integer id) {
         Account account = get(id);
         if (account == null) {
@@ -46,27 +46,16 @@ public class AccountService implements Service<Account> {
         }
 
         accountRepository.delete(id);
-        System.out.println("The account with user's name " + account.getUser().getName() + " deleted!");
     }
 
-    @Override
-    public String toString() {
-        return "AccountServiceImpl{" +
-                "accounts size = " + accountRepository.getSize() +
-                '}';
-    }
-
-    @Override
     public void save(Account account) {
         if (!accountCreationValidator.test(account)) {
             throw new AccountCreationException("Account not valid!");
         }
 
         accountRepository.save(account);
-        System.out.println("The account with user's name " + account.getUser().getName() + " saved!");
     }
 
-    @Override
     public Account get(Integer id) {
         if (id == null) {
             throw new NullPointerException("Account id is null!");
@@ -75,7 +64,11 @@ public class AccountService implements Service<Account> {
         return accountRepository.get(id);
     }
 
-    public Map<Integer, Account> getAll() {
+    public List<Account> getAll() {
         return accountRepository.getAll();
+    }
+
+    public void update(int id, Account account) {
+        accountRepository.update(id, account);
     }
 }
