@@ -2,6 +2,7 @@ package com.example.entity;
 
 import com.example.common.Identifiable;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,6 +14,8 @@ public class Account implements Identifiable, Serializable {
     public Account(User user) {
         this.user = user;
     }
+
+
 
     public User getUser() {
         return user;
