@@ -1,0 +1,46 @@
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java'\r\n    id 'war'\r\n}\r\n\r\ngroup 'com.example'\r\nversion '1.0-SNAPSHOT'\r\n\r\nrepositories {\r\n    mavenCentral()\r\n}\r\n\r\ndependencies {\r\n    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.2'\r\n    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.2'\r\n    implementation 'org.springframework.boot:spring-boot-devtools:2.6.2'\r\n    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.2'\r\n    implementation 'org.postgresql:postgresql:42.3.1'\r\n}\r\n\r\ntest {\r\n    useJUnitPlatform()\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision 0b147423cbf48daacafd696fb491dc2fbd9d95e3)
++++ b/build.gradle	(date 1640854784727)
+@@ -1,6 +1,9 @@
+ plugins {
+     id 'java'
+     id 'war'
++    id "org.springframework.boot" version "2.6.2"
++    id "io.spring.dependency-management" version "1.0.11.RELEASE"
++
+ }
+ 
+ group 'com.example'
+@@ -15,6 +18,8 @@
+     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.2'
+     implementation 'org.springframework.boot:spring-boot-devtools:2.6.2'
+     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.2'
++    compile 'org.springframework.boot:spring-boot-starter-data-jdbc'
++    compile 'org.flywaydb:flyway-core'
+     implementation 'org.postgresql:postgresql:42.3.1'
+ }
+ 
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>distributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-5.2.1-bin.zip\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+--- a/gradle/wrapper/gradle-wrapper.properties	(revision 0b147423cbf48daacafd696fb491dc2fbd9d95e3)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1640854784739)
+@@ -1,5 +1,5 @@
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-5.2.1-bin.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.8.1-bin.zip
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
