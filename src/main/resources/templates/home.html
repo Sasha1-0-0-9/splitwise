@@ -6,5 +6,11 @@
 </head>
 <body>
     <p th:text="'Hello, ' + ${title} + '!'"/>
+    <form th:method="GET" th:action="@{/accounts/login}">
+        <input type="submit" value="Log in"/>
+    </form>
+    <form th:method="GET" th:action="@{/accounts/new}">
+        <input type="submit" value="Sign in"/>
+    </form>
 </body>
 </html>

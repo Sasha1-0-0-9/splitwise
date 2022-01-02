@@ -14,7 +14,7 @@ public class AccountCreationValidator implements Predicate<Account> {
             return false;
         }
 
-        if (account.getName() == null || account.getName().isBlank()) {
+        /*if (account.getName() == null || account.getName().isBlank()) {
             return false;
         }
 
@@ -24,7 +24,7 @@ public class AccountCreationValidator implements Predicate<Account> {
 
         if (account.getEmail() == null || account.getEmail().isBlank()) {
             return false;
-        }
+        }*/
 
         return true;
     }

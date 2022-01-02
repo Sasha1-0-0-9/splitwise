@@ -19,22 +19,22 @@ public class AccountRepository {
     }
 
     public void save(Account account) {
-        jdbcTemplate.update("INSERT INTO Account VALUES(?, ?, ?)", account.getName(), account.getTelephoneNumber(),
-                account.getEmail());
+        jdbcTemplate.update("INSERT INTO Account VALUES(?, ?, ?)", account.getEncodedPassword(),
+                account.getTelephoneNumber());
     }
 
     public List<Account> getAll() {
-        return jdbcTemplate.query("SELECT * FROM Account", new BeanPropertyRowMapper<>(Account.class));
+        return jdbcTemplate.query("SELECT * FROM accounts", new BeanPropertyRowMapper<>(Account.class));
     }
 
     public Account get(int id) {
-        return jdbcTemplate.query("SELECT * FROM Account WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Account.class))
+        return jdbcTemplate.query("SELECT * FROM accounts WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Account.class))
                 .stream().findAny().orElse(null);
     }
 
-    public void update(int id, Account updatedAccount) {
-        jdbcTemplate.update("UPDATE Account SET name=?, telephoneNumber=?, email=? WHERE id=?", updatedAccount.getName(),
-                updatedAccount.getTelephoneNumber(), updatedAccount.getEmail(), id);
+    public Account getByNameAndPassword(String telephoneNumber, String encodedPassword) {
+        List<Account> accounts = jdbcTemplate.query("SELECT * FROM accounts WHERE telephoneNumber=? AND encodedPassword=?", new BeanPropertyRowMapper<>(Account.class), telephoneNumber, encodedPassword);
+        return accounts.stream().findAny().orElse(null);
     }
 
     public void delete(Integer id) {

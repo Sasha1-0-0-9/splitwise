@@ -1,15 +1,14 @@
 package com.example.entity;
 
-import com.example.common.Identifiable;
-
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Group implements Identifiable, Serializable {
+public class Group {
 
-    private Integer groupId;
-    private final String name;
-    private final Integer creatorId;
+    private Integer id;
+    private String name;
+    private Integer creatorId;
+
+    public Group() {}
 
     public Group(String name, Integer creatorId) {
         this.name = name;
@@ -24,13 +23,20 @@ public class Group implements Identifiable, Serializable {
         return creatorId;
     }
 
-    @Override
     public Integer getId() {
-        return groupId;
+        return id;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCreatorId(Integer creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -38,13 +44,13 @@ public class Group implements Identifiable, Serializable {
         if (this == o) return true;
         if (!(o instanceof Group)) return false;
         Group group = (Group) o;
-        return Objects.equals(groupId, group.groupId) &&
+        return Objects.equals(id, group.id) &&
                 Objects.equals(getName(), group.getName()) &&
                 Objects.equals(getCreatorId(), group.getCreatorId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupId, getName(), getCreatorId());
+        return Objects.hash(id, getName(), getCreatorId());
     }
 }
