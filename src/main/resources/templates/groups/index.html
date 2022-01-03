@@ -7,14 +7,14 @@
 <body>
 
 <div th:each="group : ${groups}">
-    <a th:href="@{/accounts/${accountId}/groups/{groupId}(groupId=${group.getId()})}"
+    <a th:href="@{/accounts/{accountId}/groups/{groupId}(accountId=${accountId}, groupId=${group.getId()})}"
        th:text="${group.getName()}">user</a>
 </div>
 
 <br/>
 <hr/>
 
-<a th:href="@{/accounts/{accountId}/groups/new(accountId=${accountId})}">Create new group</a>
+<a th:href="@{/accounts/${accountId}/groups/{groupId}/new}">Create new group</a>
 
 </body>
 </html>
