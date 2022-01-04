@@ -20,6 +20,10 @@ public class Acc {
     @Column(name = "encryptedpassword")
     private String encryptedPassword;
 
+    public Acc() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -38,5 +42,11 @@ public class Acc {
 
     public String getEncryptedPassword() {
         return encryptedPassword;
+    }
+
+    public Acc(String email, String phoneNumber, String encryptedPassword) {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.encryptedPassword = encryptedPassword;
     }
 }

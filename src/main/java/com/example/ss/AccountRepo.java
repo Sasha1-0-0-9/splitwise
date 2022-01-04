@@ -8,4 +8,5 @@ public interface AccountRepo extends JpaRepository<Acc, Long> {
 
     @Query("SELECT a FROM Acc a WHERE a.email = :email")
     public Acc getAccByName(@Param("email") String email);
+
 }
