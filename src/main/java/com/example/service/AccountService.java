@@ -11,11 +11,14 @@ import com.example.repository.AccountRepository;
 import com.example.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
 @Service
+@Validated
 public class AccountService {
 
     private final AccountRepository accountRepository;
@@ -52,7 +55,7 @@ public class AccountService {
         accountRepository.delete(id);
     }
 
-    public void save(Account account) {
+    public void save(@Valid Account account) {
         if (!accountCreationValidator.test(account)) {
             throw new AccountCreationException("Account not valid!");
         }

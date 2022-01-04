@@ -5,10 +5,13 @@ import com.example.entity.Contact;
 import com.example.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
+@Validated
 public class ContactService {
 
     private final ContactRepository contactRepository;
@@ -28,5 +31,9 @@ public class ContactService {
 
     public Account getAccount(String telephoneNumber) {
         return contactRepository.getAccount(telephoneNumber);
+    }
+
+    public void save(@Valid Contact contact) {
+        contactRepository.save(contact);
     }
 }

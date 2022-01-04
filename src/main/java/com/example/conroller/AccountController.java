@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 @Controller
@@ -44,7 +45,8 @@ public class AccountController {
     }
 
     @GetMapping("/new")
-    public String newAccount(@ModelAttribute("account") Account account) {
+    public String newAccount(@ModelAttribute("account") Account account, Model model) {
+        model.addAttribute("param", null);
         return "accounts/new";
     }
 
@@ -67,14 +69,25 @@ public class AccountController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("account") @Valid Account account,
-                         BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "accounts/new";
+    public String create(@RequestParam("name") @Valid String name, @RequestParam("telephoneNumber") String telephoneNumber,
+                         @RequestParam("email") String email, @RequestParam("encryptedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
+        Account account;
+        try {
+            Contact contact = new Contact(name, telephoneNumber, email);
+            //contactService.save(contact);
 
-        accountService.save(account);
-        return "redirect:/accounts";
+            account = new Account(telephoneNumber, encryptedPassword);
+            accountService.save(account);
+        } catch (ConstraintViolationException e) {
+            String message = e.getMessage();
+            model.addAttribute("text", message);
+            return "accounts/new";
+        }
+
+        model.addAttribute("account", accountService.get(account.getId()));
+        return "accounts/show";
     }
+
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {

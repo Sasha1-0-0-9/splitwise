@@ -20,8 +20,8 @@ public class ContactRepository {
     }
 
     public void save(Contact contact) {
-        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?, ?)", contact.getName(), contact.getTelephoneNumber(),
-                contact.getEmail());
+        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?, ?)", contact.getTelephoneNumber(),
+                contact.getName(), contact.getEmail());
     }
 
     public List<Contact> getAll() {

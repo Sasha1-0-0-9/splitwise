@@ -19,8 +19,8 @@ public class AccountRepository {
     }
 
     public void save(Account account) {
-        jdbcTemplate.update("INSERT INTO Account VALUES(?, ?, ?)", account.getEncodedPassword(),
-                account.getTelephoneNumber());
+        jdbcTemplate.update("INSERT INTO accounts (telephoneNumber, encodedPassword) VALUES(?, ?)", account.getTelephoneNumber(),
+                account.getEncodedPassword());
     }
 
     public List<Account> getAll() {
@@ -38,7 +38,7 @@ public class AccountRepository {
     }
 
     public void delete(Integer id) {
-        jdbcTemplate.update("DELETE FROM Account WHERE id=?", id);
+        jdbcTemplate.update("DELETE FROM accounts WHERE id=?", id);
 
     }
 }

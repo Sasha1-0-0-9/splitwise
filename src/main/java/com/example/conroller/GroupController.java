@@ -41,7 +41,6 @@ public class GroupController {
         List<Contact> groupContacts = groupService.getGroupContacts(id);
         model.addAttribute("contacts", groupService.getGroupContacts(id));
         model.addAttribute("accountId", accountId);
-        String value = "true";
         model.addAttribute("param", null);
         return "groups/show";
     }

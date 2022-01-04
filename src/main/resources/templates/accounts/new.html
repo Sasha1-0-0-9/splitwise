@@ -6,22 +6,24 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/accounts}" th:object="${account}">
+<form th:method="POST" th:action="@{/accounts}">
     <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <input type="text" name="name" id="name"/>
     <br/>
-    <label for="encodedPassword">Enter password: </label>
-    <input type="text" th:field="*{encodedPassword}" id="encodedPassword"/>
-    <div style="color:red" th:if="${#fields.hasErrors('encodedPassword')}" th:errors="*{encodedPassword}">Password Error</div>
+    <label for="encryptedPassword">Enter password: </label>
+    <input type="text" name="encryptedPassword" id="encryptedPassword"/>
     <br/>
     <label for="telephoneNumber">Enter telephone number: </label>
-    <input type="text" th:field="*{telephoneNumber}" id="telephoneNumber"/>
-    <div style="color:red" th:if="${#fields.hasErrors('telephoneNumber')}" th:errors="*{telephoneNumber}">Phone Error</div>
+    <input type="text" name="telephoneNumber" id="telephoneNumber"/>
     <br/>
     <label for="email">Enter email: </label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <input type="text" name="email" id="email"/>
+    <br/>
+    <div th:if="${text == null}">
+    </div>
+    <div th:unless="${text == null}">
+        <p th:text="${text}"></p>
+    </div>
     <br/>
     <input type="submit" value="Create!"/>
 </form>
