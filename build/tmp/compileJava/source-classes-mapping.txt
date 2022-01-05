@@ -1,7 +1,5 @@
-com/example/Application.java
- com.example.Application
-com/example/conroller/MainController.java
- com.example.conroller.MainController
+com/example/ss/PasswordEncoder.java
+ com.example.ss.PasswordEncoder
 com/example/service/ExpenseTrackerImpl.java
  com.example.service.ExpenseTrackerImpl
 com/example/entity/Balance.java
@@ -27,12 +25,14 @@ com/example/exception/GroupCreationException.java
  com.example.exception.GroupCreationException
 com/example/exception/GroupNotFoundException.java
  com.example.exception.GroupNotFoundException
+com/example/exception/AccountNotFoundException.java
+ com.example.exception.AccountNotFoundException
 com/example/service/Service.java
  com.example.service.Service
 com/example/service/GroupService.java
  com.example.service.GroupService
-com/example/conroller/AccountController.java
- com.example.conroller.AccountController
+com/example/ss/UserDetailsServiceImpl.java
+ com.example.ss.UserDetailsServiceImpl
 com/example/entity/Currency.java
  com.example.entity.Currency
 com/example/repository/ConverterRepository.java
@@ -40,6 +40,8 @@ com/example/repository/ConverterRepository.java
  com.example.repository.ConverterRepository$1
 com/example/repository/ExpenseRepository.java
  com.example.repository.ExpenseRepository
+com/example/Application.java
+ com.example.Application
 com/example/repository/RepositoryTemplate.java
  com.example.repository.RepositoryTemplate
 com/example/service/ExpenseHistoryPrinterImpl.java
@@ -47,6 +49,8 @@ com/example/service/ExpenseHistoryPrinterImpl.java
  com.example.service.ExpenseHistoryPrinterImpl$ExpenseComparator
 com/example/entity/AccountRole.java
  com.example.entity.AccountRole
+com/example/ss/security_config/MvcConfig.java
+ com.example.ss.security_config.MvcConfig
 com/example/repository/AccountRepository.java
  com.example.repository.AccountRepository
 com/example/entity/Account.java
@@ -63,6 +67,8 @@ com/example/service/DeleteGroupService.java
  com.example.service.DeleteGroupService
 com/example/service/ExpenseHistoryPrinter.java
  com.example.service.ExpenseHistoryPrinter
+com/example/exception/AccountCreationException.java
+ com.example.exception.AccountCreationException
 com/example/service/AccountService.java
  com.example.service.AccountService
 com/example/exception/AccountGroupInfoCreationException.java
@@ -81,7 +87,17 @@ com/example/entity/AccountGroupInfo.java
  com.example.entity.AccountGroupInfo
 com/example/entity/ExpenseType.java
  com.example.entity.ExpenseType
-com/example/exception/AccountCreationException.java
- com.example.exception.AccountCreationException
-com/example/exception/AccountNotFoundException.java
- com.example.exception.AccountNotFoundException
+com/example/conroller/MainController.java
+ com.example.conroller.MainController
+com/example/common/AuthenticationSystem.java
+ com.example.common.AuthenticationSystem
+com/example/ss/security_config/WebSecurityConfig.java
+ com.example.ss.security_config.WebSecurityConfig
+com/example/ss/UserDatailsImpl.java
+ com.example.ss.UserDatailsImpl
+com/example/ss/AccountRepo.java
+ com.example.ss.AccountRepo
+com/example/ss/Acc.java
+ com.example.ss.Acc
+com/example/conroller/AccountController.java
+ com.example.conroller.AccountController
