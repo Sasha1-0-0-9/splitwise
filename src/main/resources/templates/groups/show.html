@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<p th:text="${'Name: ' + group.getName()}">VALUE</p>
+<p>List participant of group</p>
+<div th:each="contact : ${contacts}">
+    <a th:text="${contact.getName() + ', ' + contact.getTelephoneNumber() + ', ' + contact.getEmail()}">user</a>
+</div>
+
+<br><br>
+<div th:if="${param.isEmpty()}">
+</div>
+<div th:unless="${param.isEmpty()}">
+    <p>Account not added</p>
+</div>
+
+<form th:method="GET" th:action="@{/accounts/{accountId}/groups/{groupId}/add(accountId=${accountId}, groupId=${group.getId()})}">
+    <input type="submit" value="Add to group"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/accounts/${id}/groups/${group.getId()}}">
+    <input type="submit" value="Leave group"/>
+</form>
+
+</body>
+</html>

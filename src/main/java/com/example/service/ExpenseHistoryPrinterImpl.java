@@ -48,7 +48,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
         Account account = accountService.get(accountId);
 
-        StringBuilder str = new StringBuilder(account.getUser().getName() + "'s Expense History\n");
+        StringBuilder str = new StringBuilder(/*account.ge.getName() +*/ "'s Expense History\n");
 
         for (Expense expense : sortedExpenses) {
             if (expense.getLenderId().equals(accountId)) {
@@ -190,7 +190,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
                                                  Balance balance) {
         Account account = accountService.get(accountId);
 
-        StringBuilder str = new StringBuilder(account.getUser().getName() + "'s Expense History\n");
+        StringBuilder str = new StringBuilder(/*account.getName() +*/ "'s Expense History\n");
 
         for (Map.Entry<Currency, List<Expense>> entry : sortedExpensesByCurrencies.entrySet()) {
             str.append(entry.getKey().toString())

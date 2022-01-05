@@ -1,51 +1,46 @@
 package com.example.entity;
 
-import com.example.common.Identifiable;
+import javax.validation.constraints.*;
 
-import java.io.Serializable;
-import java.util.Objects;
+public class Account {
+    private Integer id;
 
-public class Account implements Identifiable, Serializable {
+    @NotEmpty(message = "Telephone number should not be empty")
+    @Pattern(regexp="(^$|[0-9]{10})")
+    private String telephoneNumber;
 
-    private Integer accountId;
-    private final User user;
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 8, max = 30, message = "Name should be between 8 and 30 characters")
+    private String encodedPassword;
 
-    public Account(User user) {
-        this.user = user;
+    public Account() {}
+
+    public Account(String telephoneNumber, String encodedPassword) {
+        this.telephoneNumber = telephoneNumber;
+        this.encodedPassword = encodedPassword;
     }
 
-    public User getUser() {
-        return user;
+    public String getEncodedPassword() {
+        return encodedPassword;
     }
 
-    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
-        return accountId;
+        return id;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Account)) return false;
-        Account account = (Account) o;
-        return Objects.equals(accountId, account.accountId) &&
-                Objects.equals(getUser(), account.getUser());
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(accountId, getUser());
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "accountId=" + accountId +
-                ", userName=" + user.getName() +
-                '}';
+    public void setEncodedPassword(String encodedPassword) {
+        this.encodedPassword = encodedPassword;
     }
 }

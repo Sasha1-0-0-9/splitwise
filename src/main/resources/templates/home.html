@@ -5,6 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-    <p th:text="'Hello, ' + ${title} + '!'"/>
+    <p>Hello in Splitwise</p>
+    <form th:method="GET" th:action="@{/accounts/login}">
+        <input type="submit" value="Log in"/>
+    </form>
+    <form th:method="GET" th:action="@{/accounts/new}">
+        <input type="submit" value="Sign in"/>
+    </form>
 </body>
 </html>

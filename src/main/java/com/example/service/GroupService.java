@@ -1,25 +1,28 @@
 package com.example.service;
 
 import com.example.common.validator.GroupCreationValidator;
-import com.example.entity.AccountGroupInfo;
-import com.example.entity.AccountRole;
-import com.example.entity.Group;
+import com.example.entity.*;
 import com.example.exception.GroupCreationException;
 import com.example.exception.GroupNotFoundException;
-import com.example.repository.Repository;
+import com.example.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
-public class GroupService implements Service<Group> {
+@Service
+public class GroupService {
 
     private final AccountGroupInfoService accountGroupInfoService;
-    private final Repository<Group> groupRepository;
+    private final GroupRepository groupRepository;
     private final GroupCreationValidator groupCreationValidator;
 
     @Autowired
-    public GroupService(AccountGroupInfoService accountGroupInfoService, Repository<Group> groupRepository, GroupCreationValidator groupCreationValidator) {
+    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepository groupRepository,
+                        GroupCreationValidator groupCreationValidator) {
         this.accountGroupInfoService = accountGroupInfoService;
         this.groupRepository = groupRepository;
         this.groupCreationValidator = groupCreationValidator;
@@ -48,14 +51,6 @@ public class GroupService implements Service<Group> {
         }
     }
 
-    @Override
-    public String toString() {
-        return "GroupServiceImpl{" +
-                "groups size = " + groupRepository.getSize() +
-                '}';
-    }
-
-    @Override
     public void save(Group group) {
         if (!groupCreationValidator.test(group)) {
             throw new GroupCreationException("Group not valid!");
@@ -66,7 +61,6 @@ public class GroupService implements Service<Group> {
         System.out.println("The group with name " + group.getName() + " saved!");
     }
 
-    @Override
     public Group get(Integer id) {
         if (id == null) {
             throw new NullPointerException("The group id is null!");
@@ -75,7 +69,14 @@ public class GroupService implements Service<Group> {
         return groupRepository.get(id);
     }
 
-    @Override
+    public List<Group> getAll() {
+        return groupRepository.getAll();
+    }
+
+    public List<Group> getAllByAccountId(Integer id) {
+        return groupRepository.getAllByAccountId(id);
+    }
+
     public void delete(Integer id) {
         Group group = get(id);
         if (group == null) {
@@ -89,5 +90,13 @@ public class GroupService implements Service<Group> {
 
         groupRepository.delete(group.getId());
         System.out.println("The group with name " + group.getName() + " deleted!");
+    }
+
+    public void update(int id, Group group) {
+        groupRepository.update(id, group);
+    }
+
+    public List<Contact> getGroupContacts(Integer id) {
+        return groupRepository.getContactsByGroupId(id);
     }
 }
