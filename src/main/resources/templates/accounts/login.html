@@ -6,6 +6,12 @@
 </head>
 <body>
 
+<div th:if="${text == null}">
+</div>
+<div th:unless="${text == null}">
+    <p th:text="${text}"></p>
+</div>
+
 <form th:method="POST" th:action="@{/accounts/login}">
     <label for="telephoneNumber">Enter telephone number: </label>
     <input type="text" name="telephoneNumber" id="telephoneNumber"/>

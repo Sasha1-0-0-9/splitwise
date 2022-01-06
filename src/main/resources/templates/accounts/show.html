@@ -8,21 +8,22 @@
 <p th:text="${'Name: ' + contact.getName()}">VALUE</p>
 <p th:text="${'Email: ' + contact.getEmail()}">VALUE</p>
 <p th:text="${'Phone: ' + contact.getTelephoneNumber()}">VALUE</p>
+<p th:text="${'Balance: ' + balance}">VALUE</p>
 
-<form th:method="GET" th:action="@{/accounts/{id}/edit(id=${account.getId()})}">
-    <input type="submit" value="Edit"/>
-</form>
-
-<form th:method="DELETE" th:action="@{/accounts/{id}(id=${account.getId()})}">
+<form th:method="GET" th:action="@{/accounts/{id}/delete(id=${account.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 
-<form th:method="GET" th:action="@{/accounts/{id}(id=${account.getId()})}">
+<form th:method="GET" th:action="@{/accounts/{id}/contacts(id=${account.getId()})}">
     <input type="submit" value="My contacts"/>
 </form>
 
 <form th:method="GET" th:action="@{/accounts/{id}/groups(id=${account.getId()})}">
     <input type="submit" value="My group"/>
+</form>
+
+<form th:method="GET" th:action="@{/accounts/{id}/expenses(id=${account.getId()})}">
+    <input type="submit" value="My expenses"/>
 </form>
 
 </body>

@@ -1,40 +1,34 @@
 package com.example.repository;
 
 import com.example.entity.*;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
-import static com.example.common.IdGenerator.getExpenseCounter;
+@Repository
+public class ExpenseRepository {
 
-public class ExpenseRepository implements Repository<Expense> {
+    private final JdbcTemplate jdbcTemplate;
 
-    private final static String FILE_NAME = "expenses.txt";
+    public ExpenseRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
-    @Override
     public void save(Expense expense) {
-        RepositoryTemplate.save(getExpenseCounter(), expense, FILE_NAME);
+        jdbcTemplate.update("INSERT INTO expenses VALUES(?, ?, ?)", expense.getLenderId(), expense.getBorrowerId(),
+                expense.getAmount(), expense.getExpenseType().name(), expense.getLocalDateTime(),
+                expense.getCurrency().name());
     }
 
-    @Override
-    public Map<Integer, Expense> getAll() {
-        return RepositoryTemplate.getItems(FILE_NAME);
+    public List<Expense> getAll() {
+        List<Expense> list = jdbcTemplate.query("SELECT * FROM expenses", new BeanPropertyRowMapper<>(Expense.class));
+        return list;
     }
 
-    @Override
-    public void deleteAll(Set<Integer> ids) {
-        RepositoryTemplate.deleteAll(ids, FILE_NAME);
-    }
-
-    @Override
-    public int getSize() {
-        return RepositoryTemplate.getSize(FILE_NAME);
-    }
-
-    public Set<Expense> get() {
-        Map<Integer, Expense> expenses = getAll();
-
-        return new HashSet<>(expenses.values());
+    public Expense get(int id) {
+        return jdbcTemplate.query("SELECT * FROM expenses WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Expense.class))
+                .stream().findAny().orElse(null);
     }
 }

@@ -49,10 +49,4 @@ public class ContactRepository {
                 + " INNER JOIN account_contact_list AS a ON a.telephonenumber = c.telephonenumber"
                 + " WHERE a.accountId = ? ", new BeanPropertyRowMapper<>(Contact.class), accountId);
     }
-
-    public Account getAccount(String telephoneNumber) {
-        List<Account> accounts = jdbcTemplate.query("SELECT * FROM accounts WHERE telephoneNumber=?",
-                new BeanPropertyRowMapper<>(Account.class), telephoneNumber);
-        return accounts.stream().findAny().orElse(null);
-    }
 }

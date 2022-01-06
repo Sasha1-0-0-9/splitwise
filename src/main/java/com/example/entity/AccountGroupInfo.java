@@ -1,13 +1,14 @@
 package com.example.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class AccountGroupInfo implements Serializable {
+public class AccountGroupInfo {
 
-    private final Integer accountId;
-    private final Integer groupId;
-    private final AccountRole accountRole;
+    private Integer accountId;
+    private Integer groupId;
+    private AccountRole accountRole;
+
+    public AccountGroupInfo() {}
 
     public AccountGroupInfo(Integer accountId, Integer groupId, AccountRole accountRole) {
         this.accountId = accountId;
@@ -25,6 +26,18 @@ public class AccountGroupInfo implements Serializable {
 
     public AccountRole getAccountRole() {
         return accountRole;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setAccountRole(AccountRole accountRole) {
+        this.accountRole = accountRole;
     }
 
     @Override

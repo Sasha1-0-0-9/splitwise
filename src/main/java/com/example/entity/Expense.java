@@ -6,12 +6,17 @@ import java.util.Objects;
 
 public class Expense implements Serializable {
 
+    private Integer id;
     private Integer lenderId;
     private Integer borrowerId;
     private double amount;
     private ExpenseType expenseType;
     private LocalDateTime localDateTime;
     private Currency currency;
+
+    public Integer getId() {
+        return id;
+    }
 
     public Integer getLenderId() {
         return lenderId;

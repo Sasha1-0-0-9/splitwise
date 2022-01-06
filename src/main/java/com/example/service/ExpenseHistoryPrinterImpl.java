@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     private final BalanceLoader balanceLoader;
-    private final ExpenseTracker expenseTracker;
+    private final ExpenseService expenseService;
     private final AccountService accountService;
     private final GroupService groupService;
 
-    public ExpenseHistoryPrinterImpl(BalanceLoader balanceLoader, ExpenseTracker expenseTracker,
+    public ExpenseHistoryPrinterImpl(BalanceLoader balanceLoader, ExpenseService expenseService,
                                      AccountService accountService, GroupService groupService) {
         this.balanceLoader = balanceLoader;
-        this.expenseTracker = expenseTracker;
+        this.expenseService = expenseService;
         this.accountService = accountService;
         this.groupService = groupService;
     }
@@ -39,7 +39,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     @Override
     public void printAccountExpenseHistory(Integer accountId, SortType sortType) {
-        Set<Expense> expenses = expenseTracker.getExpensesByAccount(accountId);
+        List<Expense> expenses = expenseService.getExpensesByAccount(accountId);
 
         ExpenseComparator comparator = new ExpenseComparator(sortType);
 
@@ -79,7 +79,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     @Override
     public void printGroupExpenseHistory(Integer groupId, SortType sortType) {
-        Set<Expense> expenses = expenseTracker.getExpensesByGroup(groupId);
+        List<Expense> expenses = expenseService.getExpensesByGroup(groupId);
 
         ExpenseComparator comparator = new ExpenseComparator(sortType);
 
@@ -104,7 +104,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     @Override
     public void printAccountExpenseHistoryGroupByCurrencies(Integer accountId, SortType sortType) {
-        Set<Expense> expenses = expenseTracker.getExpensesByAccount(accountId);
+        List<Expense> expenses = expenseService.getExpensesByAccount(accountId);
 
         ExpenseComparator comparator = new ExpenseComparator(sortType);
 
@@ -121,7 +121,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     @Override
     public void printGroupExpenseHistoryGroupByCurrencies(Integer groupId, SortType sortType) {
-        Set<Expense> expenses = expenseTracker.getExpensesByGroup(groupId);
+        List<Expense> expenses = expenseService.getExpensesByGroup(groupId);
 
         ExpenseComparator comparator = new ExpenseComparator(sortType);
 
@@ -136,7 +136,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     @Override
     public void printAccountExpenseHistoryGroupByCurrencies(Integer accountId, SortType sortType, LocalDateTime afterDate) {
-        Set<Expense> expenses = expenseTracker.getExpensesByAccount(accountId);
+        List<Expense> expenses = expenseService.getExpensesByAccount(accountId);
 
         ExpenseComparator comparator = new ExpenseComparator(sortType);
 
@@ -154,7 +154,7 @@ public class ExpenseHistoryPrinterImpl implements ExpenseHistoryPrinter {
 
     @Override
     public void printGroupExpenseHistoryGroupByCurrencies(Integer groupId, SortType sortType, LocalDateTime afterDate) {
-        Set<Expense> expenses = expenseTracker.getExpensesByGroup(groupId);
+        List<Expense> expenses = expenseService.getExpensesByGroup(groupId);
 
         ExpenseComparator comparator = new ExpenseComparator(sortType);
 

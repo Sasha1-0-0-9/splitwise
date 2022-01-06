@@ -2,19 +2,22 @@ package com.example.service;
 
 import com.example.entity.*;
 import com.example.repository.ExpenseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ExpenseTrackerImpl implements ExpenseTracker {
+@Service
+public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
 
-    public ExpenseTrackerImpl(ExpenseRepository expenseRepository) {
+    @Autowired
+    public ExpenseService(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
 
-    @Override
     public void trackExpense(Expense expense) {
         if (expense == null) {
             throw new NullPointerException("Expense is null!");
@@ -25,64 +28,62 @@ public class ExpenseTrackerImpl implements ExpenseTracker {
 
     }
 
-    @Override
-    public Set<Expense> getExpensesByGroup(Integer groupId) {
+    public List<Expense> getExpensesByGroup(Integer groupId) {
         if (groupId == null) {
             throw new NullPointerException("Group id is null!");
         }
 
-        return expenseRepository.get().stream()
+        return expenseRepository.getAll().stream()
                 .filter(s -> s.getBorrowerId().equals(groupId) && s.getExpenseType() == ExpenseType.GROUP)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public Set<Expense> getExpensesByAccount(Integer accountId) {
+    public List<Expense> getExpensesByAccount(Integer accountId) {
         if (accountId == null) {
             throw new NullPointerException("Account id is null!");
         }
 
-        return expenseRepository.get().stream()
+        return expenseRepository.getAll().stream()
                 .filter(s -> (s.getBorrowerId().equals(accountId) || s.getLenderId().equals(accountId))
                         && s.getExpenseType() == ExpenseType.USER)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    @Override
     public Set<Expense> getExpensesForAccountByLender(Integer accountId, Integer lenderId) {
         if (accountId == null || lenderId == null) {
             throw new NullPointerException("Account id or lender id is null!");
         }
 
-        return expenseRepository.get().stream()
+        return expenseRepository.getAll().stream()
                 .filter(s -> s.getBorrowerId().equals(accountId) && s.getLenderId().equals(lenderId)
                         && s.getExpenseType() == ExpenseType.USER)
                 .collect(Collectors.toSet());
     }
 
-    @Override
     public Set<Expense> getExpensesForGroupByLender(Integer groupId, Integer lenderId) {
         if (groupId == null || lenderId == null) {
             throw new NullPointerException("Group id or lender id is null!");
         }
 
-        return expenseRepository.get().stream()
+        return expenseRepository.getAll().stream()
                 .filter(s -> s.getBorrowerId().equals(groupId) && s.getLenderId().equals(lenderId)
                         && s.getExpenseType() == ExpenseType.GROUP)
                 .collect(Collectors.toSet());
     }
 
-    @Override
-    public Map<Integer, Set<Expense>> getExpensesByGroups(Set<Integer> groupIds) {
+    public Map<Integer, List<Expense>> getExpensesByGroups(Set<Integer> groupIds) {
         return groupIds.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toMap(k -> k, this::getExpensesByGroup));
     }
 
-    @Override
-    public Map<Integer, Set<Expense>> getExpensesByAccounts(Set<Integer> accountIds) {
+    public Map<Integer, List<Expense>> getExpensesByAccounts(Set<Integer> accountIds) {
         return accountIds.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toMap(k -> k, this::getExpensesByAccount));
+    }
+
+    public Expense get(Integer id) {
+        return expenseRepository.get(id);
     }
 }

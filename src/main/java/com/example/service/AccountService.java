@@ -4,7 +4,6 @@ import com.example.common.validator.AccountCreationValidator;
 import com.example.entity.Account;
 import com.example.entity.AccountGroupInfo;
 import com.example.entity.AccountRole;
-import com.example.entity.Contact;
 import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
 import com.example.repository.AccountRepository;
@@ -43,7 +42,7 @@ public class AccountService {
             throw new AccountNotFoundException("The account with id = " + id + " does not exist!");
         }
 
-        Set<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
             if (accountGroupInfo.getAccountRole() == AccountRole.ADMIN) {
                 groupService.delete(accountGroupInfo.getGroupId());
@@ -55,12 +54,12 @@ public class AccountService {
         accountRepository.delete(id);
     }
 
-    public void save(@Valid Account account) {
+    public int save(@Valid Account account) {
         if (!accountCreationValidator.test(account)) {
             throw new AccountCreationException("Account not valid!");
         }
 
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     public Account get(Integer id) {
@@ -71,9 +70,9 @@ public class AccountService {
         return accountRepository.get(id);
     }
 
-    public List<Account> getAll() {
+    /*public List<Account> getAll() {
         return accountRepository.getAll();
-    }
+    }*/
 
     public void update(int id, Account account) {
         //accountRepository.update(id, account);
@@ -81,5 +80,9 @@ public class AccountService {
 
     public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {
         return accountRepository.getByNameAndPassword(telephoneNumber, encodedPassword);
+    }
+
+    public Account getByTelephoneNumber(String telephoneNumber) {
+        return accountRepository.getByTelephoneNumber(telephoneNumber);
     }
 }

@@ -6,15 +6,14 @@
 </head>
 <body>
 
-<div th:each="person : ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}"
-       th:text="${person.getName() + ', ' + person.getAge()}">user</a>
+<div th:if="${contacts.isEmpty()}">
+    <p>Contact list is empty!</p>
 </div>
-
-<br/>
-<hr/>
-
-<a href="/people/new">Create new person</a>
+<div th:unless="${contacts.isEmpty()}">
+    <div th:each="contact : ${contacts}">
+        <a th:text="${contact.getName() + ', ' + contact.getTelephoneNumber() + ', ' + contact.getEmail()}">user</a>
+    </div>
+</div>
 
 </body>
 </html>

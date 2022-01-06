@@ -1,65 +1,53 @@
 package com.example.repository;
 
+import com.example.entity.Account;
 import com.example.entity.AccountGroupInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.example.common.IdGenerator.getAccountGroupInfoCounter;
 
-@org.springframework.stereotype.Repository
-public class AccountGroupInfoRepository implements Repository<AccountGroupInfo> {
+@Repository
+public class AccountGroupInfoRepository {
 
-    private final static String FILE_NAME = "account_group_infos.txt";
+    private final JdbcTemplate jdbcTemplate;
 
-    @Override
+    @Autowired
+    public AccountGroupInfoRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     public void save(AccountGroupInfo accountGroupInfo) {
-        RepositoryTemplate.save(getAccountGroupInfoCounter(), accountGroupInfo, FILE_NAME);
+
     }
 
-    @Override
     public Map<Integer, AccountGroupInfo> getAll() {
-        return RepositoryTemplate.getItems(FILE_NAME);
-    }
-
-    @Override
-    public void deleteAll(Set<Integer> ids) {
-        RepositoryTemplate.deleteAll(ids, FILE_NAME);
+        return null;
     }
 
     public AccountGroupInfo get(Integer accountId, Integer groupId) {
-        Map<Integer, AccountGroupInfo> accountGroupInfos = getAll();
-
-        Map.Entry<Integer, AccountGroupInfo> accountGroupInfoById = accountGroupInfos.entrySet().stream()
-                .filter(s -> (s.getValue().getAccountId().equals(accountId))
-                        && (s.getValue().getGroupId().equals(groupId)))
-                .findFirst().orElse(null);
-
-        return (accountGroupInfoById == null) ? null : accountGroupInfoById.getValue();
+        List<AccountGroupInfo> accounts = jdbcTemplate.query("SELECT * FROM account_group_info WHERE accountId=? AND groupId=?",
+                new BeanPropertyRowMapper<>(AccountGroupInfo.class), accountId, groupId);
+        return accounts.stream().findAny().orElse(null);
     }
 
-    public Set<AccountGroupInfo> get(Integer id, boolean byAccountId) {
-        Map<Integer, AccountGroupInfo> accountGroupInfos = getAll();
-
-        return accountGroupInfos.values().stream()
-                .filter(accountGroupInfo -> (accountGroupInfo.getAccountId().equals(id) && byAccountId)
-                        || (accountGroupInfo.getGroupId().equals(id) && !byAccountId))
-                .collect(Collectors.toSet());
+    public List<AccountGroupInfo> getByAccountId(Integer id) {
+        List<AccountGroupInfo> list = jdbcTemplate.query("SELECT * FROM account_group_info WHERE accountId=?", new BeanPropertyRowMapper<>(AccountGroupInfo.class), id);
+        return list;
     }
 
     public void delete(AccountGroupInfo accountGroupInfo) {
-        Map<Integer, AccountGroupInfo> accountGroupInfos = getAll();
 
-        int accountGroupInfoId = accountGroupInfos.entrySet().stream()
-                .filter(s -> (s.getValue().equals(accountGroupInfo)))
-                .findFirst().get().getKey();
-
-        deleteAll(Set.of(accountGroupInfoId));
     }
 
-    @Override
-    public int getSize() {
-        return RepositoryTemplate.getSize(FILE_NAME);
+    public List<AccountGroupInfo> getByGroupId(Integer id) {
+        return jdbcTemplate.query("SELECT * FROM account_group_info WHERE groupId=?", new BeanPropertyRowMapper<>(AccountGroupInfo.class), id);
     }
 }

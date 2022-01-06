@@ -83,7 +83,7 @@ public class GroupService {
             throw new GroupNotFoundException("The group with id = " + id + " does not exist!");
         }
 
-        Set<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByGroupId(id);
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByGroupId(id);
         for (AccountGroupInfo info : accountGroupInfos) {
             accountGroupInfoService.deleteAccountGroupInfo(info);
         }
