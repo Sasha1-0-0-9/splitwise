@@ -1,5 +1,6 @@
 package com.example.ss;
 
+import com.example.entity.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,10 +10,10 @@ import java.util.Collection;
 
 public class UserDatailsImpl implements UserDetails {
 
-    private Acc acc;
+    private Account account;
 
-    public UserDatailsImpl(Acc acc) {
-        this.acc = acc;
+    public UserDatailsImpl(Account account) {
+        this.account = account;
     }
 
     @Override
@@ -24,12 +25,12 @@ public class UserDatailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return acc.getEncryptedPassword();
+        return account.getEncryptedPassword();
     }
 
     @Override
     public String getUsername() {
-        return acc.getEmail();
+        return account.getEmail();
     }
 
     @Override

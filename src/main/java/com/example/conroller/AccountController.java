@@ -3,8 +3,11 @@ package com.example.conroller;
 import com.example.entity.Account;
 import com.example.entity.Contact;
 import com.example.service.AccountService;
+import com.example.service.BalanceLoaderImpl;
 import com.example.service.ContactService;
+import com.example.ss.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,12 +23,23 @@ public class AccountController {
 
     private final AccountService accountService;
     private final ContactService contactService;
+    private final BalanceLoaderImpl balanceLoader;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public AccountController(AccountService accountService, ContactService contactService) {
+    public AccountController(AccountService accountService, ContactService contactService, BalanceLoaderImpl balanceLoader, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.accountService = accountService;
         this.contactService = contactService;
+        this.balanceLoader = balanceLoader;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+
+    @GetMapping("/{id}/contacts")
+    public String index(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("contacts", contactService.getByAccountId(id));
+        return "accounts/index";
+    }
+
 
     @GetMapping()
     public String index(Model model) {
@@ -35,14 +49,14 @@ public class AccountController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("account", accountService.get(id));
+        Account account = accountService.get(id);
+        model.addAttribute("account", account);
+        Contact contact = contactService.get(account.getTelephoneNumber());
+        model.addAttribute("contact", contact);
+        model.addAttribute("balance", balanceLoader.getAccountBalance(id));
         return "accounts/show";
     }
 
-    @GetMapping("/login")
-    public String login(@ModelAttribute("account") Account account) {
-        return "accounts/login";
-    }
 
     @GetMapping("/new")
     public String newAccount(@ModelAttribute("account") Account account, Model model) {
@@ -50,44 +64,27 @@ public class AccountController {
         return "accounts/new";
     }
 
-    @PostMapping("/login")
-    public String entrance(@RequestParam("telephoneNumber") String telephoneNumber,
-                           @RequestParam("encodedPassword") String encodedPassword,
-                           ModelMap model) {
-
-        Account account = accountService.getByTelephoneNumberAndPassword(telephoneNumber, encodedPassword);
-        model.addAttribute("account", account);
-
-        if (account == null) {
-            return "redirect:/accounts/login";
-        }
-
-        Contact contact = contactService.get(telephoneNumber);
-        model.addAttribute("contact", contact);
-
-        return "accounts/show";
-    }
-
     @PostMapping()
     public String create(@RequestParam("name") @Valid String name, @RequestParam("telephoneNumber") String telephoneNumber,
                          @RequestParam("email") String email, @RequestParam("encryptedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
         Account account;
+        Contact contact;
         try {
-            Contact contact = new Contact(name, telephoneNumber, email);
-            //contactService.save(contact);
+            contact = new Contact(name, telephoneNumber);
+            contactService.save(contact);
 
-            account = new Account(telephoneNumber, encryptedPassword);
+            account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
+            account.setId(account.getId());
             accountService.save(account);
         } catch (ConstraintViolationException e) {
             String message = e.getMessage();
             model.addAttribute("text", message);
             return "accounts/new";
         }
-
+        model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(account.getId()));
         return "accounts/show";
     }
-
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
@@ -105,9 +102,10 @@ public class AccountController {
         return "redirect:/accounts";
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/{id}/delete")
     public String delete(@PathVariable("id") int id) {
         accountService.delete(id);
-        return "redirect:/accounts";
+        return "home";
     }
+
 }

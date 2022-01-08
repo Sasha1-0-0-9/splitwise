@@ -9,6 +9,7 @@ import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
 import com.example.repository.AccountRepository;
 import com.example.repository.ContactRepository;
+import com.example.ss.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -21,14 +22,14 @@ import java.util.Set;
 @Validated
 public class AccountService {
 
-    private final AccountRepository accountRepository;
+    private final AccountRepo accountRepository;
     private final ContactRepository contactRepository;
     private final AccountGroupInfoService accountGroupInfoService;
     private final GroupService groupService;
     private final AccountCreationValidator accountCreationValidator;
 
     @Autowired
-    public AccountService(AccountRepository accountRepository, ContactRepository contactRepository, GroupService groupService,
+    public AccountService(AccountRepo accountRepository, ContactRepository contactRepository, GroupService groupService,
                           AccountGroupInfoService accountGroupInfoService, AccountCreationValidator accountCreationValidator) {
         this.accountRepository = accountRepository;
         this.contactRepository = contactRepository;
@@ -52,7 +53,7 @@ public class AccountService {
             }
         }
 
-        accountRepository.delete(id);
+        accountRepository.getById(id);
     }
 
     public void save(@Valid Account account) {
@@ -68,11 +69,11 @@ public class AccountService {
             throw new NullPointerException("Account id is null!");
         }
 
-        return accountRepository.get(id);
+        return accountRepository.getById(id);
     }
 
     public List<Account> getAll() {
-        return accountRepository.getAll();
+        return accountRepository.findAll();
     }
 
     public void update(int id, Account account) {

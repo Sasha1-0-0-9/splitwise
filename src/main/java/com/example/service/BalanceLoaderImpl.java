@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.entity.*;
 import com.example.entity.Currency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -10,13 +12,15 @@ import java.util.stream.Collectors;
 
 import static com.example.repository.ConverterRepository.converter;
 
+@Service
 public class BalanceLoaderImpl implements BalanceLoader {
 
-    private final ExpenseTracker expenseTracker;
+    private final ExpenseService expenseService;
     private AccountGroupInfoService accountGroupInfoService;
 
-    public BalanceLoaderImpl(ExpenseTracker expenseTracker, AccountGroupInfoService accountGroupInfoService) {
-        this.expenseTracker = expenseTracker;
+    @Autowired
+    public BalanceLoaderImpl(ExpenseService expenseService, AccountGroupInfoService accountGroupInfoService) {
+        this.expenseService = expenseService;
         this.accountGroupInfoService = accountGroupInfoService;
     }
 
@@ -31,7 +35,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
 
         double amount = 0;
 
-        Set<Expense> groupExpenses = expenseTracker.getExpensesByGroup(groupId);
+        List<Expense> groupExpenses = expenseService.getExpensesByGroup(groupId);
         for (Expense expense : groupExpenses) {
             int size = accountGroupInfoService.getAccountGroupInfosByGroupId(groupId).size();
             double convert = converter(expense.getCurrency(), Currency.USD);
@@ -53,7 +57,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
 
         double amount = 0;
 
-        Set<Expense> accountExpenses = expenseTracker.getExpensesByAccount(accountId);
+        List<Expense> accountExpenses = expenseService.getExpensesByAccount(accountId);
         for (Expense expense : accountExpenses) {
             double convert = converter(expense.getCurrency(), Currency.USD);
             if (expense.getBorrowerId().equals(accountId)) {
@@ -63,7 +67,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
             }
         }
 
-        Set<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
         for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
             Balance balance = getAccountBalance(accountGroupInfo.getGroupId(), accountGroupInfo.getAccountId());
             if (balance != null) {
@@ -80,7 +84,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
             throw new NullPointerException("Group id or account id is null!");
         }
 
-        Set<Expense> expensesByGroup = expenseTracker.getExpensesByGroup(groupId);
+        List<Expense> expensesByGroup = expenseService.getExpensesByGroup(groupId);
 
         int size = accountGroupInfoService.getAccountGroupInfosByGroupId(groupId).size();
 
@@ -107,13 +111,13 @@ public class BalanceLoaderImpl implements BalanceLoader {
             throw new NullPointerException("Account id is null!");
         }
 
-        Set<Expense> expensesByAccount = expenseTracker.getExpensesByAccount(accountId);
+        List<Expense> expensesByAccount = expenseService.getExpensesByAccount(accountId);
         double amount = expensesByAccount.stream()
                 .filter(s -> s.getLocalDateTime().isAfter(afterDate))
                 .mapToDouble(s -> expenseByAccountToDouble(accountId, s))
                 .sum();
 
-        Set<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
         amount += accountGroupInfos.stream()
                 .mapToDouble(s -> {
                     Balance balance = getAccountBalance(s.getGroupId(), s.getAccountId(), afterDate);
@@ -141,7 +145,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
 
         int size = accountGroupInfoService.getAccountGroupInfosByGroupId(groupId).size();
 
-        Set<Expense> expenses = expenseTracker.getExpensesByGroup(groupId);
+        List<Expense> expenses = expenseService.getExpensesByGroup(groupId);
 
         Map<Currency, List<Expense>> expensesByCurrencies = expenses.stream()
                 .collect(Collectors.groupingBy(Expense::getCurrency));
@@ -166,7 +170,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
             throw new NullPointerException("Account id is null!");
         }
 
-        Set<Expense> expensesByAccount = expenseTracker.getExpensesByAccount(accountId);
+        List<Expense> expensesByAccount = expenseService.getExpensesByAccount(accountId);
 
         Map<Currency, List<Expense>> expensesByAccountByCurrencies = expensesByAccount.stream()
                 .collect(Collectors.groupingBy(Expense::getCurrency));
@@ -176,7 +180,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
                         .mapToDouble(p -> expenseByAccountToDoubleByCurrencies(accountId, p))
                         .sum(), s.getKey())));
 
-        Set<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
 
         Map<Currency, Balance> balancesByGroupsByCurrencies = new HashMap<>();
 
