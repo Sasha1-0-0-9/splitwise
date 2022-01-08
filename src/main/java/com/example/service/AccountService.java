@@ -4,7 +4,6 @@ import com.example.common.validator.AccountCreationValidator;
 import com.example.entity.Account;
 import com.example.entity.AccountGroupInfo;
 import com.example.entity.AccountRole;
-import com.example.entity.Contact;
 import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
 import com.example.repository.AccountRepository;
@@ -44,7 +43,7 @@ public class AccountService {
             throw new AccountNotFoundException("The account with id = " + id + " does not exist!");
         }
 
-        Set<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
             if (accountGroupInfo.getAccountRole() == AccountRole.ADMIN) {
                 groupService.delete(accountGroupInfo.getGroupId());
@@ -82,5 +81,9 @@ public class AccountService {
 
     public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {
         return accountRepository.getByNameAndPassword(telephoneNumber, encodedPassword);
+    }
+
+    public Account getByTelephoneNumber(String telephoneNumber) {
+        return accountRepository.getByTelephoneNumber(telephoneNumber);
     }
 }

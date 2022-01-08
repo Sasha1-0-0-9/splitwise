@@ -3,6 +3,7 @@ package com.example.conroller;
 import com.example.entity.Account;
 import com.example.entity.Contact;
 import com.example.entity.Group;
+import com.example.service.AccountService;
 import com.example.service.ContactService;
 import com.example.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +13,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.example.entity.AccountRole.USER;
-
 @Controller
 @RequestMapping("/accounts/{accountId}/groups")
 public class GroupController {
 
     private final GroupService groupService;
+    private final AccountService accountService;
     private final ContactService contactService;
 
     @Autowired
-    public GroupController(GroupService groupService, ContactService contactService) {
+    public GroupController(GroupService groupService, AccountService accountService, ContactService contactService) {
         this.groupService = groupService;
+        this.accountService = accountService;
         this.contactService = contactService;
     }
 
@@ -79,7 +80,7 @@ public class GroupController {
             String name = "true";
             model.addAttribute("param", "true");
         } else {
-            groupService.addToGroup(id, accountId, contactService.getAccount(contact).getId());
+            groupService.addToGroup(id, accountId, accountService.getByTelephoneNumber(contact).getId());
         }
 
         model.addAttribute("group", groupService.get(id));

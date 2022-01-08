@@ -8,8 +8,6 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
 </head>
-
-
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/" style="color: #018c4b">Splitwise</a>
@@ -72,6 +70,10 @@
 
 <form th:method="GET" th:action="@{/accounts/{id}/groups(id=${account.getId()})}">
     <input class="btn btn-outline-dark" type="submit" value="My group"/>
+</form>
+
+<form th:method="GET" th:action="@{/accounts/{id}/expenses(id=${account.getId()})}">
+    <input type="submit" value="My expenses"/>
 </form>
 
 </body>

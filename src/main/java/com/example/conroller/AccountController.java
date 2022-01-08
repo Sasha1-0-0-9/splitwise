@@ -2,6 +2,7 @@ package com.example.conroller;
 
 import com.example.entity.Account;
 import com.example.entity.Contact;
+import com.example.exception.ContactCreationException;
 import com.example.service.AccountService;
 import com.example.service.BalanceLoaderImpl;
 import com.example.service.ContactService;
@@ -40,7 +41,6 @@ public class AccountController {
         return "accounts/index";
     }
 
-
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("accounts", accountService.getAll());
@@ -56,7 +56,6 @@ public class AccountController {
         model.addAttribute("balance", balanceLoader.getAccountBalance(id));
         return "accounts/show";
     }
-
 
     @GetMapping("/new")
     public String newAccount(@ModelAttribute("account") Account account, Model model) {
@@ -83,6 +82,7 @@ public class AccountController {
         }
         model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(account.getId()));
+
         return "accounts/show";
     }
 
@@ -107,5 +107,4 @@ public class AccountController {
         accountService.delete(id);
         return "home";
     }
-
 }

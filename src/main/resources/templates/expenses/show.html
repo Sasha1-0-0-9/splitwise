@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<p th:text="${'Name: ' + group.getName()}">VALUE</p>
+<p>List participant of group</p>
+<div th:each="contact : ${contacts}">
+    <a th:text="${contact.getName() + ', ' + contact.getTelephoneNumber() + ', ' + contact.getEmail()}">user</a>
+</div>
+
+<form th:method="GET" th:action="@{/accounts/${id}/expense/new}">
+    <input type="submit" value="New Expense"/>
+</form>
+
+</body>
+</html>
