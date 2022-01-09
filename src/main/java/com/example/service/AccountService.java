@@ -7,30 +7,26 @@ import com.example.entity.AccountRole;
 import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
 import com.example.repository.AccountRepository;
-import com.example.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Validated
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    private final ContactRepository contactRepository;
     private final AccountGroupInfoService accountGroupInfoService;
     private final GroupService groupService;
     private final AccountCreationValidator accountCreationValidator;
 
     @Autowired
-    public AccountService(AccountRepository accountRepository, ContactRepository contactRepository, GroupService groupService,
+    public AccountService(AccountRepository accountRepository, GroupService groupService,
                           AccountGroupInfoService accountGroupInfoService, AccountCreationValidator accountCreationValidator) {
         this.accountRepository = accountRepository;
-        this.contactRepository = contactRepository;
         this.groupService = groupService;
         this.accountGroupInfoService = accountGroupInfoService;
         this.accountCreationValidator = accountCreationValidator;
@@ -68,14 +64,6 @@ public class AccountService {
         }
 
         return accountRepository.get(id);
-    }
-
-    /*public List<Account> getAll() {
-        return accountRepository.getAll();
-    }*/
-
-    public void update(int id, Account account) {
-        //accountRepository.update(id, account);
     }
 
     public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {

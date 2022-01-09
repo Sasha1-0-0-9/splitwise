@@ -2,7 +2,6 @@ package com.example.conroller;
 
 import com.example.entity.*;
 import com.example.exception.AccountNotFoundException;
-import com.example.exception.ContactCreationException;
 import com.example.service.AccountService;
 import com.example.service.ContactService;
 import com.example.service.GroupService;
@@ -12,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.example.entity.ExpenseType.USER;
 
 @Controller
 @RequestMapping("/accounts/{accountId}/groups")
@@ -46,7 +42,7 @@ public class GroupController {
         model.addAttribute("group", groupService.get(id));
         List<Integer> idList = groupService.getIdAccounts(id);
         List<Account> accounts = idList.stream()
-                .map(s -> accountService.get(s))
+                .map(accountService::get)
                 .collect(Collectors.toList());
         List<Contact> contacts = accounts.stream()
                 .map(s -> contactService.get(s.getTelephoneNumber()))
@@ -103,7 +99,7 @@ public class GroupController {
 
         List<Integer> idList = groupService.getIdAccounts(id);
         List<Account> accounts = idList.stream()
-                .map(s -> accountService.get(s))
+                .map(accountService::get)
                 .collect(Collectors.toList());
         List<Contact> groupContacts = accounts.stream()
                 .map(s -> contactService.get(s.getTelephoneNumber()))
@@ -129,12 +125,11 @@ public class GroupController {
         model.addAttribute("group", groupService.get(id));
         idList = groupService.getIdAccounts(id);
         accounts = idList.stream()
-                .map(s -> accountService.get(s))
+                .map(accountService::get)
                 .collect(Collectors.toList());
         List<Contact> contacts = accounts.stream()
                 .map(s -> contactService.get(s.getTelephoneNumber()))
                 .collect(Collectors.toList());
-        model.addAttribute("contacts", contacts);
         model.addAttribute("contacts", contacts);
         model.addAttribute("accountId", accountId);
         model.addAttribute("text", null);

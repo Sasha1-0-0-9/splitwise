@@ -2,7 +2,6 @@ package com.example.conroller;
 
 import com.example.entity.*;
 import com.example.exception.AccountNotFoundException;
-import com.example.exception.ContactCreationException;
 import com.example.service.AccountService;
 import com.example.service.ContactService;
 import com.example.service.ExpenseService;
@@ -17,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
@@ -124,10 +122,7 @@ public class ExpenseController {
         model.addAttribute("accountId", accountId);
         model.addAttribute("expenses", expenses);
 
-        //Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
-
-        //Create a blank sheet
         XSSFSheet sheet = workbook.createSheet("Expense");
 
         int rownum = 0;
@@ -170,7 +165,6 @@ public class ExpenseController {
             }
         }
         try {
-            //Write the workbook in file system
             FileOutputStream out = new FileOutputStream(new File("expense.xlsx"));
             workbook.write(out);
             out.close();

@@ -1,6 +1,5 @@
 package com.example.repository;
 
-import com.example.entity.Account;
 import com.example.entity.Contact;
 import com.example.entity.Group;
 import org.springframework.beans.factory.annotation.Autowired;

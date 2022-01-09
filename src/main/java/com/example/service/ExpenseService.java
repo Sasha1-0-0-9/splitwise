@@ -23,16 +23,6 @@ public class ExpenseService {
         this.accountGroupInfoService = accountGroupInfoService;
     }
 
-    public void trackExpense(Expense expense) {
-        if (expense == null) {
-            throw new NullPointerException("Expense is null!");
-        }
-
-        expenseRepository.save(expense);
-        System.out.println("The expense from account with id = " + expense.getLenderId() + " saved!");
-
-    }
-
     public List<Expense> getAllAccountExpense(Integer accountId) {
         if (accountId == null) {
             throw new NullPointerException("Account id is null!");

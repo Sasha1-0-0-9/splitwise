@@ -1,6 +1,5 @@
 package com.example.repository;
 
-import com.example.entity.Account;
 import com.example.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

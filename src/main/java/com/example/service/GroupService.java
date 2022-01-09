@@ -1,8 +1,6 @@
 package com.example.service;
 
-import com.example.common.validator.GroupCreationValidator;
 import com.example.entity.*;
-import com.example.exception.GroupCreationException;
 import com.example.exception.GroupNotFoundException;
 import com.example.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,11 @@ public class GroupService {
 
     private final AccountGroupInfoService accountGroupInfoService;
     private final GroupRepository groupRepository;
-    private final GroupCreationValidator groupCreationValidator;
-    private final ContactService contactService;
 
     @Autowired
-    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepository groupRepository,
-                        GroupCreationValidator groupCreationValidator, ContactService contactService) {
+    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepository groupRepository) {
         this.accountGroupInfoService = accountGroupInfoService;
         this.groupRepository = groupRepository;
-        this.groupCreationValidator = groupCreationValidator;
-        this.contactService = contactService;
     }
 
     public void addToGroup(Integer groupId, Integer accountId, Integer addedBy) {
@@ -57,10 +50,6 @@ public class GroupService {
     }
 
     public void save(@Valid Group group) {
-        /*if (!groupCreationValidator.test(group)) {
-            throw new GroupCreationException("Group not valid!");
-        }*/
-
         Integer id = groupRepository.save(group);
         accountGroupInfoService.create(group.getCreatorId(), id, AccountRole.ADMIN);
     }
@@ -73,10 +62,6 @@ public class GroupService {
         return groupRepository.get(id);
     }
 
-    public List<Group> getAll() {
-        return groupRepository.getAll();
-    }
-
     public List<Group> getAllByAccountId(Integer id) {
         List<AccountGroupInfo> list = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         return list.stream()
@@ -85,28 +70,18 @@ public class GroupService {
     }
 
     public void delete(Integer id) {
-        /*Group group = get(id);
-        if (group == null) {
-            throw new GroupNotFoundException("The group with id = " + id + " does not exist!");
-        }*/
-
         List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByGroupId(id);
         for (AccountGroupInfo info : accountGroupInfos) {
             accountGroupInfoService.deleteAccountGroupInfo(info);
         }
 
         groupRepository.delete(id);
-        //System.out.println("The group with name " + group.getName() + " deleted!");
-    }
-
-    public void update(int id, Group group) {
-        groupRepository.update(id, group);
     }
 
     public List<Integer> getIdAccounts(Integer id) {
         List<AccountGroupInfo> list = accountGroupInfoService.getAccountGroupInfosByGroupId(id);
         return list.stream()
-                .map(s -> s.getAccountId())
+                .map(AccountGroupInfo::getAccountId)
                 .collect(Collectors.toList());
     }
 

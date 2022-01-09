@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
@@ -100,23 +99,6 @@ public class AccountController {
         model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(id));
         return "accounts/show";
-    }
-
-
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", accountService.get(id));
-        return "accounts/edit";
-    }
-
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Account account, BindingResult bindingResult,
-                         @PathVariable("id") int id) {
-        if (bindingResult.hasErrors())
-            return "accounts/edit";
-
-        accountService.update(id, account);
-        return "redirect:/accounts";
     }
 
     @GetMapping("/{id}/delete")
