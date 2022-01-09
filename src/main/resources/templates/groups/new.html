@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New expense</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/accounts/{accountId}/groups/new(accountId=${accountId})}">
+    <label for="name">Enter group name: </label>
+    <input type="text" name="name" id="name"/>
+    <br/>
+
+    <div th:if="${text == null}">
+    </div>
+    <div th:unless="${text == null}">
+        <p th:text="${text}"></p>
+    </div>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

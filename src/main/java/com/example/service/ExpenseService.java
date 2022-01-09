@@ -4,18 +4,23 @@ import com.example.entity.*;
 import com.example.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
+    private final AccountGroupInfoService accountGroupInfoService;
 
     @Autowired
-    public ExpenseService(ExpenseRepository expenseRepository) {
+    public ExpenseService(ExpenseRepository expenseRepository, AccountGroupInfoService accountGroupInfoService) {
         this.expenseRepository = expenseRepository;
+        this.accountGroupInfoService = accountGroupInfoService;
     }
 
     public void trackExpense(Expense expense) {
@@ -26,6 +31,24 @@ public class ExpenseService {
         expenseRepository.save(expense);
         System.out.println("The expense from account with id = " + expense.getLenderId() + " saved!");
 
+    }
+
+    public List<Expense> getAllAccountExpense(Integer accountId) {
+        if (accountId == null) {
+            throw new NullPointerException("Account id is null!");
+        }
+
+        List<Expense> accountExpenses = getExpensesByAccount(accountId);
+
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
+        for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
+            List<Expense> groupExpenses = getExpensesByGroup(accountGroupInfo.getGroupId());
+            if (groupExpenses != null) {
+                accountExpenses.addAll(groupExpenses);
+            }
+        }
+
+        return accountExpenses;
     }
 
     public List<Expense> getExpensesByGroup(Integer groupId) {
@@ -85,5 +108,9 @@ public class ExpenseService {
 
     public Expense get(Integer id) {
         return expenseRepository.get(id);
+    }
+
+    public void save(@Valid Expense expense) {
+        expenseRepository.save(expense);
     }
 }

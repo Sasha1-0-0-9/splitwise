@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ExpenseRepository {
@@ -17,14 +18,23 @@ public class ExpenseRepository {
     }
 
     public void save(Expense expense) {
-        jdbcTemplate.update("INSERT INTO expenses VALUES(?, ?, ?)", expense.getLenderId(), expense.getBorrowerId(),
-                expense.getAmount(), expense.getExpenseType().name(), expense.getLocalDateTime(),
-                expense.getCurrency().name());
+        jdbcTemplate.update("INSERT INTO expenses (lenderId, borrowerId, amount, expenseType, localDateTime, currency) VALUES(?, ?, ?, ?, ?, ?)",
+                expense.getLenderId(), expense.getBorrowerId(), expense.getAmount(),
+                expense.getExpenseType().name(), expense.getLocalDateTime(), expense.getCurrency().name());
     }
 
     public List<Expense> getAll() {
         List<Expense> list = jdbcTemplate.query("SELECT * FROM expenses", new BeanPropertyRowMapper<>(Expense.class));
         return list;
+    }
+
+    public List<Expense> getByAccountId(Integer id) {
+        List<Expense> list = jdbcTemplate.query("SELECT * FROM expenses AS e"
+                + " INNER JOIN account_group_info AS a_g_i ON a_g_i.groupId = e.borrowerid"
+                + " WHERE a_g_i.accountid = ?", new BeanPropertyRowMapper<>(Expense.class), id);
+        return list.stream()
+                .filter(s -> s.getExpenseType() == ExpenseType.GROUP)
+                .collect(Collectors.toList());
     }
 
     public Expense get(int id) {

@@ -25,7 +25,8 @@ public class AccountGroupInfoRepository {
     }
 
     public void save(AccountGroupInfo accountGroupInfo) {
-
+        jdbcTemplate.update("INSERT INTO account_group_info (accountId, groupId, accountRole) VALUES(?, ?, ?)",
+                accountGroupInfo.getAccountId(), accountGroupInfo.getGroupId(), accountGroupInfo.getAccountRole().name());
     }
 
     public Map<Integer, AccountGroupInfo> getAll() {
@@ -39,15 +40,18 @@ public class AccountGroupInfoRepository {
     }
 
     public List<AccountGroupInfo> getByAccountId(Integer id) {
-        List<AccountGroupInfo> list = jdbcTemplate.query("SELECT * FROM account_group_info WHERE accountId=?", new BeanPropertyRowMapper<>(AccountGroupInfo.class), id);
+        List<AccountGroupInfo> list = jdbcTemplate.query("SELECT * FROM account_group_info WHERE accountId=?",
+                new BeanPropertyRowMapper<>(AccountGroupInfo.class), id);
         return list;
     }
 
     public void delete(AccountGroupInfo accountGroupInfo) {
-
+        jdbcTemplate.update("DELETE FROM account_group_info WHERE accountId=? AND groupId=?",
+                accountGroupInfo.getAccountId(), accountGroupInfo.getGroupId());
     }
 
     public List<AccountGroupInfo> getByGroupId(Integer id) {
-        return jdbcTemplate.query("SELECT * FROM account_group_info WHERE groupId=?", new BeanPropertyRowMapper<>(AccountGroupInfo.class), id);
+        return jdbcTemplate.query("SELECT * FROM account_group_info WHERE groupId=?",
+                new BeanPropertyRowMapper<>(AccountGroupInfo.class), id);
     }
 }

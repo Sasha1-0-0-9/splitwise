@@ -7,25 +7,28 @@ import com.example.exception.GroupNotFoundException;
 import com.example.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 public class GroupService {
 
     private final AccountGroupInfoService accountGroupInfoService;
     private final GroupRepository groupRepository;
     private final GroupCreationValidator groupCreationValidator;
+    private final ContactService contactService;
 
     @Autowired
     public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepository groupRepository,
-                        GroupCreationValidator groupCreationValidator) {
+                        GroupCreationValidator groupCreationValidator, ContactService contactService) {
         this.accountGroupInfoService = accountGroupInfoService;
         this.groupRepository = groupRepository;
         this.groupCreationValidator = groupCreationValidator;
+        this.contactService = contactService;
     }
 
     public void addToGroup(Integer groupId, Integer accountId, Integer addedBy) {
@@ -46,19 +49,20 @@ public class GroupService {
         }
 
         AccountGroupInfo accountGroupInfo = accountGroupInfoService.getAccountGroupInfo(groupId, accountId);
-        if (accountGroupInfo != null) {
+        if (accountGroupInfo.getAccountRole() == AccountRole.USER) {
             accountGroupInfoService.deleteAccountGroupInfo(accountGroupInfo);
+        } else {
+            delete(groupId);
         }
     }
 
-    public void save(Group group) {
-        if (!groupCreationValidator.test(group)) {
+    public void save(@Valid Group group) {
+        /*if (!groupCreationValidator.test(group)) {
             throw new GroupCreationException("Group not valid!");
-        }
+        }*/
 
-        groupRepository.save(group);
-        accountGroupInfoService.create(group.getCreatorId(), group.getId(), AccountRole.ADMIN);
-        System.out.println("The group with name " + group.getName() + " saved!");
+        Integer id = groupRepository.save(group);
+        accountGroupInfoService.create(group.getCreatorId(), id, AccountRole.ADMIN);
     }
 
     public Group get(Integer id) {
@@ -74,29 +78,42 @@ public class GroupService {
     }
 
     public List<Group> getAllByAccountId(Integer id) {
-        return groupRepository.getAllByAccountId(id);
+        List<AccountGroupInfo> list = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
+        return list.stream()
+                .map(s -> groupRepository.get(s.getGroupId()))
+                .collect(Collectors.toList());
     }
 
     public void delete(Integer id) {
-        Group group = get(id);
+        /*Group group = get(id);
         if (group == null) {
             throw new GroupNotFoundException("The group with id = " + id + " does not exist!");
-        }
+        }*/
 
         List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByGroupId(id);
         for (AccountGroupInfo info : accountGroupInfos) {
             accountGroupInfoService.deleteAccountGroupInfo(info);
         }
 
-        groupRepository.delete(group.getId());
-        System.out.println("The group with name " + group.getName() + " deleted!");
+        groupRepository.delete(id);
+        //System.out.println("The group with name " + group.getName() + " deleted!");
     }
 
     public void update(int id, Group group) {
         groupRepository.update(id, group);
     }
 
-    public List<Contact> getGroupContacts(Integer id) {
-        return groupRepository.getContactsByGroupId(id);
+    public List<Integer> getIdAccounts(Integer id) {
+        List<AccountGroupInfo> list = accountGroupInfoService.getAccountGroupInfosByGroupId(id);
+        return list.stream()
+                .map(s -> s.getAccountId())
+                .collect(Collectors.toList());
+    }
+
+    public Group getAllByAccountIdAndName(Integer accountId, String lenderName) {
+        List<Group> groups = groupRepository.getAllByAccountId(accountId);
+        return groups.stream()
+                .filter(s -> s.getName().equals(lenderName))
+                .findAny().orElse(null);
     }
 }

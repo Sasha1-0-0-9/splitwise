@@ -7,11 +7,17 @@
 <body>
 
 <div th:each="expense : ${expenses}">
-    <a th:href="@{/accounts/${accountId}/expenses/{expenseId}(accountId=${accountId}, expenseId=${expense.getId()})}"
+    <a th:href="@{/accounts/{accountId}/expenses/{expenseId}(accountId=${accountId}, expenseId=${expense.getId()})}"
        th:text="${expense.getLocalDateTime() + ' - ' + expense.getAmount()}">expense</a>
 </div>
 
-<a th:href="@{/accounts/${accountId}/expenses/new}">Create new expense</a>
+<form th:method="GET" th:action="@{/accounts/{accountId}/expenses/new(accountId=${accountId})}">
+    <input type="submit" value="Create new expense"/>
+</form>
+
+<form th:method="GET" th:action="@{/accounts/{accountId}/expenses/excel(accountId=${accountId})}">
+    <input type="submit" value="Export to Excel"/>
+</form>
 
 </body>
 </html>

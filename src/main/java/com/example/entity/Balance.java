@@ -22,10 +22,7 @@ public class Balance {
 
     @Override
     public String toString() {
-        return "Balance{" +
-                "amount=" + amount +
-                ", currency=" + currency +
-                '}';
+        return amount + " " + currency;
     }
 
     @Override

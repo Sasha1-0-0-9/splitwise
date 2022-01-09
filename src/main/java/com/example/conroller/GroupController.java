@@ -1,8 +1,8 @@
 package com.example.conroller;
 
-import com.example.entity.Account;
-import com.example.entity.Contact;
-import com.example.entity.Group;
+import com.example.entity.*;
+import com.example.exception.AccountNotFoundException;
+import com.example.exception.ContactCreationException;
 import com.example.service.AccountService;
 import com.example.service.ContactService;
 import com.example.service.GroupService;
@@ -11,7 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.entity.ExpenseType.USER;
 
 @Controller
 @RequestMapping("/accounts/{accountId}/groups")
@@ -39,16 +44,42 @@ public class GroupController {
     @GetMapping("/{id}")
     public String get(@PathVariable("accountId") Integer accountId, @PathVariable("id") Integer id, Model model) {
         model.addAttribute("group", groupService.get(id));
-        List<Contact> groupContacts = groupService.getGroupContacts(id);
-        model.addAttribute("contacts", groupService.getGroupContacts(id));
+        List<Integer> idList = groupService.getIdAccounts(id);
+        List<Account> accounts = idList.stream()
+                .map(s -> accountService.get(s))
+                .collect(Collectors.toList());
+        List<Contact> contacts = accounts.stream()
+                .map(s -> contactService.get(s.getTelephoneNumber()))
+                .collect(Collectors.toList());
+        model.addAttribute("contacts", contacts);
         model.addAttribute("accountId", accountId);
-        model.addAttribute("param", null);
+        model.addAttribute("text", null);
         return "groups/show";
     }
 
     @GetMapping("/new")
-    public String newGroup(@ModelAttribute("group") Account account) {
+    public String newGroup(@PathVariable("accountId") Integer accountId, Model model) {
+        model.addAttribute("accountId", accountId);
+        model.addAttribute("text", null);
         return "groups/new";
+    }
+
+    @PostMapping("/new")
+    public String createGroup(@RequestParam("name") String name,
+                              @PathVariable("accountId") Integer accountId, Model model) {
+        model.addAttribute("accountId", accountId);
+        try {
+            Group group = new Group(name, accountId);
+            groupService.save(group);
+        } catch (ConstraintViolationException e) {
+            String message = e.getMessage();
+            model.addAttribute("text", message);
+            return "groups/new";
+        }
+        List<Group> groups = groupService.getAllByAccountId(accountId);
+        model.addAttribute("accountId", accountId);
+        model.addAttribute("groups", groups);
+        return "groups/index";
     }
 
     @DeleteMapping("/{id}")
@@ -70,38 +101,56 @@ public class GroupController {
                       @PathVariable("id") Integer id, @RequestParam("contact") String contact,
                       Model model) {
 
-        List<Contact> groupContacts = groupService.getGroupContacts(id);
+        List<Integer> idList = groupService.getIdAccounts(id);
+        List<Account> accounts = idList.stream()
+                .map(s -> accountService.get(s))
+                .collect(Collectors.toList());
+        List<Contact> groupContacts = accounts.stream()
+                .map(s -> contactService.get(s.getTelephoneNumber()))
+                .collect(Collectors.toList());
 
         Contact value = groupContacts.stream()
                 .filter(p -> p.getTelephoneNumber().equals(contact))
                 .findAny().orElse(null);
 
         if (value != null) {
-            String name = "true";
-            model.addAttribute("param", "true");
+            String message = "An account with this number is already in the group";
+            model.addAttribute("text", message);
         } else {
-            groupService.addToGroup(id, accountId, accountService.getByTelephoneNumber(contact).getId());
+            try {
+                Account account = accountService.getByTelephoneNumber(contact);
+                groupService.addToGroup(id, accountId, account.getId());
+            } catch (AccountNotFoundException e) {
+                String message = e.getMessage();
+                model.addAttribute("text", message);
+            }
         }
 
         model.addAttribute("group", groupService.get(id));
-        model.addAttribute("contacts", groupService.getGroupContacts(id));
+        idList = groupService.getIdAccounts(id);
+        accounts = idList.stream()
+                .map(s -> accountService.get(s))
+                .collect(Collectors.toList());
+        List<Contact> contacts = accounts.stream()
+                .map(s -> contactService.get(s.getTelephoneNumber()))
+                .collect(Collectors.toList());
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("contacts", contacts);
         model.addAttribute("accountId", accountId);
+        model.addAttribute("text", null);
 
         return "groups/show";
     }
 
-    /*@GetMapping("/add")
-    public String addAccount(@ModelAttribute("group") Account account) {
-        return "groups/add";
+    @GetMapping("/{id}/leave")
+    public String leaveGroup(@PathVariable("accountId") Integer accountId,
+                             @PathVariable("id") Integer id, Model model) {
+
+        groupService.leaveGroup(id, accountId);
+
+        List<Group> groups = groupService.getAllByAccountId(accountId);
+        model.addAttribute("accountId", accountId);
+        model.addAttribute("groups", groups);
+        return "groups/index";
     }
-
-    @PostMapping("/{id}")
-    public String create(@ModelAttribute("group") @Valid Group group,
-                         BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "groups/new";
-
-        accountService.save(account);
-        return "redirect:/groups";
-    }*/
 }

@@ -83,6 +83,11 @@ public class AccountService {
     }
 
     public Account getByTelephoneNumber(String telephoneNumber) {
-        return accountRepository.getByTelephoneNumber(telephoneNumber);
+        Account account = accountRepository.getByTelephoneNumber(telephoneNumber);
+        if (account == null) {
+            throw new AccountNotFoundException("The account with phone number = " + telephoneNumber + " does not exist!");
+        }
+
+        return account;
     }
 }
