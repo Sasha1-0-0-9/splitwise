@@ -1,6 +1,5 @@
 package com.example.repository;
 
-import com.example.entity.Account;
 import com.example.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,7 +20,7 @@ public class ContactRepository {
 
     public void save(Contact contact) {
         jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?, ?)", contact.getTelephoneNumber(),
-                contact.getName(), contact.getEmail());
+                contact.getName());
     }
 
     public List<Contact> getAll() {
@@ -35,8 +34,8 @@ public class ContactRepository {
     }
 
     public void update(int id, Contact updatedContact) {
-        jdbcTemplate.update("UPDATE Contacts SET name=?, telephoneNumber=?, email=? WHERE id=?", updatedContact.getName(),
-                updatedContact.getTelephoneNumber(), updatedContact.getEmail(), id);
+        jdbcTemplate.update("UPDATE Contacts SET name=?, telephoneNumber=?, WHERE id=?", updatedContact.getName(),
+                updatedContact.getTelephoneNumber(), id);
     }
 
     public void delete(Integer id) {

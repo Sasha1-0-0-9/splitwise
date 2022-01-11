@@ -1,5 +1,6 @@
 package com.example.ss;
 
+import com.example.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +13,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Acc acc = accountRepository.getAccByName(username);
+        Account acc = accountRepository.getAccByName(username);
         return new UserDatailsImpl(acc);
     }
 }

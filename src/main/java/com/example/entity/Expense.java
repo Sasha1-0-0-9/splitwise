@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -7,8 +9,14 @@ import java.util.Objects;
 public class Expense implements Serializable {
 
     private Integer id;
+
+    @NotNull(message = "An account with this name does not exist")
     private Integer lenderId;
+
+    @NotNull(message = "An account/group with this name does not exist")
     private Integer borrowerId;
+
+    @Positive(message = "Amount should be more than 0")
     private double amount;
     private ExpenseType expenseType;
     private LocalDateTime localDateTime;
@@ -16,6 +24,10 @@ public class Expense implements Serializable {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getLenderId() {

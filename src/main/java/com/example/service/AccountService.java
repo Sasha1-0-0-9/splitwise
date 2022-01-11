@@ -7,6 +7,7 @@ import com.example.entity.AccountRole;
 import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
 import com.example.repository.AccountRepository;
+
 import com.example.repository.ContactRepository;
 import com.example.ss.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Validated
@@ -31,10 +31,10 @@ public class AccountService {
     public AccountService(AccountRepo accountRepository, ContactRepository contactRepository, GroupService groupService,
                           AccountGroupInfoService accountGroupInfoService, AccountCreationValidator accountCreationValidator) {
         this.accountRepository = accountRepository;
-        this.contactRepository = contactRepository;
         this.groupService = groupService;
         this.accountGroupInfoService = accountGroupInfoService;
         this.accountCreationValidator = accountCreationValidator;
+        this.contactRepository = contactRepository;
     }
 
     public void delete(Integer id) {
@@ -79,11 +79,16 @@ public class AccountService {
         //accountRepository.update(id, account);
     }
 
-    public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {
+    /*public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {
         return accountRepository.getByNameAndPassword(telephoneNumber, encodedPassword);
-    }
+    }*/
 
     public Account getByTelephoneNumber(String telephoneNumber) {
-        return accountRepository.getByTelephoneNumber(telephoneNumber);
+        Account account = accountRepository.getByTelephoneNumber(telephoneNumber);
+        if (account == null) {
+            throw new AccountNotFoundException("The account with phone number = " + telephoneNumber + " does not exist!");
+        }
+
+        return account;
     }
 }

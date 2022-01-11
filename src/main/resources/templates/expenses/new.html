@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New expense</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/accounts/{accountId}/expenses/new(accountId=${accountId})}">
+    <label for="amount">Enter amount: </label>
+    <input type="text" name="amount" id="amount"/>
+    <br/>
+    Currency: <select name="currency">
+    <option>EUR</option>
+    <option>UAH</option>
+    <option>USD</option>
+    </select>
+    <br/>
+    Gender: <input type="radio" name="expenseType" value="USER" checked />USER
+    <input type="radio" name="expenseType" value="GROUP" />GROUP
+    <br/>
+    <label for="lenderName">Enter lender phone number: </label>
+    <input type="text" name="lenderName" id="lenderName"/>
+    <br/>
+    <label for="borrowerName">Enter borrower user phone number or group name: </label>
+    <input type="text" name="borrowerName" id="borrowerName"/>
+    <br/>
+
+    <div th:if="${text == null}">
+    </div>
+    <div th:unless="${text == null}">
+        <p th:text="${text}"></p>
+    </div>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

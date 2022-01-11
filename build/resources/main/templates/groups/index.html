@@ -6,15 +6,19 @@
 </head>
 <body>
 
-<div th:each="group : ${groups}">
-    <a th:href="@{/accounts/{accountId}/groups/{groupId}(accountId=${accountId}, groupId=${group.getId()})}"
-       th:text="${group.getName()}">user</a>
+<div th:if="${groups.isEmpty()}">
+    <p>Group list is empty!</p>
+</div>
+<div th:unless="${groups.isEmpty()}">
+    <div th:each="group : ${groups}">
+        <a th:href="@{/accounts/{accountId}/groups/{groupId}(accountId=${accountId}, groupId=${group.getId()})}"
+           th:text="${group.getName()}">user</a>
+    </div>
 </div>
 
-<br/>
-<hr/>
-
-<a th:href="@{/accounts/${accountId}/groups/{groupId}/new}">Create new group</a>
+<form th:method="GET" th:action="@{/accounts/{accountId}/groups/new(accountId=${accountId})}">
+    <input type="submit" value="Create new group"/>
+</form>
 
 </body>
 </html>

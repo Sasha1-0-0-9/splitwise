@@ -5,15 +5,13 @@
     <title>Show</title>
 </head>
 <body>
-<p th:text="${'Name: ' + group.getName()}">VALUE</p>
-<p>List participant of group</p>
-<div th:each="contact : ${contacts}">
-    <a th:text="${contact.getName() + ', ' + contact.getTelephoneNumber() + ', ' + contact.getEmail()}">user</a>
-</div>
 
-<form th:method="GET" th:action="@{/accounts/${id}/expense/new}">
-    <input type="submit" value="New Expense"/>
-</form>
+<p th:text="${'Date: ' + expense.getLocalDateTime()}">VALUE</p>
+<p th:text="${'Lender phone number: ' + lender.getTelephoneNumber()}">VALUE</p>
+<p th:text="${'Type: ' + expense.getExpenseType()}">VALUE</p>
+<p th:text="${'Name: ' + name}">VALUE</p>
+<p th:text="${'Amount: ' + expense.getAmount()}">VALUE</p>
+<p th:text="${'Currency: ' + expense.getCurrency()}">VALUE</p>
 
 </body>
 </html>

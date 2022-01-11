@@ -19,8 +19,15 @@ public class GroupRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void save(Group group) {
-        jdbcTemplate.update("INSERT INTO groups VALUES(?, ?, ?)", group.getName(), group.getCreatorId());
+    public int save(Group group) {
+        jdbcTemplate.update("INSERT INTO groups (name, creatorId) VALUES(?, ?)", group.getName(), group.getCreatorId());
+        return getByNameAndPassword(group.getName(), group.getCreatorId()).getId();
+    }
+
+    public Group getByNameAndPassword(String name, int creatorId) {
+        List<Group> groups = jdbcTemplate.query("SELECT * FROM groups WHERE name=? AND creatorId=?",
+                new BeanPropertyRowMapper<>(Group.class), name, creatorId);
+        return groups.stream().findAny().orElse(null);
     }
 
     public List<Group> getAll() {
@@ -28,14 +35,15 @@ public class GroupRepository {
     }
 
     public List<Group> getAllByAccountId(int accountId) {
-        return jdbcTemplate.query("SELECT * FROM groups AS g"
+        List<Group> list = jdbcTemplate.query("SELECT * FROM groups AS g"
                 + " INNER JOIN account_group_info AS a_g_i ON a_g_i.GroupId = g.Id"
                 + " INNER JOIN accounts AS a ON a.Id = a_g_i.AccountId"
                 + " WHERE a.Id = ? ", new BeanPropertyRowMapper<>(Group.class), accountId);
+        return list;
     }
 
     public Group get(int id) {
-        return jdbcTemplate.query("SELECT * FROM groups WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Group.class))
+        return jdbcTemplate.query("SELECT * FROM groups WHERE id=?", new BeanPropertyRowMapper<>(Group.class), id)
                 .stream().findAny().orElse(null);
     }
 

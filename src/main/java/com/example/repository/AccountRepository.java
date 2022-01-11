@@ -24,10 +24,6 @@ public class AccountRepository {
         return getByNameAndPassword(account.getTelephoneNumber(), account.getEncodedPassword()).getId();
     }
 
-    /*public List<Account> getAll() {
-        return jdbcTemplate.query("SELECT * FROM accounts", new BeanPropertyRowMapper<>(Account.class));
-    }*/
-
     public Account get(int id) {
         return jdbcTemplate.query("SELECT * FROM accounts WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Account.class))
                 .stream().findAny().orElse(null);

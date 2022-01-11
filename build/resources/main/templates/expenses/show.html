@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+
+<p th:text="${'Date: ' + expense.getLocalDateTime()}">VALUE</p>
+<p th:text="${'Lender phone number: ' + lender.getTelephoneNumber()}">VALUE</p>
+<p th:text="${'Type: ' + expense.getExpenseType()}">VALUE</p>
+<p th:text="${'Name: ' + name}">VALUE</p>
+<p th:text="${'Amount: ' + expense.getAmount()}">VALUE</p>
+<p th:text="${'Currency: ' + expense.getCurrency()}">VALUE</p>
+
+</body>
+</html>

@@ -7,10 +7,13 @@ import org.springframework.data.repository.query.Param;
 
 public interface AccountRepo extends JpaRepository<Account, Integer> {
 
-    @Query("SELECT a FROM Acc a WHERE a.email = :email")
+    @Query("SELECT a FROM Account a WHERE a.email = :email")
     public Account getAccByName(@Param("email") String email);
 
-    @Query("SELECT a FROM Account a WHERE a.telephoneNumber = :telephoneNumber AND a.encodedPassword = :encodedPAssword")
+    @Query("SELECT a FROM Account a WHERE a.telephoneNumber = :telephoneNumber")
+    public Account getByTelephoneNumber(@Param("telephoneNumber") String telephoneNumber);
+
+   /* @Query("SELECT a FROM Account a WHERE a.telephoneNumber = :telephoneNumber AND a.encodedPassword = :encodedPAssword")
     public Account getByNameAndPassword(@Param("telephoneNumber") String telephoneNumber,
-                                        @Param("encodedPassword") String encodedPassword);
+                                        @Param("encodedPassword") String encodedPassword);*/
 }

@@ -6,8 +6,6 @@
 </head>
 <body>
 
-
-
 <div th:if="${groups.isEmpty()}">
     <p>Group list is empty!</p>
 </div>
@@ -18,10 +16,7 @@
     </div>
 </div>
 
-<br/>
-<hr/>
-
-<form th:method="GET" th:action="@{/accounts/${accountId}/groups/new}">
+<form th:method="GET" th:action="@{/accounts/{accountId}/groups/new(accountId=${accountId})}">
     <input type="submit" value="Create new group"/>
 </form>
 
