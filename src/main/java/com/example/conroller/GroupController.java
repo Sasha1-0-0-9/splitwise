@@ -66,6 +66,7 @@ public class GroupController {
         model.addAttribute("accountId", accountId);
         try {
             Group group = new Group(name, accountId);
+            group.setId(group.getId());
             groupService.save(group);
         } catch (ConstraintViolationException e) {
             String message = e.getMessage();

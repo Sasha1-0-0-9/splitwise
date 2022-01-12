@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.remove;
 
 import com.example.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;

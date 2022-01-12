@@ -1,26 +1,45 @@
 package com.example.entity;
 
+
+import org.springframework.data.annotation.Reference;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Expense implements Serializable {
+@Entity
+@Table(name = "expenses")
+public class Expense{
 
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "lenderid")
     @NotNull(message = "An account with this name does not exist")
     private Integer lenderId;
 
+    @Column(name = "borrowerid")
     @NotNull(message = "An account/group with this name does not exist")
     private Integer borrowerId;
 
+    @Column(name = "amount")
     @Positive(message = "Amount should be more than 0")
     private double amount;
-    private ExpenseType expenseType;
-    private LocalDateTime localDateTime;
+
+    @Column(name = "time")
+    private Timestamp localDateTime;
+
+    @Column(name = "currency")
     private Currency currency;
+
+    @Column(name = "expensetype")
+    private ExpenseType expenseType;
 
     public Integer getId() {
         return id;
@@ -46,7 +65,7 @@ public class Expense implements Serializable {
         return expenseType;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public Timestamp getLocalDateTime() {
         return localDateTime;
     }
 
@@ -70,7 +89,7 @@ public class Expense implements Serializable {
         this.expenseType = expenseType;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
+    public void setLocalDateTime(Timestamp localDateTime) {
         this.localDateTime = localDateTime;
     }
 
@@ -106,13 +125,18 @@ public class Expense implements Serializable {
             return this;
         }
 
-        public ExpenseBuilder setLocalDateTime(LocalDateTime localDateTime) {
+        public ExpenseBuilder setLocalDateTime(Timestamp localDateTime) {
             expense.setLocalDateTime(localDateTime);
             return this;
         }
 
         public ExpenseBuilder setCurrency(Currency currency) {
             expense.setCurrency(currency);
+            return this;
+        }
+
+        public ExpenseBuilder setId(int id){
+            expense.setId(expense.id);
             return this;
         }
 

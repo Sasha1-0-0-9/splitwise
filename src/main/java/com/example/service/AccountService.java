@@ -3,13 +3,11 @@ package com.example.service;
 import com.example.common.validator.AccountCreationValidator;
 import com.example.entity.Account;
 import com.example.entity.AccountGroupInfo;
-import com.example.entity.AccountRole;
 import com.example.exception.AccountCreationException;
 import com.example.exception.AccountNotFoundException;
-import com.example.repository.AccountRepository;
 
-import com.example.repository.ContactRepository;
-import com.example.ss.AccountRepo;
+import com.example.repository.remove.ContactRepository;
+import com.example.repository.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -45,11 +43,11 @@ public class AccountService {
 
         List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
-            if (accountGroupInfo.getAccountRole() == AccountRole.ADMIN) {
-                groupService.delete(accountGroupInfo.getGroupId());
-            } else {
+            //if (accountGroupInfo.getAccountRole() == AccountRole.ADMIN) {
+              //  groupService.delete(accountGroupInfo.getGroupId());
+            //} else {
                 groupService.leaveGroup(accountGroupInfo.getGroupId(), id);
-            }
+            //}
         }
 
         accountRepository.getById(id);
@@ -76,7 +74,7 @@ public class AccountService {
     }
 
     public void update(int id, Account account) {
-        //accountRepository.update(id, account);
+        accountRepository.save(account);
     }
 
     /*public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {

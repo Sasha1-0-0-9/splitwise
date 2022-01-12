@@ -2,16 +2,13 @@ package com.example.conroller;
 
 import com.example.entity.Account;
 import com.example.entity.Contact;
-import com.example.exception.ContactCreationException;
 import com.example.service.AccountService;
 import com.example.service.BalanceLoaderImpl;
 import com.example.service.ContactService;
-import com.example.ss.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +34,7 @@ public class AccountController {
 
     @GetMapping("/{id}/contacts")
     public String index(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("contacts", contactService.getByAccountId(id));
+        model.addAttribute("contacts",accountService.getAll()); //contactService.getByAccountId(id));
         return "accounts/index";
     }
 

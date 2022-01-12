@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.remove;
 
 import com.example.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ContactRepository {
     }
 
     public Contact get(String telephoneNumber) {
-        List<Contact> contacts = jdbcTemplate.query("SELECT * FROM Contacts WHERE telephoneNumber=?",
+        List<Contact> contacts = jdbcTemplate.query("SELECT * FROM Contacts WHERE phoneNumber=?",
                 new BeanPropertyRowMapper<>(Contact.class), telephoneNumber);
         return contacts.stream().findAny().orElse(null);
     }

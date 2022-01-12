@@ -2,7 +2,7 @@ package com.example.service;
 
 import com.example.entity.Contact;
 import com.example.exception.ContactCreationException;
-import com.example.repository.ContactRepository;
+import com.example.repository.remove.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

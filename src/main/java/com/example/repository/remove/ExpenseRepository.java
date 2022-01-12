@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.remove;
 
 import com.example.entity.*;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -18,9 +18,9 @@ public class ExpenseRepository {
     }
 
     public void save(Expense expense) {
-        jdbcTemplate.update("INSERT INTO expenses (lenderId, borrowerId, amount, expenseType, localDateTime, currency) VALUES(?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO expenses (lenderid, borrowerid, amount, time, currency, expensetype) VALUES(?, ?, ?, ?, ?, ?)",
                 expense.getLenderId(), expense.getBorrowerId(), expense.getAmount(),
-                expense.getExpenseType().name(), expense.getLocalDateTime(), expense.getCurrency().name());
+                expense.getLocalDateTime(), expense.getCurrency().toString(), expense.getExpenseType().toString());
     }
 
     public List<Expense> getAll() {

@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.remove;
 
 import com.example.entity.Contact;
 import com.example.entity.Group;
@@ -58,7 +58,7 @@ public class GroupRepository {
 
     public List<Contact> getContactsByGroupId(Integer id) {
         return jdbcTemplate.query("SELECT * FROM contacts AS c"
-                + " INNER JOIN accounts AS a ON a.telephonenumber = c.telephonenumber"
+                + " INNER JOIN accounts AS a ON a.phonenumber = c.phonenumber"
                 + " INNER JOIN account_group_info AS a_g_i ON a_g_i.accountid = a.id"
                 + " INNER JOIN groups AS g ON g.id = a_g_i.groupid"
                 + " WHERE g.id = ? ", new BeanPropertyRowMapper<>(Contact.class), id);

@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.entity.*;
-import com.example.repository.ExpenseRepository;
+import com.example.repository.ExpenseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @Validated
 public class ExpenseService {
 
-    private final ExpenseRepository expenseRepository;
+    private final ExpenseRepo expenseRepository;
     private final AccountGroupInfoService accountGroupInfoService;
 
     @Autowired
-    public ExpenseService(ExpenseRepository expenseRepository, AccountGroupInfoService accountGroupInfoService) {
+    public ExpenseService(ExpenseRepo expenseRepository, AccountGroupInfoService accountGroupInfoService) {
         this.expenseRepository = expenseRepository;
         this.accountGroupInfoService = accountGroupInfoService;
     }
@@ -46,7 +46,7 @@ public class ExpenseService {
             throw new NullPointerException("Group id is null!");
         }
 
-        return expenseRepository.getAll().stream()
+        return expenseRepository.findAll().stream()
                 .filter(s -> s.getBorrowerId().equals(groupId) && s.getExpenseType() == ExpenseType.GROUP)
                 .collect(Collectors.toList());
     }
@@ -56,7 +56,7 @@ public class ExpenseService {
             throw new NullPointerException("Account id is null!");
         }
 
-        return expenseRepository.getAll().stream()
+        return expenseRepository.findAll().stream()
                 .filter(s -> (s.getBorrowerId().equals(accountId) || s.getLenderId().equals(accountId))
                         && s.getExpenseType() == ExpenseType.USER)
                 .collect(Collectors.toList());
@@ -67,7 +67,7 @@ public class ExpenseService {
             throw new NullPointerException("Account id or lender id is null!");
         }
 
-        return expenseRepository.getAll().stream()
+        return expenseRepository.findAll().stream()
                 .filter(s -> s.getBorrowerId().equals(accountId) && s.getLenderId().equals(lenderId)
                         && s.getExpenseType() == ExpenseType.USER)
                 .collect(Collectors.toSet());
@@ -78,7 +78,7 @@ public class ExpenseService {
             throw new NullPointerException("Group id or lender id is null!");
         }
 
-        return expenseRepository.getAll().stream()
+        return expenseRepository.findAll().stream()
                 .filter(s -> s.getBorrowerId().equals(groupId) && s.getLenderId().equals(lenderId)
                         && s.getExpenseType() == ExpenseType.GROUP)
                 .collect(Collectors.toSet());
@@ -97,7 +97,7 @@ public class ExpenseService {
     }
 
     public Expense get(Integer id) {
-        return expenseRepository.get(id);
+        return expenseRepository.getById(id);
     }
 
     public void save(@Valid Expense expense) {

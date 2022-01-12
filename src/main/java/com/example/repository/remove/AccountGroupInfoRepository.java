@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.remove;
 
 import com.example.entity.AccountGroupInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class AccountGroupInfoRepository {
     }
 
     public void save(AccountGroupInfo accountGroupInfo) {
-        jdbcTemplate.update("INSERT INTO account_group_info (accountId, groupId, accountRole) VALUES(?, ?, ?)",
-                accountGroupInfo.getAccountId(), accountGroupInfo.getGroupId(), accountGroupInfo.getAccountRole().name());
+        jdbcTemplate.update("INSERT INTO account_group_info (accountId, groupId) VALUES(?, ?, ?)",
+                accountGroupInfo.getAccountId(), accountGroupInfo.getGroupId());
     }
 
     public Map<Integer, AccountGroupInfo> getAll() {

@@ -1,18 +1,26 @@
 package com.example.entity;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
+@Table(name = "groups")
 public class Group {
 
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
+    @Column(name = "creatorid")
     @NotNull
     private Integer creatorId;
 

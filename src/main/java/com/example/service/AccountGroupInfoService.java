@@ -1,9 +1,8 @@
 package com.example.service;
 
 import com.example.entity.AccountGroupInfo;
-import com.example.entity.AccountRole;
 import com.example.exception.AccountGroupInfoCreationException;
-import com.example.repository.AccountGroupInfoRepository;
+import com.example.repository.AccountGroupInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,22 +11,23 @@ import java.util.List;
 @Service
 public class AccountGroupInfoService {
 
-    private final AccountGroupInfoRepository accountGroupInfoRepository;
+    private final AccountGroupInfoRepo accountGroupInfoRepository;
 
     @Autowired
-    public AccountGroupInfoService(AccountGroupInfoRepository accountGroupInfoRepository) {
+    public AccountGroupInfoService(AccountGroupInfoRepo accountGroupInfoRepository) {
         this.accountGroupInfoRepository = accountGroupInfoRepository;
     }
 
-    public void create(Integer accountId, Integer groupId, AccountRole accountRole) {
-        if (accountId == null || groupId == null || accountRole == null) {
+    public void create(Integer accountId, Integer groupId) {
+        if (accountId == null || groupId == null) {
             throw new AccountGroupInfoCreationException("AccountGroupInfo did not created!");
         }
 
-        AccountGroupInfo accountGroupInfo = new AccountGroupInfo(accountId, groupId, accountRole);
+        AccountGroupInfo accountGroupInfo = new AccountGroupInfo(accountId, groupId);
+        accountGroupInfo.setId(accountGroupInfo.getId());
         accountGroupInfoRepository.save(accountGroupInfo);
         System.out.println("The account with id " + accountGroupInfo.getAccountId() + " added to the group "
-                + accountGroupInfo.getGroupId() + " with the role " + accountGroupInfo.getAccountRole() + "!");
+                + accountGroupInfo.getGroupId()  + "!");
     }
 
     public AccountGroupInfo getAccountGroupInfo(Integer groupId, Integer accountId) {
@@ -35,7 +35,7 @@ public class AccountGroupInfoService {
             throw new NullPointerException("The group id or account id is null!");
         }
 
-        return accountGroupInfoRepository.get(accountId, groupId);
+        return accountGroupInfoRepository.getByAccountAndGroupId(accountId, groupId);
     }
 
     public List<AccountGroupInfo> getAccountGroupInfosByAccountId(Integer accountId) {
@@ -57,6 +57,6 @@ public class AccountGroupInfoService {
     public void deleteAccountGroupInfo(AccountGroupInfo accountGroupInfo) {
         accountGroupInfoRepository.delete(accountGroupInfo);
         System.out.println("The account with id " + accountGroupInfo.getAccountId() + " deleted from the group "
-                + accountGroupInfo.getGroupId() + " with role " + accountGroupInfo.getAccountRole() + "!");
+                + accountGroupInfo.getGroupId() + "!");
     }
 }

@@ -1,19 +1,28 @@
 package com.example.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "account_group_info")
 public class AccountGroupInfo {
 
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "accountid")
     private Integer accountId;
+
+    @Column(name = "groupid")
     private Integer groupId;
-    private AccountRole accountRole;
 
     public AccountGroupInfo() {}
 
-    public AccountGroupInfo(Integer accountId, Integer groupId, AccountRole accountRole) {
+    public AccountGroupInfo(Integer accountId, Integer groupId) {
         this.accountId = accountId;
         this.groupId = groupId;
-        this.accountRole = accountRole;
     }
 
     public Integer getAccountId() {
@@ -24,8 +33,12 @@ public class AccountGroupInfo {
         return groupId;
     }
 
-    public AccountRole getAccountRole() {
-        return accountRole;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setAccountId(Integer accountId) {
@@ -34,10 +47,6 @@ public class AccountGroupInfo {
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
-    }
-
-    public void setAccountRole(AccountRole accountRole) {
-        this.accountRole = accountRole;
     }
 
     @Override
@@ -51,13 +60,11 @@ public class AccountGroupInfo {
         }
 
         AccountGroupInfo that = (AccountGroupInfo) o;
-        return accountId.equals(that.accountId) &&
-                groupId.equals(that.groupId) &&
-                accountRole == that.accountRole;
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, groupId, accountRole);
+        return Objects.hash(id);
     }
 }

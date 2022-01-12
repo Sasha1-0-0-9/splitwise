@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.ConstraintViolationException;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class ExpenseController {
                     .setLenderId(lender.getId())
                     .setAmount(Double.parseDouble(amount))
                     .setExpenseType(expenseType1)
-                    .setLocalDateTime(LocalDateTime.now())
+                    .setLocalDateTime(Timestamp.valueOf(LocalDateTime.now()))
                     .setCurrency(Currency.valueOf(currency))
                     .setBorrowerId(borrowerId)
                     .build();

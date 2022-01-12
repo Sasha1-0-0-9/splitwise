@@ -2,7 +2,7 @@ package com.example.service;
 
 import com.example.entity.*;
 import com.example.exception.GroupNotFoundException;
-import com.example.repository.GroupRepository;
+import com.example.repository.GroupRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 public class GroupService {
 
     private final AccountGroupInfoService accountGroupInfoService;
-    private final GroupRepository groupRepository;
+    private final GroupRepo groupRepository;
 
     @Autowired
-    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepository groupRepository) {
+    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepo groupRepository) {
         this.accountGroupInfoService = accountGroupInfoService;
         this.groupRepository = groupRepository;
     }
@@ -31,8 +31,8 @@ public class GroupService {
         }
 
         AccountGroupInfo accountGroupInfo = accountGroupInfoService.getAccountGroupInfo(groupId, accountId);
-        if ((accountGroupInfo != null) && (accountGroupInfo.getAccountRole() == AccountRole.ADMIN)) {
-            accountGroupInfoService.create(addedBy, groupId, AccountRole.USER);
+        if ((accountGroupInfo != null) && (groupRepository.getById(groupId).getCreatorId().equals(accountId))) {
+            accountGroupInfoService.create(addedBy, groupId);
         }
     }
 
@@ -42,7 +42,7 @@ public class GroupService {
         }
 
         AccountGroupInfo accountGroupInfo = accountGroupInfoService.getAccountGroupInfo(groupId, accountId);
-        if (accountGroupInfo.getAccountRole() == AccountRole.USER) {
+        if (!groupRepository.getById(groupId).getCreatorId().equals(accountId)) {
             accountGroupInfoService.deleteAccountGroupInfo(accountGroupInfo);
         } else {
             delete(groupId);
@@ -50,8 +50,9 @@ public class GroupService {
     }
 
     public void save(@Valid Group group) {
-        Integer id = groupRepository.save(group);
-        accountGroupInfoService.create(group.getCreatorId(), id, AccountRole.ADMIN);
+        //Integer id = groupRepository.save(group);
+        groupRepository.save(group);
+        accountGroupInfoService.create(group.getCreatorId(), group.getId());
     }
 
     public Group get(Integer id) {
@@ -59,13 +60,13 @@ public class GroupService {
             throw new NullPointerException("The group id is null!");
         }
 
-        return groupRepository.get(id);
+        return groupRepository.getById(id);
     }
 
     public List<Group> getAllByAccountId(Integer id) {
         List<AccountGroupInfo> list = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         return list.stream()
-                .map(s -> groupRepository.get(s.getGroupId()))
+                .map(s -> groupRepository.getById(s.getGroupId()))
                 .collect(Collectors.toList());
     }
 
@@ -75,7 +76,7 @@ public class GroupService {
             accountGroupInfoService.deleteAccountGroupInfo(info);
         }
 
-        groupRepository.delete(id);
+        groupRepository.deleteById(id);
     }
 
     public List<Integer> getIdAccounts(Integer id) {

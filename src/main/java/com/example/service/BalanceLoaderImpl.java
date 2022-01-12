@@ -5,6 +5,7 @@ import com.example.entity.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.BiPredicate;
@@ -89,7 +90,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
         int size = accountGroupInfoService.getAccountGroupInfosByGroupId(groupId).size();
 
         double amount = expensesByGroup.stream()
-                .filter(s -> s.getLocalDateTime().isAfter(afterDate))
+                .filter(s -> s.getLocalDateTime().after(Timestamp.valueOf(afterDate)))
                 .mapToDouble(s -> expenseByGroupToDouble(accountId, size, s))
                 .sum();
 
@@ -113,7 +114,7 @@ public class BalanceLoaderImpl implements BalanceLoader {
 
         List<Expense> expensesByAccount = expenseService.getExpensesByAccount(accountId);
         double amount = expensesByAccount.stream()
-                .filter(s -> s.getLocalDateTime().isAfter(afterDate))
+                .filter(s -> s.getLocalDateTime().after(Timestamp.valueOf(afterDate)))
                 .mapToDouble(s -> expenseByAccountToDouble(accountId, s))
                 .sum();
 
