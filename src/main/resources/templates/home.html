@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title th:text="${title}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -27,6 +27,11 @@
                 </li>
             </ul>
         </div>
+
+        <div sec:authorize="isAuthenticated()">
+            Authenticated as <span sec:authentication="name"></span></div>
+
+
         <div class="float-left">
             <div style="margin-right: 25px">
                 <a href="/logout" class="btn btn-outline-success text-end">Sign out</a>

@@ -13,65 +13,19 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/AccountController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/ExpenseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/ExpenseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/GroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/GroupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/AccountGroupInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/AccountGroupInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense$ExpenseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense$ExpenseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/AccountGroupInfoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/AccountRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/ContactRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/ExpenseRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/GroupRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountGroupInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountGroupInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/BalanceLoaderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/BalanceLoaderImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ExpenseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ExpenseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/AccountRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/UserDetailsServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/expense.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/conroller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/conroller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/conroller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/conroller/ExpenseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/conroller/GroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/conroller/GroupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/AccountGroupInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/AccountGroupInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/AccountRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/AccountRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Currency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Expense.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountGroupInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountGroupInfoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/ContactRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/ExpenseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/GroupRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountGroupInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountGroupInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoaderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoaderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss/AccountRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +75,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="program_logic" />
+        <entry key="$PROJECT_DIR$" value="fix" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -223,8 +177,8 @@
       <list>
         <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Gradle.my-splitwise [dependencies]" />
-        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Application.PasswordEncoder" />
+        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Gradle.my-splitwise [dependencies]" />
       </list>
     </recent_temporary>
