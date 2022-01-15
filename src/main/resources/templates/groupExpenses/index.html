@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div th:each="expense : ${expenses}">
+    <a th:href="@{/accounts/{accountId}/expenses/{expenseId}(accountId=${accountId}, expenseId=${expense.getId()})}"
+       th:text="${expense.getLocalDateTime() + ' - ' + expense.getAmount()}">expense</a>
+</div>
+
+<form th:method="GET" th:action="@{/accounts/{accountId}/expenses/new(accountId=${accountId})}">
+    <input type="submit" value="Create new expense"/>
+</form>
+
+<form th:method="GET" th:action="@{/accounts/{accountId}/groups/{groupId}/expenses/excel(accountId=${accountId}, groupId=${groupId})}">
+    <input type="submit" value="Export to Excel"/>
+</form>
+
+</body>
+</html>

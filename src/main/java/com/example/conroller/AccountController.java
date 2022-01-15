@@ -77,6 +77,7 @@ public class AccountController {
             model.addAttribute("text", message);
             return "accounts/new";
         }
+
         model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(account.getId()));
 
