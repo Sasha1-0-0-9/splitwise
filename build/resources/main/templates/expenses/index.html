@@ -62,5 +62,11 @@
 </div>
 </div>
 
+<div th:if="${text == null}">
+</div>
+<div th:unless="${text == null}">
+    <p th:text="${text}"></p>
+</div>
+
 </body>
 </html>

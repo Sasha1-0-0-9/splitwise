@@ -30,6 +30,7 @@ public class AccountExpenseController {
         List<Expense> expenses = expenseService.getAllAccountExpense(accountId);
         model.addAttribute("accountId", accountId);
         model.addAttribute("expenses", expenses);
+        model.addAttribute("text", null);
         return "expenses/index";
     }
 
@@ -75,6 +76,7 @@ public class AccountExpenseController {
         model.addAttribute("accountId", accountId);
         model.addAttribute("expenses", expenses);
         expenseService.exportToExcel(expenses);
+        model.addAttribute("text", "The file is saved in the root of the project");
         return "expenses/index";
     }
 }

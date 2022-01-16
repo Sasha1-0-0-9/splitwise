@@ -29,6 +29,7 @@ public class GroupExpenseController {
         model.addAttribute("accountId", accountId);
         model.addAttribute("groupId", groupId);
         model.addAttribute("expenses", expenses);
+        model.addAttribute("text", null);
         return "groupExpenses/index";
     }
 
@@ -40,6 +41,7 @@ public class GroupExpenseController {
         model.addAttribute("groupId", groupId);
         model.addAttribute("expenses", expenses);
         expenseService.exportToExcel(expenses);
+        model.addAttribute("text", "The file is saved in the root of the project");
         return "groupExpenses/index";
     }
 }

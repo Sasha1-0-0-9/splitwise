@@ -16,7 +16,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(value = AccessDeniedException.class)
     public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex) {
         ErrorInfo errorInfo = new ErrorInfo(HttpStatus.FORBIDDEN, ex.getClass(), ex.getMessage());
-        return  new ResponseEntity<>(errorInfo, new HttpHeaders(), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(errorInfo, new HttpHeaders(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(value = Exception.class)

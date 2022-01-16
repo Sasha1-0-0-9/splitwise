@@ -19,5 +19,11 @@
     <input type="submit" value="Export to Excel"/>
 </form>
 
+<div th:if="${text == null}">
+</div>
+<div th:unless="${text == null}">
+    <p th:text="${text}"></p>
+</div>
+
 </body>
 </html>
