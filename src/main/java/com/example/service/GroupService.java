@@ -50,7 +50,6 @@ public class GroupService {
     }
 
     public void save(@Valid Group group) {
-        //Integer id = groupRepository.save(group);
         groupRepository.save(group);
         accountGroupInfoService.create(group.getCreatorId(), group.getId());
     }

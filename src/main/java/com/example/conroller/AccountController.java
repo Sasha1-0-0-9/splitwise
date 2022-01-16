@@ -34,8 +34,8 @@ public class AccountController {
 
     @GetMapping("/{id}/contacts")
     public String index(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("contacts",accountService.getAll()); //contactService.getByAccountId(id));
-        return "accounts/index";
+        model.addAttribute("contacts",contactService.getByAccountId(id));
+        return "accounts/contacts";
     }
 
     @GetMapping()
@@ -61,12 +61,12 @@ public class AccountController {
     }
 
     @PostMapping()
-    public String create(@RequestParam("name") @Valid String name, @RequestParam("telephoneNumber") String telephoneNumber,
-                         @RequestParam("email") String email, @RequestParam("encryptedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
+    public String create(@RequestParam("telephoneNumber") String telephoneNumber,
+                         @RequestParam("email") String email, @RequestParam("encodedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
         Account account;
         Contact contact;
         try {
-            contact = new Contact(name, telephoneNumber);
+            contact = new Contact(email, telephoneNumber);
             contactService.save(contact);
 
             account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));

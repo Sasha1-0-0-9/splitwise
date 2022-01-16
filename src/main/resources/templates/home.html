@@ -17,19 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" th:href="@{/accounts/{id}(id=${current_user_id})}">Home <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
-
-        <div sec:authorize="isAuthenticated()">
-            Authenticated as <span sec:authentication="name"></span></div>
 
 
         <div class="float-left">
@@ -48,6 +39,12 @@
 <h3 class="d-flex justify-content-center"> Less stress when sharing expenses with anyone</h3>
 <h5 class="d-flex justify-content-center">Keep track of your shared expenses and balances with housemates, trips, groups, friends, and family.</h5>
 </div>
+<br>
+<br>
+<div class="d-flex justify-content-center">
 <a href="/accounts" class="btn btn-outline-success">Accounts</a>
+    <br>
+    <a th:href="@{/accounts/{id}(id=${current_user_id})/groups}" class="btn btn-outline-success">My groups</a>
+</div>
 </body>
 </html>

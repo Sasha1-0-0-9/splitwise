@@ -52,7 +52,7 @@
                 <div class="alert alert-info">You've successfully registered
                     to our awesome app!</div>
             </div>
-
+            <br>
             <h1>Registration</h1>
 
             <form th:action="@{/accounts}" method="post" th:object="${account}">
@@ -73,13 +73,14 @@
                         id="encodedPassword" class="form-control" type="password"
                         th:field="*{encodedPassword}" required autofocus="autofocus" />
                 </div>
-                <br>
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Register</button>
                     <span>Already registered? <a href="/" th:href="@{/login}">Login
 								here</a></span>
                 </div>
             </form>
+
         </div>
     </div>
 </div>

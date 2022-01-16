@@ -71,9 +71,9 @@
 <form th:method="GET" th:action="@{/accounts/{id}/groups(id=${account.getId()})}">
     <input class="btn btn-outline-dark" type="submit" value="My group"/>
 </form>
-
+<br>
 <form th:method="GET" th:action="@{/accounts/{id}/expenses(id=${account.getId()})}">
-    <input type="submit" value="My expenses"/>
+    <input class="btn btn-success" type="submit" value="My expenses"/>
 </form>
 
 </body>

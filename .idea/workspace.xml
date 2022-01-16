@@ -13,19 +13,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/ExpenseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/ExpenseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/conroller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/remove/ContactRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/remove/ContactRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/conroller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/conroller/ExpenseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/expense.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/conroller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/conroller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/conroller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/conroller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ContactRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ContactRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/ContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/ContactRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +209,8 @@
       <workItem from="1641809718899" duration="65000" />
       <workItem from="1641899826444" duration="10499000" />
       <workItem from="1641994997428" duration="21226000" />
+      <workItem from="1642248943323" duration="5432000" />
+      <workItem from="1642325635481" duration="4000000" />
     </task>
     <servers />
   </component>
