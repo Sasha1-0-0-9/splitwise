@@ -66,12 +66,11 @@ public class AccountController {
         Account account;
         Contact contact;
         try {
-            /*contact = new Contact(email, telephoneNumber);
-            contactService.save(contact);*/
+            contact = new Contact(email, telephoneNumber);
+            contactService.save(contact);
 
             account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
-            account.setId(2);
-            //int id = account.getId();
+            account.setId(account.getId());
             accountService.save(account);
         } catch (ConstraintViolationException e) {
             String message = e.getMessage();
@@ -79,7 +78,7 @@ public class AccountController {
             return "accounts/new";
         }
 
-        //model.addAttribute("contact", contact);
+        model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(account.getId()));
 
         return "home";
