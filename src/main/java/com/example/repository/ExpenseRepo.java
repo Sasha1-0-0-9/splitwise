@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpenseRepo extends JpaRepository<Expense, Integer> {
 
-// DOESN'T WORK. WHY? IDK
    /* @Query(value = "insert into expenses (lenderid, borrowerid, amount, time, currency, expensetype) VALUES ( :lenderid," +
             " :borrowerid, :amount, :time, :currency, :expensetype", nativeQuery = true)
     void saveExpense(@Param("lenderid") int lenderid, @Param("borrowerid") int borrowerid,

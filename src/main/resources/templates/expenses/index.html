@@ -18,13 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" th:href="@{/accounts/{id}(id=${current_user_id})}">Home <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -60,6 +54,12 @@
     <a th:href="@{/accounts/{accountId}/expenses/{expenseId}(accountId=${accountId}, expenseId=${expense.getId()})}"
        th:text="${expense.getLocalDateTime() + ' - ' + expense.getAmount()}">expense</a>
 </div>
+</div>
+
+<div th:if="${text == null}">
+</div>
+<div th:unless="${text == null}">
+    <p th:text="${text}"></p>
 </div>
 
 </body>

@@ -19,7 +19,7 @@ public class ContactRepository {
     }
 
     public void save(Contact contact) {
-        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?, ?)", contact.getTelephoneNumber(),
+        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?)", contact.getTelephoneNumber(),
                 contact.getName());
     }
 

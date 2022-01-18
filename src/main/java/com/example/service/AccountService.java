@@ -9,6 +9,7 @@ import com.example.exception.AccountNotFoundException;
 import com.example.repository.remove.ContactRepository;
 import com.example.repository.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -73,8 +74,8 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-    public void update(int id, Account account) {
-        accountRepository.save(account);
+    public void update(int id, String email) {
+        accountRepository.update(email, id);
     }
 
     /*public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {

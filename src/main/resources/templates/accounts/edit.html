@@ -17,13 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" th:href="@{/accounts/{id}(id=${current_user_id})}">Home <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -36,17 +30,13 @@
 </header>
 <body>
 <div class="pt-5 container">
-<form method="post" th:method="PATCH" th:action="@{/accounts/{id}(id=${person.getId()})}" th:object="${person}">
+<form method="post" th:method="POST" th:action="@{/accounts/{id}(id=${account.getId()})}" th:object="${account}">
     <div class="pt-5"></div>
     <label for="email">Enter email: </label>
     <input type="text" th:field="*{email}" id="email"/>
     <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
     <br/>
 
-    <label for="telephoneNumber">telephoneNumber: </label>
-    <input type="text" th:field="*{telephoneNumber}" id="telephoneNumber"/>
-    <div style="color:red" th:if="${#fields.hasErrors('telephoneNumber')}" th:errors="*{telephoneNumber}">Email Error</div>
-    <br/>
 
     <input class="btn btn-outline-success" type="submit" value="Update!"/>
 </form>

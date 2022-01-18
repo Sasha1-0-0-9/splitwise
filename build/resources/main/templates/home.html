@@ -44,7 +44,7 @@
 <div class="d-flex justify-content-center">
 <a href="/accounts" class="btn btn-outline-success">Accounts</a>
     <br>
-    <a th:href="@{/accounts/{id}(id=${current_user_id})/groups}" class="btn btn-outline-success">My groups</a>
+    <a th:href="@{/accounts/{id}/groups(id=${current_user_id})}" class="btn btn-outline-success">My groups</a>
 </div>
 </body>
 </html>
