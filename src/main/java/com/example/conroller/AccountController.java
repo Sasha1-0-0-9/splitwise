@@ -60,9 +60,9 @@ public class AccountController {
         return "accounts/new";
     }
 
-    @PostMapping()
-    public String create(@RequestParam("name") @Valid String name, @RequestParam("telephoneNumber") String telephoneNumber,
-                         @RequestParam("email") String email, @RequestParam("encryptedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
+    @PostMapping("/create")
+    public String create(@RequestParam("name") String name, @RequestParam("telephoneNumber") String telephoneNumber,
+                         @RequestParam("email") String email, @RequestParam("encodedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
         Account account;
         Contact contact;
         try {
@@ -70,7 +70,6 @@ public class AccountController {
             contactService.save(contact);
 
             account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
-            account.setId(account.getId());
             accountService.save(account);
         } catch (ConstraintViolationException e) {
             String message = e.getMessage();

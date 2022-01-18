@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create account</title>
@@ -55,7 +55,13 @@
 
             <h1>Registration</h1>
 
-            <form th:action="@{/accounts}" method="post" th:object="${account}">
+            <form th:action="@{/accounts/create}" method="post" th:object="${account}">
+                <div class="form-group">
+                    <label class="control-label" for="name"> Name </label> <input
+                        id="name" class="form-control" name="name" required
+                        autofocus="autofocus" />
+                </div>
+
                 <div class="form-group">
                     <label class="control-label" for="email"> Email </label> <input
                         id="email" class="form-control" th:field="*{email}" required

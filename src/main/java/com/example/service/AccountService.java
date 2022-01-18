@@ -53,12 +53,12 @@ public class AccountService {
         accountRepository.getById(id);
     }
 
-    public void save(@Valid Account account) {
+    public Account save(@Valid Account account) {
         if (!accountCreationValidator.test(account)) {
             throw new AccountCreationException("Account not valid!");
         }
 
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     public Account get(Integer id) {
