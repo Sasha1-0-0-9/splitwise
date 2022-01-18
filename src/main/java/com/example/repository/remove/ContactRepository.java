@@ -19,8 +19,8 @@ public class ContactRepository {
     }
 
     public void save(Contact contact) {
-        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?, ?)", contact.getTelephoneNumber(),
-                contact.getName(), 0);
+        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?)", contact.getTelephoneNumber(),
+                contact.getName());
     }
 
     public List<Contact> getAll() {
@@ -44,8 +44,7 @@ public class ContactRepository {
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
-        return jdbcTemplate.query("SELECT * FROM contacts AS c"
-                + " INNER JOIN account_contact_list AS a ON a.telephonenumber = c.telephonenumber"
-                + " WHERE a.accountId = ? ", new BeanPropertyRowMapper<>(Contact.class), accountId);
+        return jdbcTemplate.query("SELECT * FROM account_contact_list AS c"
+                + " WHERE c.accountId = ?", new BeanPropertyRowMapper<>(Contact.class), accountId);
     }
 }

@@ -12,12 +12,12 @@ public interface AccountGroupInfoRepo extends JpaRepository<AccountGroupInfo, In
 
     @Query("SELECT agi FROM AccountGroupInfo agi WHERE agi.accountId = :accountId " +
             "AND agi.groupId = :groupId")
-    public AccountGroupInfo getByAccountAndGroupId(@Param("accountId") int accountId,
+    AccountGroupInfo getByAccountAndGroupId(@Param("accountId") int accountId,
                                                    @Param("groupId") int groupId);
 
     @Query("SELECT agi FROM AccountGroupInfo agi WHERE agi.accountId = :accountId ")
-    public List<AccountGroupInfo> getByAccountId(@Param("accountId") int accountId);
+    List<AccountGroupInfo> getByAccountId(@Param("accountId") int accountId);
 
     @Query("SELECT agi FROM AccountGroupInfo agi WHERE agi.groupId = :groupId")
-    public List<AccountGroupInfo> getByGroupId(@Param("groupId") int groupId);
+    List<AccountGroupInfo> getByGroupId(@Param("groupId") int groupId);
 }

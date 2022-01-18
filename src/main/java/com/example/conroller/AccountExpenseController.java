@@ -47,6 +47,7 @@ public class AccountExpenseController {
     @GetMapping("/new")
     public String newExpense(@PathVariable("accountId") Integer accountId, Model model) {
         model.addAttribute("accountId", accountId);
+        model.addAttribute("phoneNumber", accountService.get(accountId).getTelephoneNumber());
         model.addAttribute("text", null);
         return "expenses/new";
     }

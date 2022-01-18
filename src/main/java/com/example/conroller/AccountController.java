@@ -34,8 +34,8 @@ public class AccountController {
 
     @GetMapping("/{id}/contacts")
     public String index(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("contacts",accountService.getAll()); //contactService.getByAccountId(id));
-        return "accounts/index";
+        model.addAttribute("contacts",contactService.getByAccountId(id));
+        return "accounts/contacts";
     }
 
     @GetMapping()
@@ -66,10 +66,11 @@ public class AccountController {
         Account account;
         Contact contact;
         try {
-            contact = new Contact(name, telephoneNumber);
+            contact = new Contact(email, telephoneNumber);
             contactService.save(contact);
 
             account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
+            account.setId(account.getId());
             accountService.save(account);
         } catch (ConstraintViolationException e) {
             String message = e.getMessage();
@@ -80,22 +81,23 @@ public class AccountController {
         model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(account.getId()));
 
-        return "accounts/show";
+        return "home";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", accountService.get(id));
+        model.addAttribute("account", accountService.get(id));
+        model.addAttribute("email", accountService.get(id).getEmail());
         return "accounts/edit";
     }
 
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Account account, BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+    @PostMapping("/{id}")
+    public String update(@ModelAttribute("account") @Valid Account account, BindingResult bindingResult,
+                         @PathVariable("id") int id, @RequestParam("email") String email) {
         if (bindingResult.hasErrors())
             return "accounts/edit";
 
-        accountService.update(id, account);
+        accountService.update(id,email);
         return "redirect:/accounts";
     }
 

@@ -21,8 +21,7 @@ public class Account {
     private String telephoneNumber;
 
     @Column(name = "encryptedpassword")
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 8, max = 30, message = "Name should be between 8 and 30 characters")
+    @NotEmpty(message = "Password should not be empty")
     private String encodedPassword;
 
     public Account() {}
