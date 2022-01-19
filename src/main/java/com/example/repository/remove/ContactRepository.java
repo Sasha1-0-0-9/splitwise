@@ -44,7 +44,8 @@ public class ContactRepository {
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
-        return jdbcTemplate.query("SELECT * FROM account_contact_list AS c"
-                + " WHERE c.accountId = ?", new BeanPropertyRowMapper<>(Contact.class), accountId);
+        return jdbcTemplate.query("SELECT * FROM contacts AS c"
+                + " INNER JOIN account_contact_list AS a ON a.contact = c.PhoneNumber"
+                + " WHERE a.account_id = ? ", new BeanPropertyRowMapper<>(Contact.class), accountId);
     }
 }

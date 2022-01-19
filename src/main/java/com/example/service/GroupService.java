@@ -1,8 +1,10 @@
 package com.example.service;
 
 import com.example.entity.*;
+import com.example.exception.AccountNotFoundException;
 import com.example.exception.GroupNotFoundException;
 import com.example.repository.GroupRepo;
+import com.example.repository.remove.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -16,12 +18,16 @@ import java.util.stream.Collectors;
 public class GroupService {
 
     private final AccountGroupInfoService accountGroupInfoService;
+    private final ContactService contactService;
+    private final AccountRepository accountRepository;
     private final GroupRepo groupRepository;
 
     @Autowired
-    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepo groupRepository) {
+    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepo groupRepository, ContactService contactService, AccountRepository accountRepository) {
         this.accountGroupInfoService = accountGroupInfoService;
         this.groupRepository = groupRepository;
+        this.contactService = contactService;
+        this.accountRepository = accountRepository;
     }
 
     public void addToGroup(Integer groupId, Integer accountId, Integer addedBy) {
@@ -90,5 +96,35 @@ public class GroupService {
         return groups.stream()
                 .filter(s -> s.getName().equals(lenderName))
                 .findAny().orElse(null);
+    }
+
+    public List<Contact> getContacts(Integer id) {
+        List<Integer> idList = getIdAccounts(id);
+        List<Account> accounts = idList.stream()
+                .map(accountRepository::get)
+                .collect(Collectors.toList());
+        return accounts.stream()
+                .map(s -> contactService.get(s.getTelephoneNumber()))
+                .collect(Collectors.toList());
+    }
+
+    public String temp(Integer accountId, Integer id, String contact) {
+        List<Contact> groupContacts = getContacts(id);
+
+        Contact value = groupContacts.stream()
+                .filter(p -> p.getTelephoneNumber().equals(contact))
+                .findAny().orElse(null);
+
+        if (value != null) {
+            return "An account with this number is already in the group";
+        } else {
+            try {
+                Account account = accountRepository.getByTelephoneNumber(contact);
+                addToGroup(id, accountId, account.getId());
+                return null;
+            } catch (AccountNotFoundException e) {
+                return e.getMessage();
+            }
+        }
     }
 }

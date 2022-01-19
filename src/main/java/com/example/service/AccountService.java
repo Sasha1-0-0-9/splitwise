@@ -21,19 +21,17 @@ import java.util.List;
 public class AccountService {
 
     private final AccountRepo accountRepository;
-    private final ContactRepository contactRepository;
     private final AccountGroupInfoService accountGroupInfoService;
     private final GroupService groupService;
     private final AccountCreationValidator accountCreationValidator;
 
     @Autowired
-    public AccountService(AccountRepo accountRepository, ContactRepository contactRepository, GroupService groupService,
+    public AccountService(AccountRepo accountRepository, GroupService groupService,
                           AccountGroupInfoService accountGroupInfoService, AccountCreationValidator accountCreationValidator) {
         this.accountRepository = accountRepository;
         this.groupService = groupService;
         this.accountGroupInfoService = accountGroupInfoService;
         this.accountCreationValidator = accountCreationValidator;
-        this.contactRepository = contactRepository;
     }
 
     public void delete(Integer id) {
@@ -44,11 +42,7 @@ public class AccountService {
 
         List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
-            //if (accountGroupInfo.getAccountRole() == AccountRole.ADMIN) {
-              //  groupService.delete(accountGroupInfo.getGroupId());
-            //} else {
                 groupService.leaveGroup(accountGroupInfo.getGroupId(), id);
-            //}
         }
 
         accountRepository.getById(id);
@@ -78,14 +72,19 @@ public class AccountService {
         accountRepository.update(email, id);
     }
 
-    /*public Account getByTelephoneNumberAndPassword(String telephoneNumber, String encodedPassword) {
-        return accountRepository.getByNameAndPassword(telephoneNumber, encodedPassword);
-    }*/
-
     public Account getByTelephoneNumber(String telephoneNumber) {
         Account account = accountRepository.getByTelephoneNumber(telephoneNumber);
         if (account == null) {
             throw new AccountNotFoundException("The account with phone number = " + telephoneNumber + " does not exist!");
+        }
+
+        return account;
+    }
+
+    public Account getByEmail(String email) {
+        Account account = accountRepository.getAccByName(email);
+        if (account == null) {
+            throw new AccountNotFoundException("The account with email = " + email + " does not exist!");
         }
 
         return account;

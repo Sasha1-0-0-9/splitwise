@@ -1,9 +1,8 @@
-package com.example.conroller;
+package com.example.controller;
 
 import com.example.entity.*;
 import com.example.service.ContactService;
 import com.example.service.GroupService;
-import com.example.service.HelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +17,11 @@ public class GroupController {
 
     private final GroupService groupService;
     private final ContactService contactService;
-    private final HelperService helperService;
 
     @Autowired
-    public GroupController(GroupService groupService, ContactService contactService, HelperService helperService) {
+    public GroupController(GroupService groupService, ContactService contactService) {
         this.groupService = groupService;
         this.contactService = contactService;
-        this.helperService = helperService;
     }
 
     @GetMapping()
@@ -38,7 +35,7 @@ public class GroupController {
     @GetMapping("/{id}")
     public String get(@PathVariable("accountId") Integer accountId, @PathVariable("id") Integer id, Model model) {
         model.addAttribute("group", groupService.get(id));
-        List<Contact> contacts = helperService.getContacts(id);
+        List<Contact> contacts = groupService.getContacts(id);
         model.addAttribute("contacts", contacts);
         model.addAttribute("accountId", accountId);
         model.addAttribute("text", null);
@@ -88,13 +85,13 @@ public class GroupController {
     public String add(@PathVariable("accountId") Integer accountId,
                       @PathVariable("id") Integer id, @RequestParam("contact") String contact,
                       Model model) {
-        String text = helperService.temp(accountId, id, contact);
+        String text = groupService.temp(accountId, id, contact);
         if (text != null) {
             model.addAttribute("text", text);
         }
 
         model.addAttribute("group", groupService.get(id));
-        List<Contact> contacts = helperService.getContacts(id);
+        List<Contact> contacts = groupService.getContacts(id);
         model.addAttribute("contacts", contacts);
         model.addAttribute("accountId", accountId);
         model.addAttribute("text", null);

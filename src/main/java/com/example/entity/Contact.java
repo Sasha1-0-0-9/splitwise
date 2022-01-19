@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "contacts")
-public class Contact{
+public class Contact {
 
     @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
@@ -21,7 +21,7 @@ public class Contact{
     @Id
     @Column(name = "phonenumber")
     @NotEmpty(message = "Telephone number should not be empty")
-    @Pattern(regexp="(^$|[0-9]{10})")
+    @Pattern(regexp = "(^$|[0-9]{10})")
     private String telephoneNumber;
 
     @Column(name = "balance")
@@ -30,11 +30,10 @@ public class Contact{
     public Contact(String name, String telephoneNumber) {
         this.name = name;
         this.telephoneNumber = telephoneNumber;
-        this.balance = Double.valueOf(0);
+        this.balance = 0.0;
     }
 
     public Contact() {
-
     }
 
     public String getName() {

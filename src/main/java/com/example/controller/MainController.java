@@ -1,4 +1,4 @@
-package com.example.conroller;
+package com.example.controller;
 
 import com.example.common.AuthenticationSystem;
 import com.example.repository.AccountRepo;

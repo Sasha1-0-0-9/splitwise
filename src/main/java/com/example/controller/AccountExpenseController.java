@@ -1,4 +1,4 @@
-package com.example.conroller;
+package com.example.controller;
 
 import com.example.entity.*;
 import com.example.exception.AccountNotFoundException;

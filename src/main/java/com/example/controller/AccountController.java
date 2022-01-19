@@ -1,4 +1,4 @@
-package com.example.conroller;
+package com.example.controller;
 
 import com.example.entity.Account;
 import com.example.entity.Contact;
@@ -6,11 +6,15 @@ import com.example.service.AccountService;
 import com.example.service.BalanceLoaderImpl;
 import com.example.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
@@ -32,32 +36,34 @@ public class AccountController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @GetMapping("/{id}/contacts")
-    public String index(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("contacts",contactService.getByAccountId(id));
-        return "accounts/contacts";
+    @GetMapping("/contacts")
+    public ModelAndView index() {
+        ModelAndView model = new ModelAndView("accounts/index");
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        UserDetails userDetails = (UserDetails) securityContext.getAuthentication().getPrincipal();
+        Account account = accountService.getByEmail(userDetails.getUsername());
+        model.addObject("contacts",contactService.getByAccountId(account.getId()));
+        return model;
     }
 
-    @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("accounts", accountService.getAll());
-        return "accounts/index";
-    }
-
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
-        Account account = accountService.get(id);
-        model.addAttribute("account", account);
+    @GetMapping
+    public ModelAndView show() {
+        ModelAndView model = new ModelAndView("accounts/show");
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        UserDetails userDetails = (UserDetails) securityContext.getAuthentication().getPrincipal();
+        Account account = accountService.getByEmail(userDetails.getUsername());
+        model.addObject("account", account);
         Contact contact = contactService.get(account.getTelephoneNumber());
-        model.addAttribute("contact", contact);
-        model.addAttribute("balance", balanceLoader.getAccountBalance(id));
-        return "accounts/show";
+        model.addObject("contact", contact);
+        model.addObject("balance", balanceLoader.getAccountBalance(account.getId()));
+        return model;
     }
 
     @GetMapping("/new")
-    public String newAccount(@ModelAttribute("account") Account account, Model model) {
-        model.addAttribute("param", null);
-        return "accounts/new";
+    public ModelAndView newAccount(@ModelAttribute("account") Account account) {
+        ModelAndView model = new ModelAndView("accounts/new");
+        model.addObject("param", null);
+        return model;
     }
 
     @PostMapping("/create")
@@ -66,7 +72,7 @@ public class AccountController {
         Account account;
         Contact contact;
         try {
-            contact = new Contact(email, telephoneNumber);
+            contact = new Contact(name, telephoneNumber);
             contactService.save(contact);
 
             account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));

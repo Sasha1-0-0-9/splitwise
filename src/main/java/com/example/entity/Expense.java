@@ -1,23 +1,18 @@
 package com.example.entity;
 
-
-import org.springframework.data.annotation.Reference;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "expenses")
-public class Expense{
+public class Expense {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "lenderid")
@@ -135,7 +130,7 @@ public class Expense{
             return this;
         }
 
-        public ExpenseBuilder setId(int id){
+        public ExpenseBuilder setId(int id) {
             expense.setId(expense.id);
             return this;
         }

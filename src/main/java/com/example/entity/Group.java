@@ -24,7 +24,8 @@ public class Group {
     @NotNull
     private Integer creatorId;
 
-    public Group() {}
+    public Group() {
+    }
 
     public Group(String name, Integer creatorId) {
         this.name = name;

@@ -18,7 +18,8 @@ public class AccountGroupInfo {
     @Column(name = "groupid")
     private Integer groupId;
 
-    public AccountGroupInfo() {}
+    public AccountGroupInfo() {
+    }
 
     public AccountGroupInfo(Integer accountId, Integer groupId) {
         this.accountId = accountId;
