@@ -22,11 +22,11 @@ public class Contact {
     @Column(name = "phone_number")
     @NotEmpty(message = "Telephone number should not be empty")
     @Pattern(regexp = "(^$|[0-9]{10})")
-    private String telephoneNumber;
+    private String phoneNumber;
 
-    public Contact(String name, String telephoneNumber) {
+    public Contact(String name, String phoneNumber) {
         this.name = name;
-        this.telephoneNumber = telephoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public Contact() {
@@ -40,12 +40,12 @@ public class Contact {
         this.name = name;
     }
 
-    public String getTelephoneNumber() {
-        return telephoneNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -53,11 +53,11 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return telephoneNumber.equals(contact.telephoneNumber);
+        return phoneNumber.equals(contact.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(telephoneNumber);
+        return Objects.hash(phoneNumber);
     }
 }

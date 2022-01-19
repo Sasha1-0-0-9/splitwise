@@ -17,6 +17,6 @@ public class AccountContactRepository {
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
-        return jdbcTemplate.query("SELECT * FROM account_contact_list WHERE accountId = ?", new BeanPropertyRowMapper<>(Contact.class), accountId);
+        return jdbcTemplate.query("SELECT * FROM account_contacts WHERE account_id = ?", new BeanPropertyRowMapper<>(Contact.class), accountId);
     }
 }

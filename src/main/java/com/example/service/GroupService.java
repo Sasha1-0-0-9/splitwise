@@ -112,7 +112,7 @@ public class GroupService {
         List<Contact> groupContacts = getContacts(id);
 
         Contact value = groupContacts.stream()
-                .filter(p -> p.getTelephoneNumber().equals(contact))
+                .filter(p -> p.getPhoneNumber().equals(contact))
                 .findAny().orElse(null);
 
         if (value != null) {

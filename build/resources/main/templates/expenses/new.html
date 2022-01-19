@@ -8,32 +8,21 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <script th:inline="javascript">
-        function check()
+        function userExpense()
         {
-            var email = [[${phoneNumber}]];
-            var inp = document.getElementsByName('expenseType');
-            for (var i = 0; i < inp.length; i++) {
-                if (inp[i].type == "radio" && inp[i].checked) {
-                    alert("selected: " +  email);
-                }
-            }
-        }
-    </script>
-
-    <script th:inline="javascript">
-        function ch()
-        {
-            // 2)
             for (var i = 0; i <= [[${contacts}]].length; i++){
-                let newOption = new Option([[${contacts}]][i].name,[[${contacts}]][i].name);
-                dropdown1.append(newOption);
+                let newOption = new Option([[${contacts}]][i].phoneNumber,[[${contacts}]][i].phoneNumber);
+                borrowerName.append(newOption);
                 newOption.selected = true;
             }
-
-            //dropdown1.append(newOption);
-
-            // 3)
-            //
+        }
+        function groupExpense()
+        {
+            for (var i = 0; i <= [[${contacts}]].length; i++){
+                let newOption = new Option([[${contacts}]][i].phoneNumber,[[${contacts}]][i].phoneNumber);
+                borrowerName.append(newOption);
+                newOption.selected = true;
+            }
         }
     </script>
 
@@ -79,8 +68,8 @@
     </select>
     <br/>
     <br>
-    Type: <input type="radio" name="expenseType" value="USER" checked />USER
-    <input onClick="check()" type="radio" name="expenseType" value="GROUP" />GROUP
+    Type: <input onClick="userExpense()" id="user" type="radio" name="expenseType" value="USER" />USER
+    <input onClick="groupExpense()" id="group" type="radio" name="expenseType" value="GROUP" />GROUP
     <br/>
     <br>
     <label for="lenderName">Enter lender phone number: </label>
@@ -88,7 +77,7 @@
     <br/>
     <br>
     <label for="borrowerName">Enter borrower user phone number or group name: </label>
-    <input type="text" name="borrowerName" id="borrowerName"/>
+    <select name="borrowerName" id="borrowerName"></select>
     <br/>
     <div th:if="${text == null}">
     </div>
@@ -96,13 +85,6 @@
         <p th:text="${text}"></p>
     </div>
     <br/>
-
-
-    <select id="dropdown1" onClick="ch()">
-    </select>
-
-    <select id="dropdown2">
-    </select>
 
     <input class="btn btn-success" type="submit" value="Create!"/>
 </form>
