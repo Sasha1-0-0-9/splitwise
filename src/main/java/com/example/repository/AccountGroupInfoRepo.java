@@ -10,14 +10,9 @@ import java.util.List;
 
 public interface AccountGroupInfoRepo extends JpaRepository<AccountGroupInfo, Integer> {
 
-    @Query("SELECT agi FROM AccountGroupInfo agi WHERE agi.accountId = :accountId " +
-            "AND agi.groupId = :groupId")
-    AccountGroupInfo getByAccountAndGroupId(@Param("accountId") int accountId,
-                                                   @Param("groupId") int groupId);
+    AccountGroupInfo findAccountGroupInfoByAccountIdAndGroupId(int accountId, int groupId);
 
-    @Query("SELECT agi FROM AccountGroupInfo agi WHERE agi.accountId = :accountId ")
-    List<AccountGroupInfo> getByAccountId(@Param("accountId") int accountId);
+    List<AccountGroupInfo> findAccountGroupInfosByAccountId(int accountId);
 
-    @Query("SELECT agi FROM AccountGroupInfo agi WHERE agi.groupId = :groupId")
-    List<AccountGroupInfo> getByGroupId(@Param("groupId") int groupId);
+    List<AccountGroupInfo> findAccountGroupInfosByGroupId(int groupId);
 }

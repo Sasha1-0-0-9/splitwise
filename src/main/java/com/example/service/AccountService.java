@@ -73,7 +73,7 @@ public class AccountService {
     }
 
     public Account getByTelephoneNumber(String telephoneNumber) {
-        Account account = accountRepository.getByTelephoneNumber(telephoneNumber);
+        Account account = accountRepository.findAccountByTelephoneNumber(telephoneNumber);
         if (account == null) {
             throw new AccountNotFoundException("The account with phone number = " + telephoneNumber + " does not exist!");
         }
@@ -82,7 +82,7 @@ public class AccountService {
     }
 
     public Account getByEmail(String email) {
-        Account account = accountRepository.getAccByName(email);
+        Account account = accountRepository.findAccountByEmail(email);
         if (account == null) {
             throw new AccountNotFoundException("The account with email = " + email + " does not exist!");
         }

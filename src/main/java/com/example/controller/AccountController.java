@@ -6,6 +6,7 @@ import com.example.service.AccountService;
 import com.example.service.BalanceLoaderImpl;
 import com.example.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,20 +38,18 @@ public class AccountController {
     }
 
     @GetMapping("/contacts")
-    public ModelAndView index() {
+    public ModelAndView index(Authentication authentication) {
         ModelAndView model = new ModelAndView("accounts/index");
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        UserDetails userDetails = (UserDetails) securityContext.getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Account account = accountService.getByEmail(userDetails.getUsername());
         model.addObject("contacts",contactService.getByAccountId(account.getId()));
         return model;
     }
 
     @GetMapping
-    public ModelAndView show() {
+    public ModelAndView show(Authentication authentication) {
         ModelAndView model = new ModelAndView("accounts/show");
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        UserDetails userDetails = (UserDetails) securityContext.getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Account account = accountService.getByEmail(userDetails.getUsername());
         model.addObject("account", account);
         Contact contact = contactService.get(account.getTelephoneNumber());

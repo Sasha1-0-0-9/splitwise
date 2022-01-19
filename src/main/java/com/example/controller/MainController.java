@@ -27,7 +27,7 @@ public class MainController {
             UserDetails userDetails = (UserDetails) securityContext.getAuthentication().getPrincipal();
             model.addAttribute("current_user", userDetails.getUsername());
             model.addAttribute("current_user_id", accountRepository
-                    .getAccByName(userDetails.getUsername()).getId());
+                    .findAccountByEmail(userDetails.getUsername()).getId());
         }
         return "home";
     }

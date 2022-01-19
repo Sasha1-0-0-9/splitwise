@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/accounts/{id}(id=${current_user_id})}">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" th:href="@{/accounts}">Home <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -38,6 +38,7 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
+        <th scope="col">Balance</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
     </tr>
@@ -47,6 +48,7 @@
         <td><p th:text="${'Name: ' + contact.getName()}">VALUE</p></td>
         <td><p th:text="${'Email: ' + account.getEmail()}">VALUE</p></td>
         <td><p th:text="${'Phone: ' + account.getTelephoneNumber()}">VALUE</p></td>
+        <td><p th:text="${balance}">VALUE</p></td>
         <td><form th:method="GET" th:action="@{/accounts/{id}/edit(id=${account.getId()})}">
             <input class="btn btn-success" type="submit" value="Edit"/>
         </form></td>

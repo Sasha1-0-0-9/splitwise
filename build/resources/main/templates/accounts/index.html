@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/accounts/{id}(id=${current_user_id})}">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" th:href="@{/accounts}">Home <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -46,7 +46,7 @@
         <tbody>
         <tr th:each="contact : ${contacts}">
             <td><p th:text="${contact.getName()}"></p></td>
-            <td><p th:text="${contact.getTelephoneNumber()}"></p></td>
+            <td><p th:text="${contact.getPhoneNumber()}"></p></td>
         </tr>
         </tbody>
     </table>

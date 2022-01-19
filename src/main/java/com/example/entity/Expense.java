@@ -15,11 +15,11 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "lenderid")
+    @Column(name = "lender_id")
     @NotNull(message = "An account with this name does not exist")
     private Integer lenderId;
 
-    @Column(name = "borrowerid")
+    @Column(name = "borrower_id")
     @NotNull(message = "An account/group with this name does not exist")
     private Integer borrowerId;
 
@@ -33,7 +33,7 @@ public class Expense {
     @Column(name = "currency")
     private Currency currency;
 
-    @Column(name = "expensetype")
+    @Column(name = "expense_type")
     private ExpenseType expenseType;
 
     public Integer getId() {

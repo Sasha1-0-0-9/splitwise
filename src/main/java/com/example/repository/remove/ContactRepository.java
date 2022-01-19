@@ -19,7 +19,7 @@ public class ContactRepository {
     }
 
     public void save(Contact contact) {
-        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?)", contact.getTelephoneNumber(),
+        jdbcTemplate.update("INSERT INTO Contacts VALUES(?, ?)", contact.getPhoneNumber(),
                 contact.getName());
     }
 
@@ -35,7 +35,7 @@ public class ContactRepository {
 
     public void update(int id, Contact updatedContact) {
         jdbcTemplate.update("UPDATE Contacts SET name=?, telephoneNumber=?, WHERE id=?", updatedContact.getName(),
-                updatedContact.getTelephoneNumber(), id);
+                updatedContact.getPhoneNumber(), id);
     }
 
     public void delete(Integer id) {
@@ -45,7 +45,7 @@ public class ContactRepository {
 
     public List<Contact> getByAccountId(Integer accountId) {
         return jdbcTemplate.query("SELECT * FROM contacts AS c"
-                + " INNER JOIN account_contact_list AS a ON a.contact = c.PhoneNumber"
+                + " INNER JOIN account_contacts AS a ON a.phone_number = c.phone_number"
                 + " WHERE a.account_id = ? ", new BeanPropertyRowMapper<>(Contact.class), accountId);
     }
 }

@@ -15,12 +15,12 @@ public class Account {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phonenumber")
+    @Column(name = "phone_number")
     @NotEmpty(message = "Telephone number should not be empty")
     @Pattern(regexp = "(^$|[0-9]{10})")
     private String telephoneNumber;
 
-    @Column(name = "encryptedpassword")
+    @Column(name = "encrypted_password")
     @NotEmpty(message = "Password should not be empty")
     private String encodedPassword;
 
