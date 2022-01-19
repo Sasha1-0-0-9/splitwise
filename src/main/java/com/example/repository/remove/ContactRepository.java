@@ -28,7 +28,7 @@ public class ContactRepository {
     }
 
     public Contact get(String telephoneNumber) {
-        List<Contact> contacts = jdbcTemplate.query("SELECT * FROM Contacts WHERE phoneNumber=?",
+        List<Contact> contacts = jdbcTemplate.query("SELECT * FROM Contacts WHERE phone_number=?",
                 new BeanPropertyRowMapper<>(Contact.class), telephoneNumber);
         return contacts.stream().findAny().orElse(null);
     }
@@ -44,8 +44,8 @@ public class ContactRepository {
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
-        return jdbcTemplate.query("SELECT * FROM contacts AS c"
-                + " INNER JOIN account_contact_list AS a ON a.contact = c.PhoneNumber"
-                + " WHERE a.account_id = ? ", new BeanPropertyRowMapper<>(Contact.class), accountId);
+        return jdbcTemplate.query("SELECT * FROM account_contacts AS c WHERE a.account_id = ?" +
+                " INNER JOIN account_contacts AS a ON a.phone_number = c.phone_number" +
+                " WHERE a.account_id = ? ", new BeanPropertyRowMapper<>(Contact.class), accountId);
     }
 }

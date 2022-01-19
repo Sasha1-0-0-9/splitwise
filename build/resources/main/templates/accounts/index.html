@@ -41,12 +41,16 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Phone Number</th>
+            <th scope="col">New expense</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="contact : ${contacts}">
             <td><p th:text="${contact.getName()}"></p></td>
             <td><p th:text="${contact.getTelephoneNumber()}"></p></td>
+            <td><form th:method="GET" th:action="@{/accounts/{id}/expenses/new(id=${account.getId()})}">
+                <input class="btn btn-outline-dark" type="submit" value="New expense"/>
+            </form></td>
         </tr>
         </tbody>
     </table>

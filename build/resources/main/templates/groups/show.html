@@ -47,7 +47,7 @@
 <p>List participant of group</p>
 <div th:if="${contacts.size() > 0}">
     <div th:each="contact : ${contacts}">
-        <a th:text="${contact.name + ', ' + contact.telephoneNumber}">user</a>
+        <a th:text="${contact.getName()}">user</a>
     </div>
 </div>
 

@@ -1,0 +1,4 @@
+INSERT INTO contacts VALUES ('9835382919', 'Jack');
+INSERT INTO contacts VALUES ('9395820304', 'John');
+INSERT INTO contacts VALUES ('1024938293', 'Donald');
+INSERT INTO contacts VALUES ('2309294820', 'Duck');

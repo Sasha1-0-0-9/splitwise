@@ -42,6 +42,7 @@ public class AccountController {
         ModelAndView model = new ModelAndView("accounts/index");
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Account account = accountService.getByEmail(userDetails.getUsername());
+        model.addObject("account", account);
         model.addObject("contacts",contactService.getByAccountId(account.getId()));
         return model;
     }

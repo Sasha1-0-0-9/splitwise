@@ -3,7 +3,9 @@ package com.example.controller;
 import com.example.entity.*;
 import com.example.exception.AccountNotFoundException;
 import com.example.service.AccountService;
+import com.example.service.ContactService;
 import com.example.service.ExpenseService;
+import com.example.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +20,15 @@ public class AccountExpenseController {
 
     private final ExpenseService expenseService;
     private final AccountService accountService;
+    private final ContactService contactService;
+    private final GroupService groupService;
 
     @Autowired
-    public AccountExpenseController(ExpenseService expenseService, AccountService accountService) {
+    public AccountExpenseController(ExpenseService expenseService, AccountService accountService, ContactService contactService, GroupService groupService) {
         this.expenseService = expenseService;
         this.accountService = accountService;
+        this.contactService = contactService;
+        this.groupService = groupService;
     }
 
     @GetMapping()
@@ -47,7 +53,10 @@ public class AccountExpenseController {
     @GetMapping("/new")
     public String newExpense(@PathVariable("accountId") Integer accountId, Model model) {
         model.addAttribute("accountId", accountId);
+        List<Group> groups = groupService.getAllByAccountId(accountId);
         model.addAttribute("phoneNumber", accountService.get(accountId).getTelephoneNumber());
+        model.addAttribute("contacts", contactService.getByAccountId(accountId));
+        model.addAttribute("groups", groups);
         model.addAttribute("text", null);
         return "expenses/new";
     }
