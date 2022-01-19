@@ -12,13 +12,14 @@ public class AccountGroupInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "accountid")
+    @Column(name = "account_id")
     private Integer accountId;
 
-    @Column(name = "groupid")
+    @Column(name = "group_id")
     private Integer groupId;
 
-    public AccountGroupInfo() {}
+    public AccountGroupInfo() {
+    }
 
     public AccountGroupInfo(Integer accountId, Integer groupId) {
         this.accountId = accountId;

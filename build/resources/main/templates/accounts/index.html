@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/accounts/{id}(id=${current_user_id})}">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" th:href="@{/accounts}">Home <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -39,16 +39,14 @@
     <table class="table table-sm table-striped table-hover">
         <thead class="table-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Email</th>
+            <th scope="col">Name</th>
             <th scope="col">Phone Number</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="account : ${accounts}">
-            <td><a th:href="@{/accounts/{id}(id=${account.getId()})}"><p th:text="${account.getId()}"></p></a></td></td>
-            <td><p th:text="${account.getEmail()}"></p></td>
-            <td><p th:text="${account.getTelephoneNumber()}"></p></td>
+        <tr th:each="contact : ${contacts}">
+            <td><p th:text="${contact.getName()}"></p></td>
+            <td><p th:text="${contact.getTelephoneNumber()}"></p></td>
         </tr>
         </tbody>
     </table>

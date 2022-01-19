@@ -20,11 +20,12 @@ public class Group {
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
-    @Column(name = "creatorid")
+    @Column(name = "creator_id")
     @NotNull
     private Integer creatorId;
 
-    public Group() {}
+    public Group() {
+    }
 
     public Group(String name, Integer creatorId) {
         this.name = name;

@@ -35,7 +35,7 @@ public class AccountGroupInfoService {
             throw new NullPointerException("The group id or account id is null!");
         }
 
-        return accountGroupInfoRepository.getByAccountAndGroupId(accountId, groupId);
+        return accountGroupInfoRepository.findAccountGroupInfoByAccountIdAndGroupId(accountId, groupId);
     }
 
     public List<AccountGroupInfo> getAccountGroupInfosByAccountId(Integer accountId) {
@@ -43,7 +43,7 @@ public class AccountGroupInfoService {
             throw new NullPointerException("The account id is null!");
         }
 
-        return accountGroupInfoRepository.getByAccountId(accountId);
+        return accountGroupInfoRepository.findAccountGroupInfosByAccountId(accountId);
     }
 
     public List<AccountGroupInfo> getAccountGroupInfosByGroupId(Integer groupId) {
@@ -51,7 +51,7 @@ public class AccountGroupInfoService {
             throw new NullPointerException("The group id is null!");
         }
 
-        return accountGroupInfoRepository.getByGroupId(groupId);
+        return accountGroupInfoRepository.findAccountGroupInfosByGroupId(groupId);
     }
 
     public void deleteAccountGroupInfo(AccountGroupInfo accountGroupInfo) {

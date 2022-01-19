@@ -15,15 +15,15 @@ import java.util.List;
 @Validated
 public class ContactService {
 
-    private final ContactRepo contactRepository;
+    private final ContactRepository contactRepository;
 
     @Autowired
-    public ContactService(ContactRepo contactRepository) {
+    public ContactService(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
     }
 
     public Contact get(String telephoneNumber) {
-        return contactRepository.getById(telephoneNumber);
+        return contactRepository.get(telephoneNumber);
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
@@ -31,9 +31,9 @@ public class ContactService {
     }
 
     public void save(@Valid Contact contact) {
-       /* if (get(contact.getTelephoneNumber()) != null) {
+        if (get(contact.getTelephoneNumber()) != null) {
             throw new ContactCreationException("An account with the same phone number already exists!");
-        }*/
+        }
 
         contactRepository.save(contact);
     }
