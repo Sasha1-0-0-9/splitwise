@@ -32,22 +32,23 @@
 <div class="pt-5"></div>
 <h3 class="pt-5 d-flex justify-content-center"> User info </h3>
 <div class="container">
-<table class="table table-bordered">
+<table style="text-align: center" class="table table-bordered">
     <thead>
     <tr>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
-        <th scope="col">Balance</th>
+        <th scope="col"> <img style="height: 40px; width: 40px;"
+                              src="https://cdn-icons-png.flaticon.com/512/5501/5501391.png"></th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td><p th:text="${'Name: ' + contact.getName()}">VALUE</p></td>
-        <td><p th:text="${'Email: ' + account.getEmail()}">VALUE</p></td>
-        <td><p th:text="${'Phone: ' + account.getTelephoneNumber()}">VALUE</p></td>
+        <td><p th:text="${contact.getName()}">VALUE</p></td>
+        <td><p th:text="${account.getEmail()}">VALUE</p></td>
+        <td><p th:text="${account.getTelephoneNumber()}">VALUE</p></td>
         <td><p th:text="${balance}">VALUE</p></td>
         <td><form th:method="GET" th:action="@{/accounts/{id}/edit(id=${account.getId()})}">
             <input class="btn btn-success" type="submit" value="Edit"/>

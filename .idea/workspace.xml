@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e2b68d0-e184-415b-b358-3a1a9b3b09a3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/build/resources/main/assets/expenses.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/images/poor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/stylesheets/accounts/show.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/stylesheets/poor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/poor.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,33 +18,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Contact.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Contact.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/ContactRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/ContactRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/remove/AccountContactRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/remove/AccountContactRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/remove/ContactRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/remove/ContactRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/expenses/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groupExpenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groupExpenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Contact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ContactRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ContactRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountContactRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/ContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/ContactRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/expense.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_contacts_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_contacts_table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groupExpenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groupExpenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +73,8 @@
         <option value="com.haulmont.jpb.JpaRepository" />
         <option value="Class" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -138,7 +130,15 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/demo" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\asus\spdu_final\my-splitwise\src\main\resources\images" />
+      <recent name="C:\Users\asus\spdu_final\my-splitwise\src\main\resources" />
+      <recent name="C:\Users\asus\spdu_final\my-splitwise\src\main\resources\assets" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="PasswordEncoder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -229,7 +229,7 @@
       <workItem from="1642325635481" duration="4000000" />
       <workItem from="1642450085076" duration="1442000" />
       <workItem from="1642515614288" duration="6186000" />
-      <workItem from="1642581061993" duration="35738000" />
+      <workItem from="1642581061993" duration="42197000" />
     </task>
     <servers />
   </component>

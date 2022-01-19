@@ -51,8 +51,8 @@ com/example/repository/remove/ExpenseRepository.java
  com.example.repository.remove.ExpenseRepository
 com/example/service/BalanceLoaderImpl.java
  com.example.service.BalanceLoaderImpl
-com/example/exception/AccountNotFoundException.java
- com.example.exception.AccountNotFoundException
+com/example/controller/MainController.java
+ com.example.controller.MainController
 com/example/entity/Expense.java
  com.example.entity.Expense
  com.example.entity.Expense$ExpenseBuilder
@@ -100,7 +100,7 @@ com/example/entity/ExpenseType.java
  com.example.entity.ExpenseType
 com/example/exception/AccountCreationException.java
  com.example.exception.AccountCreationException
-com/example/controller/MainController.java
- com.example.controller.MainController
+com/example/exception/AccountNotFoundException.java
+ com.example.exception.AccountNotFoundException
 com/example/ss/security_config/WebSecurityConfig.java
  com.example.ss.security_config.WebSecurityConfig
