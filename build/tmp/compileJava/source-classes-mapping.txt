@@ -35,8 +35,8 @@ com/example/entity/Account.java
  com.example.entity.Account
 com/example/service/AccountGroupInfoService.java
  com.example.service.AccountGroupInfoService
-com/example/ss/Acc.java
- com.example.ss.Acc
+com/example/exception/ContactCreationException.java
+ com.example.exception.ContactCreationException
 com/example/repository/AccountGroupInfoRepo.java
  com.example.repository.AccountGroupInfoRepo
 com/example/repository/GroupRepo.java
@@ -104,5 +104,3 @@ com/example/exception/AccountCreationException.java
  com.example.exception.AccountCreationException
 com/example/exception/AccountNotFoundException.java
  com.example.exception.AccountNotFoundException
-com/example/exception/ContactCreationException.java
- com.example.exception.ContactCreationException
