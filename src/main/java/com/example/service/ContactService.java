@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.entity.Contact;
 import com.example.exception.ContactCreationException;
+import com.example.repository.ContactRepo;
 import com.example.repository.remove.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,15 @@ import java.util.List;
 @Validated
 public class ContactService {
 
-    private final ContactRepository contactRepository;
+    private final ContactRepo contactRepository;
 
     @Autowired
-    public ContactService(ContactRepository contactRepository) {
+    public ContactService(ContactRepo contactRepository) {
         this.contactRepository = contactRepository;
     }
 
     public Contact get(String telephoneNumber) {
-        return contactRepository.get(telephoneNumber);
+        return contactRepository.getById(telephoneNumber);
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
@@ -30,9 +31,9 @@ public class ContactService {
     }
 
     public void save(@Valid Contact contact) {
-        if (get(contact.getTelephoneNumber()) != null) {
+       /* if (get(contact.getTelephoneNumber()) != null) {
             throw new ContactCreationException("An account with the same phone number already exists!");
-        }
+        }*/
 
         contactRepository.save(contact);
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create account</title>
@@ -55,23 +55,24 @@
             <br>
             <h1>Registration</h1>
 
-            <form th:action="@{/accounts}" method="post" th:object="${account}">
+            <form th:action="@{/accounts/create}" method="post" th:object="${account}">
+
                 <div class="form-group">
                     <label class="control-label" for="email"> Email </label> <input
-                        id="email" class="form-control" th:field="*{email}" required
+                        id="email" class="form-control" name="email" required
                         autofocus="autofocus" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="telephoneNumber"> Phone number </label> <input
-                        id="telephoneNumber" class="form-control" th:field="*{telephoneNumber}"
+                        id="telephoneNumber" class="form-control" name="telephoneNumber"
                         required autofocus="autofocus" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="encodedPassword"> Password </label> <input
                         id="encodedPassword" class="form-control" type="password"
-                        th:field="*{encodedPassword}" required autofocus="autofocus" />
+                        name="encodedPassword" required autofocus="autofocus" />
                 </div>
 
                 <div class="form-group">

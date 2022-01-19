@@ -10,4 +10,7 @@ import java.util.List;
 
 public interface ContactRepo extends JpaRepository<Contact, String> {
 
+    @Query("SELECT a FROM AccountContactList a"
+            + " WHERE a.id= :id")
+    List<Contact> getByAccountId(@Param("id") int id);
 }

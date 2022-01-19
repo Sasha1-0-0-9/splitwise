@@ -60,14 +60,14 @@ public class AccountController {
         return "accounts/new";
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public String create(@RequestParam("telephoneNumber") String telephoneNumber,
                          @RequestParam("email") String email, @RequestParam("encodedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
         Account account;
         Contact contact;
         try {
-            contact = new Contact(email, telephoneNumber);
-            contactService.save(contact);
+           // contact = new Contact(email, telephoneNumber);
+          //  contactService.save(contact);
 
             account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
             account.setId(account.getId());
@@ -78,7 +78,7 @@ public class AccountController {
             return "accounts/new";
         }
 
-        model.addAttribute("contact", contact);
+        //model.addAttribute("contact", contact);
         model.addAttribute("account", accountService.get(account.getId()));
 
         return "home";
