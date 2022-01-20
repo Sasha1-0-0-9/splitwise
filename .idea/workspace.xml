@@ -91,6 +91,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/GroupRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/GroupRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountContactRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/security/config/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/security/config/MvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/security/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountGroupInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountGroupInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoader.java" afterDir="false" />
@@ -99,6 +100,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/console" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/currency_rates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/currency_rates.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" afterDir="false" />
@@ -312,7 +314,7 @@
       <workItem from="1642450085076" duration="1442000" />
       <workItem from="1642515614288" duration="6186000" />
       <workItem from="1642581061993" duration="42426000" />
-      <workItem from="1642666742619" duration="5528000" />
+      <workItem from="1642666742619" duration="6053000" />
     </task>
     <servers />
   </component>
