@@ -4,58 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e2b68d0-e184-415b-b358-3a1a9b3b09a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/GroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/GroupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/exception/handler/RestExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/exception/handler/RestExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/found.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/found.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/expenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/expenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/expenses/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/expenses/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/expenses/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groupExpenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groupExpenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expense.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/GroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/GroupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/exception/handler/RestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/exception/handler/RestExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/found.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/found.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groupExpenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groupExpenses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
-    </list>
+    <list default="true" id="4e2b68d0-e184-415b-b358-3a1a9b3b09a3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
