@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class ContactService {
         this.accountContactRepository = accountContactRepository;
     }
 
+    @NotNull(message = "Contact doesn't exist")
     public Contact get(String telephoneNumber) {
         return contactRepository.get(telephoneNumber);
     }

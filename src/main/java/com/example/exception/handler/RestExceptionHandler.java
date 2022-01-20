@@ -14,7 +14,7 @@ public class RestExceptionHandler {
     public ModelAndView handledException(Exception ex) {
         ModelAndView model = new ModelAndView("error");
         ResponseStatus status = AnnotatedElementUtils.findMergedAnnotation(ex.getClass(), ResponseStatus.class);
-        HttpStatus httpStatus = status != null ? status.code() : HttpStatus.INTERNAL_SERVER_ERROR;
+        HttpStatus httpStatus = status != null ? status.code() : HttpStatus.I_AM_A_TEAPOT;
         model.addObject("status", httpStatus.name());
         model.addObject("message", ex.getMessage());
         return model;

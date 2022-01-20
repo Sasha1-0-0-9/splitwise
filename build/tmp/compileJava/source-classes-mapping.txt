@@ -6,8 +6,8 @@ com/example/repository/ConverterRepository.java
  com.example.repository.ConverterRepository
 com/example/exception/ContactCreationException.java
  com.example.exception.ContactCreationException
-com/example/exception/handler/RestExceptionHandler.java
- com.example.exception.handler.RestExceptionHandler
+com/example/service/BalanceLoader.java
+ com.example.service.BalanceLoader
 com/example/entity/ExpenseType.java
  com.example.entity.ExpenseType
 com/example/common/AuthenticationSystem.java
@@ -47,31 +47,31 @@ com/example/exception/AccountNotFoundException.java
  com.example.exception.AccountNotFoundException
 com/example/repository/AccountContactRepository.java
  com.example.repository.AccountContactRepository
-com/example/controller/GroupController.java
- com.example.controller.GroupController
-com/example/service/ContactService.java
- com.example.service.ContactService
-com/example/repository/ContactRepository.java
- com.example.repository.ContactRepository
-com/example/service/ExpenseExportService.java
- com.example.service.ExpenseExportService
-com/example/controller/AccountExpenseController.java
- com.example.controller.AccountExpenseController
-com/example/service/BalanceLoader.java
- com.example.service.BalanceLoader
 com/example/security/config/WebSecurityConfig.java
  com.example.security.config.WebSecurityConfig
 com/example/security/UserDetailsImpl.java
  com.example.security.UserDetailsImpl
+com/example/repository/ContactRepository.java
+ com.example.repository.ContactRepository
+com/example/security/UserDetailsServiceImpl.java
+ com.example.security.UserDetailsServiceImpl
+com/example/exception/handler/RestExceptionHandler.java
+ com.example.exception.handler.RestExceptionHandler
+com/example/service/ContactService.java
+ com.example.service.ContactService
 com/example/controller/AccountController.java
  com.example.controller.AccountController
 com/example/service/AccountService.java
  com.example.service.AccountService
-com/example/security/UserDetailsServiceImpl.java
- com.example.security.UserDetailsServiceImpl
 com/example/service/GroupService.java
  com.example.service.GroupService
+com/example/service/ExpenseExportService.java
+ com.example.service.ExpenseExportService
 com/example/service/ExpenseService.java
  com.example.service.ExpenseService
+com/example/controller/AccountExpenseController.java
+ com.example.controller.AccountExpenseController
 com/example/controller/GroupExpenseController.java
  com.example.controller.GroupExpenseController
+com/example/controller/GroupController.java
+ com.example.controller.GroupController

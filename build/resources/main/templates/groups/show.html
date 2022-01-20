@@ -11,14 +11,14 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/" style="color: #018c4b">Splitwise</a>
+        <a class="navbar-brand" href="/"><strong><span style="color: #FFFFFF;">Split</span><span style="color: #018c4b;">Wise</span></strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" th:href="@{/accounts}"><strong style="color: #FFFFFF;">Home</strong> <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,8 @@
     <div class="row">
         <div class="col-3">
 <h4 th:text="${'Name: ' + group.getName()}">VALUE</h4>
-<p>List participant of group</p>
+<h6 th:text="${'Creator: ' + creator.getName()}">VALUE</h6>
+<p>Participants of group</p>
 <div th:if="${contacts.size() > 0}">
     <div th:each="balance : ${balances}">
         <a th:text="${balance.getKey().getName() + ', ' + balance.getKey().getPhoneNumber() + ', ' + balance.getValue().toString()}">user</a>
@@ -57,7 +58,7 @@
 <form th:method="GET" th:action="@{/accounts/groups/{groupId}/leave(groupId=${group.getId()})}">
     <input  class="btn btn-outline-danger" type="submit" value="Leave group"/>
 </form>
-
+<br>
 <form th:method="GET" th:action="@{/accounts/groups/{groupId}/expenses(groupId=${group.getId()})}">
     <input  class="btn btn-outline-danger" type="submit" value="Group expenses"/>
 </form>

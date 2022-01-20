@@ -47,6 +47,8 @@ public class GroupController {
     public ModelAndView get(@PathVariable("id") Integer id) {
         ModelAndView model = new ModelAndView("groups/show");
         model.addObject("group", groupService.get(id));
+        String creator = accountService.get(groupService.get(id).getCreatorId()).getTelephoneNumber();
+        model.addObject("creator", contactService.get(creator));
         List<Contact> contacts = groupService.getContacts(id);
         model.addObject("contacts", contacts);
         Map<Contact, Balance> balances = contacts.stream()
