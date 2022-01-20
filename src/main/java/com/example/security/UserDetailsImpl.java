@@ -8,11 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class UserDatailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
     private Account account;
 
-    public UserDatailsImpl(Account account) {
+    public UserDetailsImpl(Account account) {
         this.account = account;
     }
 

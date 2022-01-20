@@ -1,4 +1,4 @@
-package com.example.repository.remove;
+package com.example.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

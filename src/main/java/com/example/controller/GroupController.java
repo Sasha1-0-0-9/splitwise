@@ -1,6 +1,9 @@
 package com.example.controller;
 
-import com.example.entity.*;
+import com.example.entity.Account;
+import com.example.entity.Balance;
+import com.example.entity.Contact;
+import com.example.entity.Group;
 import com.example.service.AccountService;
 import com.example.service.BalanceLoader;
 import com.example.service.ContactService;

@@ -1,19 +1,19 @@
 com/example/entity/Contact.java
  com.example.entity.Contact
-com/example/repository/ContactRepo.java
- com.example.repository.ContactRepo
-com/example/repository/remove/AccountRepository.java
- com.example.repository.remove.AccountRepository
+com/example/repository/ExpenseRepo.java
+ com.example.repository.ExpenseRepo
+com/example/repository/ConverterRepository.java
+ com.example.repository.ConverterRepository
 com/example/exception/ContactCreationException.java
  com.example.exception.ContactCreationException
-com/example/service/ContactService.java
- com.example.service.ContactService
+com/example/exception/handler/RestExceptionHandler.java
+ com.example.exception.handler.RestExceptionHandler
 com/example/entity/ExpenseType.java
  com.example.entity.ExpenseType
 com/example/common/AuthenticationSystem.java
  com.example.common.AuthenticationSystem
-com/example/repository/remove/ExpenseRepository.java
- com.example.repository.remove.ExpenseRepository
+com/example/repository/AccountRepo.java
+ com.example.repository.AccountRepo
 com/example/controller/MainController.java
  com.example.controller.MainController
 com/example/repository/GroupRepo.java
@@ -27,61 +27,51 @@ com/example/exception/GroupNotFoundException.java
  com.example.exception.GroupNotFoundException
 com/example/security/PasswordEncoder.java
  com.example.security.PasswordEncoder
-com/example/service/GroupService.java
- com.example.service.GroupService
-com/example/entity/Currency.java
- com.example.entity.Currency
-com/example/service/ExpenseService.java
- com.example.service.ExpenseService
-com/example/controller/GroupExpenseController.java
- com.example.controller.GroupExpenseController
-com/example/repository/remove/AccountGroupInfoRepository.java
- com.example.repository.remove.AccountGroupInfoRepository
-com/example/Application.java
- com.example.Application
-com/example/repository/AccountRepo.java
- com.example.repository.AccountRepo
-com/example/repository/remove/ContactRepository.java
- com.example.repository.remove.ContactRepository
-com/example/security/UserDatailsImpl.java
- com.example.security.UserDatailsImpl
-com/example/repository/ExpenseRepo.java
- com.example.repository.ExpenseRepo
-com/example/repository/remove/AccountContactRepository.java
- com.example.repository.remove.AccountContactRepository
-com/example/service/ExpenseExportService.java
- com.example.service.ExpenseExportService
-com/example/security/config/MvcConfig.java
- com.example.security.config.MvcConfig
-com/example/controller/AccountExpenseController.java
- com.example.controller.AccountExpenseController
-com/example/entity/Account.java
- com.example.entity.Account
-com/example/service/BalanceLoader.java
- com.example.service.BalanceLoader
 com/example/service/AccountGroupInfoService.java
  com.example.service.AccountGroupInfoService
+com/example/entity/Currency.java
+ com.example.entity.Currency
+com/example/repository/AccountGroupInfoRepo.java
+ com.example.repository.AccountGroupInfoRepo
+com/example/security/config/MvcConfig.java
+ com.example.security.config.MvcConfig
+com/example/entity/Account.java
+ com.example.entity.Account
+com/example/Application.java
+ com.example.Application
+com/example/entity/Balance.java
+ com.example.entity.Balance
+com/example/entity/AccountGroupInfo.java
+ com.example.entity.AccountGroupInfo
 com/example/exception/AccountNotFoundException.java
  com.example.exception.AccountNotFoundException
+com/example/repository/AccountContactRepository.java
+ com.example.repository.AccountContactRepository
+com/example/controller/GroupController.java
+ com.example.controller.GroupController
+com/example/service/ContactService.java
+ com.example.service.ContactService
+com/example/repository/ContactRepository.java
+ com.example.repository.ContactRepository
+com/example/service/ExpenseExportService.java
+ com.example.service.ExpenseExportService
+com/example/controller/AccountExpenseController.java
+ com.example.controller.AccountExpenseController
+com/example/service/BalanceLoader.java
+ com.example.service.BalanceLoader
+com/example/security/config/WebSecurityConfig.java
+ com.example.security.config.WebSecurityConfig
+com/example/security/UserDetailsImpl.java
+ com.example.security.UserDetailsImpl
+com/example/controller/AccountController.java
+ com.example.controller.AccountController
 com/example/service/AccountService.java
  com.example.service.AccountService
 com/example/security/UserDetailsServiceImpl.java
  com.example.security.UserDetailsServiceImpl
-com/example/repository/AccountGroupInfoRepo.java
- com.example.repository.AccountGroupInfoRepo
-com/example/repository/remove/GroupRepository.java
- com.example.repository.remove.GroupRepository
-com/example/entity/AccountGroupInfo.java
- com.example.entity.AccountGroupInfo
-com/example/exception/handler/RestExceptionHandler.java
- com.example.exception.handler.RestExceptionHandler
-com/example/controller/GroupController.java
- com.example.controller.GroupController
-com/example/controller/AccountController.java
- com.example.controller.AccountController
-com/example/entity/Balance.java
- com.example.entity.Balance
-com/example/repository/ConverterRepository.java
- com.example.repository.ConverterRepository
-com/example/security/config/WebSecurityConfig.java
- com.example.security.config.WebSecurityConfig
+com/example/service/GroupService.java
+ com.example.service.GroupService
+com/example/service/ExpenseService.java
+ com.example.service.ExpenseService
+com/example/controller/GroupExpenseController.java
+ com.example.controller.GroupExpenseController

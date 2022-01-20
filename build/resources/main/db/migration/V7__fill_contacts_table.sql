@@ -1,4 +1,4 @@
-INSERT INTO contacts VALUES ('9835382919', 'Jack');
-INSERT INTO contacts VALUES ('9395820304', 'John');
-INSERT INTO contacts VALUES ('1024938293', 'Donald');
-INSERT INTO contacts VALUES ('2309294820', 'Duck');
+INSERT INTO contacts VALUES ('0986666666', 'Carl Johnson');
+INSERT INTO contacts VALUES ('0932222222', 'Elon Musk');
+INSERT INTO contacts VALUES ('0911111111', 'Geralt of Rivia');
+INSERT INTO contacts VALUES ('0944444444', 'Dominic Toretto');

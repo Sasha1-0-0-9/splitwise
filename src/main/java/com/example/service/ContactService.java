@@ -3,11 +3,8 @@ package com.example.service;
 import com.example.entity.Account;
 import com.example.entity.Contact;
 import com.example.exception.ContactCreationException;
-import com.example.repository.ContactRepo;
-
-import com.example.repository.remove.AccountContactRepository;
-
-import com.example.repository.remove.ContactRepository;
+import com.example.repository.AccountContactRepository;
+import com.example.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -21,23 +18,21 @@ import java.util.List;
 @Validated
 public class ContactService {
 
-    private final ContactRepository contactRepository1;
-    private final ContactRepo contactRepository;
+    private final ContactRepository contactRepository;
     private final AccountContactRepository accountContactRepository;
 
     @Autowired
-    public ContactService(ContactRepo contactRepository, AccountContactRepository accountContactRepository, ContactRepository contactRepository1) {
+    public ContactService(ContactRepository contactRepository, AccountContactRepository accountContactRepository) {
         this.contactRepository = contactRepository;
-        this.contactRepository1 = contactRepository1;
         this.accountContactRepository = accountContactRepository;
     }
 
     public Contact get(String telephoneNumber) {
-        return contactRepository.findContactByPhoneNumber(telephoneNumber);
+        return contactRepository.get(telephoneNumber);
     }
 
     public List<Contact> getByAccountId(Integer accountId) {
-        return contactRepository1.getByAccountId(accountId);
+        return contactRepository.getByAccountId(accountId);
     }
 
     public void save(@Valid Contact contact) {

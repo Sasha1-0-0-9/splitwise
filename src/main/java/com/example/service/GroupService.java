@@ -1,6 +1,9 @@
 package com.example.service;
 
-import com.example.entity.*;
+import com.example.entity.Account;
+import com.example.entity.AccountGroupInfo;
+import com.example.entity.Contact;
+import com.example.entity.Group;
 import com.example.exception.GroupNotFoundException;
 import com.example.repository.AccountRepo;
 import com.example.repository.GroupRepo;
@@ -10,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
