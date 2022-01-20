@@ -1,22 +1,76 @@
 package com.example.service;
 
-import com.example.entity.Balance;
+import com.example.entity.*;
 import com.example.entity.Currency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.*;
+import java.util.function.BiPredicate;
 
-public interface BalanceLoader {
+import static com.example.repository.ConverterRepository.converter;
 
-    Balance getAccountBalance(Integer groupId, Integer accountId);
+@Service
+public class BalanceLoader {
 
-    Balance getAccountBalance(Integer accountId);
+    private final ExpenseService expenseService;
+    private AccountGroupInfoService accountGroupInfoService;
 
-    Balance getAccountBalance(Integer groupId, Integer accountId, LocalDateTime afterDate);
+    @Autowired
+    public BalanceLoader(ExpenseService expenseService, AccountGroupInfoService accountGroupInfoService) {
+        this.expenseService = expenseService;
+        this.accountGroupInfoService = accountGroupInfoService;
+    }
 
-    Balance getAccountBalance(Integer accountId, LocalDateTime afterDate);
+    BiPredicate<Integer, Integer> isNull = (x, y) -> (x == null || y == null
+            || accountGroupInfoService.getAccountGroupInfo(x, y) == null);
 
-    Map<Currency, Balance> getAccountBalanceByCurrencies(Integer groupId, Integer accountId);
+    public Balance getAccountBalance(Integer groupId, Integer accountId) {
+        if (isNull.test(groupId, accountId)) {
+            throw new RuntimeException("Group id or account id is null!");
+        }
 
-    Map<Currency, Balance> getAccountBalanceByCurrencies(Integer accountId);
+        double amount = 0;
+
+        List<Expense> groupExpenses = expenseService.getExpensesByGroup(groupId);
+        for (Expense expense : groupExpenses) {
+            int size = accountGroupInfoService.getAccountGroupInfosByGroupId(groupId).size();
+            double convert = converter(expense.getCurrency(), Currency.USD);
+            if (expense.getLenderId().equals(accountId)) {
+                amount += convert * expense.getAmount() * (size - 1) / size;
+            } else {
+                amount -= convert * expense.getAmount() / size;
+            }
+        }
+
+        return new Balance(amount, Currency.USD);
+    }
+
+    public Balance getAccountBalance(Integer accountId) {
+        if (accountId == null) {
+            throw new RuntimeException("Account id is null!");
+        }
+
+        double amount = 0;
+
+        List<Expense> accountExpenses = expenseService.getExpensesByAccount(accountId);
+        for (Expense expense : accountExpenses) {
+            double convert = converter(expense.getCurrency(), Currency.USD);
+            if (expense.getBorrowerId().equals(accountId)) {
+                amount -= convert * expense.getAmount();
+            } else {
+                amount += convert * expense.getAmount();
+            }
+        }
+
+        List<AccountGroupInfo> accountGroupInfos = accountGroupInfoService.getAccountGroupInfosByAccountId(accountId);
+        for (AccountGroupInfo accountGroupInfo : accountGroupInfos) {
+            Balance balance = getAccountBalance(accountGroupInfo.getGroupId(), accountGroupInfo.getAccountId());
+            if (balance != null) {
+                amount += balance.getAmount();
+            }
+        }
+
+        return new Balance(amount, Currency.USD);
+    }
 }

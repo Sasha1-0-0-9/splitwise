@@ -35,16 +35,11 @@
 <br>
 <br>
 <h2>Create group</h2>
-<form class="form-inline pt-5" th:method="POST" th:action="@{/accounts/{accountId}/groups/new(accountId=${accountId})}">
+<form class="form-inline pt-5" th:method="POST" th:action="@{/accounts/groups/new}">
     <label for="name"><h4>Enter group name: </h4></label>
     <input class="form-control-lg" type="text" name="name" id="name"/>
     <br/>
 
-    <div th:if="${text == null}">
-    </div>
-    <div th:unless="${text == null}">
-        <p th:text="${text}"></p>
-    </div>
     <br/>
     <input class="btn btn-outline-success" type="submit" value="Create!"/>
 </form>

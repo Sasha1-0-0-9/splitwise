@@ -37,7 +37,7 @@
 <br>
 <div class="d-flex justify-content-center">
 
-<form th:method="POST" th:action="@{/accounts/{accountId}/expenses/new(accountId=${accountId})}">
+<form th:method="POST" th:action="@{/accounts/expenses/new}">
     <label for="amount">Enter amount: </label>
     <input type="text" name="amount" id="amount"/>
     <br/>
@@ -60,12 +60,7 @@
     <label for="borrowerName">Enter borrower user phone number or group name: </label>
     <input type="text" name="borrowerName" id="borrowerName"/>
     <br/>
-    <div th:if="${text == null}">
-    </div>
-    <div th:unless="${text == null}">
-        <p th:text="${text}"></p>
-    </div>
-    <br/>
+    <br>
     <input class="btn btn-success" type="submit" value="Create!"/>
 </form>
 </div>

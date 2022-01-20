@@ -1,7 +1,5 @@
 package com.example.entity;
 
-import java.util.Objects;
-
 public class Balance {
 
     private final double amount;
@@ -23,19 +21,5 @@ public class Balance {
     @Override
     public String toString() {
         return amount + " " + currency;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Balance)) return false;
-        Balance balance = (Balance) o;
-        return Double.compare(balance.getAmount(), getAmount()) == 0 &&
-                getCurrency() == balance.getCurrency();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAmount(), getCurrency());
     }
 }

@@ -1,7 +1,6 @@
 package com.example.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "account_group_info")
@@ -48,24 +47,5 @@ public class AccountGroupInfo {
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AccountGroupInfo that = (AccountGroupInfo) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

@@ -13,6 +13,7 @@ public class Account {
     private Integer id;
 
     @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "phone_number")

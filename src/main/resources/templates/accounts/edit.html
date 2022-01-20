@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -30,7 +30,7 @@
 </header>
 <body>
 <div class="pt-5 container">
-<form method="post" th:method="POST" th:action="@{/accounts/{id}(id=${account.getId()})}" th:object="${account}">
+<form method="post" th:method="POST" th:action="@{/accounts}" th:object="${account}">
     <div class="pt-5"></div>
     <label for="email">Enter email: </label>
     <input type="text" th:field="*{email}" id="email"/>

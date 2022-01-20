@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Entity
 @Table(name = "groups")
@@ -54,20 +53,5 @@ public class Group {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Group)) return false;
-        Group group = (Group) o;
-        return Objects.equals(id, group.id) &&
-                Objects.equals(getName(), group.getName()) &&
-                Objects.equals(getCreatorId(), group.getCreatorId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, getName(), getCreatorId());
     }
 }

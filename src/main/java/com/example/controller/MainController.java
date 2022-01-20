@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
+    private final AccountRepo accountRepository;
+
     @Autowired
-    private AccountRepo accountRepository;
+    public MainController(AccountRepo accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     @GetMapping("/")
     public String greeting(Model model) {

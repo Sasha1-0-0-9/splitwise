@@ -30,40 +30,19 @@
     </nav>
 </header>
 
-<body>
-<div class="pt-5"></div>
-<div class="pt-5"></div>
-<h4 class="d-flex justify-content-center"> Create new expense</h4>
+<body class="text-center">
 <br>
-<div class="d-flex justify-content-center">
+<br>
+<br>
+<h2>Create group</h2>
+<form class="form-inline pt-5" th:method="POST" th:action="@{/accounts/contact}">
+    <label for="phoneNumber"><h4>Enter phone number: </h4></label>
+    <input class="form-control-lg" type="text" name="phoneNumber" id="phoneNumber"/>
+    <br/>
 
-<form th:method="POST" th:action="@{/accounts/expenses/new}">
-    <label for="amount">Enter amount: </label>
-    <input type="text" name="amount" id="amount"/>
     <br/>
-    <br>
-    Currency: <select name="currency">
-    <option>EUR</option>
-    <option>UAH</option>
-    <option>USD</option>
-    </select>
-    <br/>
-    <br>
-    Gender: <input type="radio" name="expenseType" value="USER" checked />USER
-    <input type="radio" name="expenseType" value="GROUP" />GROUP
-    <br/>
-    <br>
-    <label for="lenderName">Enter lender phone number: </label>
-    <input readonly th:value="${phoneNumber}" type="text" name="lenderName" id="lenderName"/>
-    <br/>
-    <br>
-    <label for="borrowerName">Enter borrower user phone number or group name: </label>
-    <input type="text" name="borrowerName" id="borrowerName"/>
-    <br/>
-    <br>
-    <input class="btn btn-success" type="submit" value="Create!"/>
+    <input class="btn btn-outline-success" type="submit" value="Found!"/>
 </form>
-</div>
 
 </body>
 </html>

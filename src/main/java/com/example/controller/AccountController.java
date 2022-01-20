@@ -3,22 +3,14 @@ package com.example.controller;
 import com.example.entity.Account;
 import com.example.entity.Contact;
 import com.example.service.AccountService;
-import com.example.service.BalanceLoaderImpl;
+import com.example.service.BalanceLoader;
 import com.example.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/accounts")
@@ -26,11 +18,11 @@ public class AccountController {
 
     private final AccountService accountService;
     private final ContactService contactService;
-    private final BalanceLoaderImpl balanceLoader;
+    private final BalanceLoader balanceLoader;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public AccountController(AccountService accountService, ContactService contactService, BalanceLoaderImpl balanceLoader, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AccountController(AccountService accountService, ContactService contactService, BalanceLoader balanceLoader, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.accountService = accountService;
         this.contactService = contactService;
         this.balanceLoader = balanceLoader;
@@ -40,75 +32,75 @@ public class AccountController {
     @GetMapping("/contacts")
     public ModelAndView index(Authentication authentication) {
         ModelAndView model = new ModelAndView("accounts/index");
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        Account account = accountService.getByEmail(userDetails.getUsername());
-        model.addObject("contacts",contactService.getByAccountId(account.getId()));
+        Account account = accountService.getByEmail(authentication.getName());
+        model.addObject("contacts", contactService.getByAccountId(account.getId()));
         return model;
     }
 
     @GetMapping
     public ModelAndView show(Authentication authentication) {
         ModelAndView model = new ModelAndView("accounts/show");
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        Account account = accountService.getByEmail(userDetails.getUsername());
+        Account account = accountService.getByEmail(authentication.getName());
         model.addObject("account", account);
-        Contact contact = contactService.get(account.getTelephoneNumber());
-        model.addObject("contact", contact);
+        model.addObject("contact", contactService.get(account.getTelephoneNumber()));
         model.addObject("balance", balanceLoader.getAccountBalance(account.getId()));
         return model;
     }
 
     @GetMapping("/new")
-    public ModelAndView newAccount(@ModelAttribute("account") Account account) {
-        ModelAndView model = new ModelAndView("accounts/new");
-        model.addObject("param", null);
-        return model;
+    public String newAccount() {
+        return "accounts/new";
     }
 
     @PostMapping("/create")
-    public String create(@RequestParam("name") String name, @RequestParam("telephoneNumber") String telephoneNumber,
-                         @RequestParam("email") String email, @RequestParam("encodedPassword") String encryptedPassword, Model model) {  //@ModelAttribute("account") Account account
-        Account account;
-        Contact contact;
-        try {
-            contact = new Contact(name, telephoneNumber);
-            contactService.save(contact);
-
-            account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
-            account.setId(account.getId());
-            accountService.save(account);
-        } catch (ConstraintViolationException e) {
-            String message = e.getMessage();
-            model.addAttribute("text", message);
-            return "accounts/new";
-        }
-
-        model.addAttribute("contact", contact);
-        model.addAttribute("account", accountService.get(account.getId()));
-
-        return "home";
+    public ModelAndView create(@RequestParam("name") String name, @RequestParam("telephoneNumber") String telephoneNumber,
+                               @RequestParam("email") String email, @RequestParam("encodedPassword") String encryptedPassword) {
+        ModelAndView model = new ModelAndView("home");
+        Account account = new Account(email, telephoneNumber, bCryptPasswordEncoder.encode(encryptedPassword));
+        accountService.save(account, name);
+        return model;
     }
 
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("account", accountService.get(id));
-        model.addAttribute("email", accountService.get(id).getEmail());
-        return "accounts/edit";
+    @GetMapping("/edit")
+    public ModelAndView edit(Authentication authentication) {
+        ModelAndView model = new ModelAndView("accounts/edit");
+        model.addObject("account", accountService.getByEmail(authentication.getName()));
+        return model;
     }
 
-    @PostMapping("/{id}")
-    public String update(@ModelAttribute("account") @Valid Account account, BindingResult bindingResult,
-                         @PathVariable("id") int id, @RequestParam("email") String email) {
-        if (bindingResult.hasErrors())
-            return "accounts/edit";
-
-        accountService.update(id,email);
-        return "redirect:/accounts";
+    @PostMapping
+    public String update(@RequestParam("email") String email, Authentication authentication) {
+        accountService.update(authentication.getName(), email);
+        return "main";
     }
 
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable("id") int id) {
-        accountService.delete(id);
-        return "home";
+    @GetMapping("/delete")
+    public String delete(Authentication authentication) {
+        accountService.delete(authentication.getName());
+        return "main";
+    }
+
+    @GetMapping("/found")
+    public String found() {
+        return "accounts/found";
+    }
+
+    @PostMapping("/contact")
+    public ModelAndView contact(@RequestParam("phoneNumber") String phoneNumber) {
+        ModelAndView model = new ModelAndView("accounts/add");
+        Contact contact = contactService.get(phoneNumber);
+        model.addObject("contact", contact);
+        return model;
+    }
+
+    @GetMapping("/add/{phoneNumber}")
+    public ModelAndView found(@PathVariable("phoneNumber") String phoneNumber, Authentication authentication) {
+        ModelAndView model = new ModelAndView("accounts/show");
+        Account account = accountService.getByEmail(authentication.getName());
+        contactService.add(account, phoneNumber);
+        model.addObject("account", account);
+        model.addObject("contact", contactService.get(account.getTelephoneNumber()));
+        model.addObject("balance", balanceLoader.getAccountBalance(account.getId()));
+        return model;
     }
 }

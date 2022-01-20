@@ -46,32 +46,25 @@
 <h4 th:text="${'Name: ' + group.getName()}">VALUE</h4>
 <p>List participant of group</p>
 <div th:if="${contacts.size() > 0}">
-    <div th:each="contact : ${contacts}">
-        <a th:text="${contact.name + ', ' + contact.telephoneNumber}">user</a>
+    <div th:each="balance : ${balances}">
+        <a th:text="${balance.getKey().getName() + ', ' + balance.getKey().getPhoneNumber() + ', ' + balance.getValue().toString()}">user</a>
     </div>
 </div>
 
-
-<br><br>
-<div th:if="${text == null}">
-</div>
-<div th:unless="${text == null}">
-    <p th:text="${text}"></p>
-</div>
         </div>
     </div>
 
 
-<form th:method="GET" th:action="@{/accounts/{accountId}/groups/{groupId}/add(accountId=${accountId}, groupId=${group.getId()})}">
+<form th:method="GET" th:action="@{/accounts/groups/{groupId}/add(groupId=${group.getId()})}">
     <input class="btn btn-outline-success" type="submit" value="Add to group"/>
 </form>
     <br>
 
-<form th:method="GET" th:action="@{/accounts/{accountId}/groups/{groupId}/leave(accountId=${accountId}, groupId=${group.getId()})}">
+<form th:method="GET" th:action="@{/accounts/groups/{groupId}/leave(groupId=${group.getId()})}">
     <input  class="btn btn-outline-danger" type="submit" value="Leave group"/>
 </form>
 
-<form th:method="GET" th:action="@{/accounts/{accountId}/groups/{groupId}/expenses(accountId=${accountId}, groupId=${group.getId()})}">
+<form th:method="GET" th:action="@{/accounts/groups/{groupId}/expenses(groupId=${group.getId()})}">
     <input  class="btn btn-outline-danger" type="submit" value="Group expenses"/>
 </form>
 </div>

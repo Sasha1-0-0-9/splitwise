@@ -49,10 +49,10 @@
         <td><p th:text="${'Email: ' + account.getEmail()}">VALUE</p></td>
         <td><p th:text="${'Phone: ' + account.getTelephoneNumber()}">VALUE</p></td>
         <td><p th:text="${balance}">VALUE</p></td>
-        <td><form th:method="GET" th:action="@{/accounts/{id}/edit(id=${account.getId()})}">
+        <td><form th:method="GET" th:action="@{/accounts/edit}">
             <input class="btn btn-success" type="submit" value="Edit"/>
         </form></td>
-        <td><form th:method="DELETE" th:action="@{/accounts/{id}(id=${account.getId()})}">
+        <td><form th:method="GET" th:action="@{/accounts/delete}">
             <input class="btn btn-danger" type="submit" value="Delete"/>
         </form></td>
     </tr>
@@ -64,11 +64,11 @@
 </form>
 <br>
 
-<form th:method="GET" th:action="@{/accounts/{id}/groups(id=${account.getId()})}">
+<form th:method="GET" th:action="@{/accounts/groups}">
     <input class="btn btn-outline-dark" type="submit" value="My group"/>
 </form>
 <br>
-<form th:method="GET" th:action="@{/accounts/{id}/expenses(id=${account.getId()})}">
+<form th:method="GET" th:action="@{/accounts/expenses}">
     <input class="btn btn-outline-dark" type="submit" value="My expenses"/>
 </form>
 </div>
