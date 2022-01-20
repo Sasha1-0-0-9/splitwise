@@ -1,6 +1,6 @@
-package com.example.ss.security_config;
+package com.example.security.config;
 
-import com.example.ss.UserDetailsServiceImpl;
+import com.example.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,13 +23,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/main", "/accounts/new/**", "/accounts/create").permitAll()
+                .antMatchers("/", "/main", "/accounts/new/**"
+                        , "/accounts/create", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .permitAll()
+                .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
+                .logoutSuccessUrl("/")
                 .permitAll();
     }
 

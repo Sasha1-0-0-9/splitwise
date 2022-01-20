@@ -4,10 +4,10 @@ com/example/repository/ContactRepo.java
  com.example.repository.ContactRepo
 com/example/repository/remove/AccountRepository.java
  com.example.repository.remove.AccountRepository
+com/example/controller/GroupController.java
+ com.example.controller.GroupController
 com/example/exception/AccountNotFoundException.java
  com.example.exception.AccountNotFoundException
-com/example/ss/PasswordEncoder.java
- com.example.ss.PasswordEncoder
 com/example/service/ContactService.java
  com.example.service.ContactService
 com/example/entity/Balance.java
@@ -16,10 +16,10 @@ com/example/common/AuthenticationSystem.java
  com.example.common.AuthenticationSystem
 com/example/repository/remove/ExpenseRepository.java
  com.example.repository.remove.ExpenseRepository
-com/example/controller/MainController.java
- com.example.controller.MainController
-com/example/controller/GroupExpenseController.java
- com.example.controller.GroupExpenseController
+com/example/entity/AccountGroupInfo.java
+ com.example.entity.AccountGroupInfo
+com/example/service/BalanceLoader.java
+ com.example.service.BalanceLoader
 com/example/entity/Expense.java
  com.example.entity.Expense
  com.example.entity.Expense$ExpenseBuilder
@@ -29,8 +29,8 @@ com/example/exception/GroupNotFoundException.java
  com.example.exception.GroupNotFoundException
 com/example/service/GroupService.java
  com.example.service.GroupService
-com/example/ss/UserDetailsServiceImpl.java
- com.example.ss.UserDetailsServiceImpl
+com/example/controller/GroupExpenseController.java
+ com.example.controller.GroupExpenseController
 com/example/entity/Currency.java
  com.example.entity.Currency
 com/example/service/ExpenseService.java
@@ -52,39 +52,37 @@ com/example/repository/remove/AccountContactRepository.java
  com.example.repository.remove.AccountContactRepository
 com/example/service/ExpenseExportService.java
  com.example.service.ExpenseExportService
-com/example/ss/security_config/MvcConfig.java
- com.example.ss.security_config.MvcConfig
-com/example/controller/AccountExpenseController.java
- com.example.controller.AccountExpenseController
+com/example/repository/GroupRepo.java
+ com.example.repository.GroupRepo
+com/example/controller/MainController.java
+ com.example.controller.MainController
 com/example/entity/Account.java
  com.example.entity.Account
 com/example/service/AccountGroupInfoService.java
  com.example.service.AccountGroupInfoService
-com/example/ss/UserDatailsImpl.java
- com.example.ss.UserDatailsImpl
-com/example/ss/Acc.java
- com.example.ss.Acc
-com/example/ss/security_config/WebSecurityConfig.java
- com.example.ss.security_config.WebSecurityConfig
 com/example/entity/ExpenseType.java
  com.example.entity.ExpenseType
-com/example/service/AccountService.java
- com.example.service.AccountService
 com/example/exception/ContactCreationException.java
  com.example.exception.ContactCreationException
+com/example/exception/handler/RestExceptionHandler.java
+ com.example.exception.handler.RestExceptionHandler
+com/example/controller/AccountController.java
+ com.example.controller.AccountController
+com/example/service/AccountService.java
+ com.example.service.AccountService
 com/example/repository/AccountGroupInfoRepo.java
  com.example.repository.AccountGroupInfoRepo
 com/example/repository/remove/GroupRepository.java
  com.example.repository.remove.GroupRepository
-com/example/entity/AccountGroupInfo.java
- com.example.entity.AccountGroupInfo
-com/example/exception/handler/RestExceptionHandler.java
- com.example.exception.handler.RestExceptionHandler
-com/example/repository/GroupRepo.java
- com.example.repository.GroupRepo
-com/example/service/BalanceLoader.java
- com.example.service.BalanceLoader
-com/example/controller/AccountController.java
- com.example.controller.AccountController
-com/example/controller/GroupController.java
- com.example.controller.GroupController
+com/example/security/config/WebSecurityConfig.java
+ com.example.security.config.WebSecurityConfig
+com/example/security/UserDatailsImpl.java
+ com.example.security.UserDatailsImpl
+com/example/security/PasswordEncoder.java
+ com.example.security.PasswordEncoder
+com/example/security/UserDetailsServiceImpl.java
+ com.example.security.UserDetailsServiceImpl
+com/example/security/config/MvcConfig.java
+ com.example.security.config.MvcConfig
+com/example/controller/AccountExpenseController.java
+ com.example.controller.AccountExpenseController

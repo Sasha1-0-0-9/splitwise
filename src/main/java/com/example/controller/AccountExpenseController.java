@@ -1,9 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.*;
-import com.example.service.AccountService;
-import com.example.service.ExpenseExportService;
-import com.example.service.ExpenseService;
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -23,12 +21,16 @@ public class AccountExpenseController {
     private final ExpenseService expenseService;
     private final ExpenseExportService expenseExportService;
     private final AccountService accountService;
+    private final GroupService groupService;
+    private final ContactService contactService;
 
     @Autowired
-    public AccountExpenseController(ExpenseService expenseService, ExpenseExportService expenseExportService, AccountService accountService) {
+    public AccountExpenseController(ExpenseService expenseService, ExpenseExportService expenseExportService, AccountService accountService, GroupService groupService, ContactService contactService) {
         this.expenseService = expenseService;
         this.expenseExportService = expenseExportService;
         this.accountService = accountService;
+        this.groupService = groupService;
+        this.contactService = contactService;
     }
 
     @GetMapping()
@@ -55,7 +57,11 @@ public class AccountExpenseController {
     public ModelAndView newExpense(Authentication authentication) {
         ModelAndView model = new ModelAndView("expenses/new");
         Account account = accountService.getByEmail(authentication.getName());
+        List<Group> groups = groupService.getAllByAccountId(account.getId());
         model.addObject("phoneNumber", account.getTelephoneNumber());
+        model.addObject("contacts", contactService.getByAccountId(account.getId()));
+        model.addObject("groups", groups);
+
         return model;
     }
 
