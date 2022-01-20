@@ -1,110 +1,109 @@
 package com.example.controller;
 
 import com.example.entity.*;
+import com.example.service.AccountService;
+import com.example.service.BalanceLoader;
 import com.example.service.ContactService;
 import com.example.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.ConstraintViolationException;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/accounts/{accountId}/groups")
+@RequestMapping("/accounts/groups")
 public class GroupController {
 
     private final GroupService groupService;
     private final ContactService contactService;
+    private final AccountService accountService;
+    private final BalanceLoader balanceLoader;
 
     @Autowired
-    public GroupController(GroupService groupService, ContactService contactService) {
+    public GroupController(GroupService groupService, ContactService contactService, AccountService accountService, BalanceLoader balanceLoader) {
         this.groupService = groupService;
         this.contactService = contactService;
+        this.accountService = accountService;
+        this.balanceLoader = balanceLoader;
     }
 
     @GetMapping()
-    public String getAll(@PathVariable("accountId") Integer accountId, Model model) {
-        List<Group> groups = groupService.getAllByAccountId(accountId);
-        model.addAttribute("accountId", accountId);
-        model.addAttribute("groups", groups);
-        return "groups/index";
+    public ModelAndView getAll(Authentication authentication) {
+        ModelAndView model = new ModelAndView("groups/index");
+        Account account = accountService.getByEmail(authentication.getName());
+        model.addObject("groups", groupService.getAllByAccountId(account.getId()));
+        return model;
     }
 
     @GetMapping("/{id}")
-    public String get(@PathVariable("accountId") Integer accountId, @PathVariable("id") Integer id, Model model) {
-        model.addAttribute("group", groupService.get(id));
+    public ModelAndView get(@PathVariable("id") Integer id) {
+        ModelAndView model = new ModelAndView("groups/show");
+        model.addObject("group", groupService.get(id));
         List<Contact> contacts = groupService.getContacts(id);
-        model.addAttribute("contacts", contacts);
-        model.addAttribute("accountId", accountId);
-        model.addAttribute("text", null);
-        return "groups/show";
+        model.addObject("contacts", contacts);
+        Map<Contact, Balance> balances = contacts.stream()
+                .collect(Collectors.toMap(s -> s, s -> balanceLoader.getAccountBalance(id, accountService.getByTelephoneNumber(s.getPhoneNumber()).getId())));
+        model.addObject("balances", balances);
+        return model;
     }
 
     @GetMapping("/new")
-    public String newGroup(@PathVariable("accountId") Integer accountId, Model model) {
-        model.addAttribute("accountId", accountId);
-        model.addAttribute("text", null);
+    public String newGroup() {
         return "groups/new";
     }
 
     @PostMapping("/new")
-    public String createGroup(@RequestParam("name") String name,
-                              @PathVariable("accountId") Integer accountId, Model model) {
-        model.addAttribute("accountId", accountId);
-        try {
-            Group group = new Group(name, accountId);
-            groupService.save(group);
-        } catch (ConstraintViolationException e) {
-            String message = e.getMessage();
-            model.addAttribute("text", message);
-            return "groups/new";
-        }
-
-        List<Group> groups = groupService.getAllByAccountId(accountId);
-        model.addAttribute("accountId", accountId);
-        model.addAttribute("groups", groups);
-        return "groups/index";
+    public ModelAndView createGroup(@RequestParam("name") String name, Authentication authentication) {
+        ModelAndView model = new ModelAndView("groups/index");
+        Account account = accountService.getByEmail(authentication.getName());
+        Group group = new Group(name, account.getId());
+        groupService.save(group);
+        List<Group> groups = groupService.getAllByAccountId(account.getId());
+        model.addObject("groups", groups);
+        return model;
     }
 
     @DeleteMapping("/{id}")
-    public String leave(@PathVariable("accountId") Integer accountId, @PathVariable("id") int id) {
-        groupService.leaveGroup(id, accountId);
-        return "redirect:/groups";
+    public String leave(@PathVariable("id") int id, Authentication authentication) {
+        Account account = accountService.getByEmail(authentication.getName());
+        groupService.leaveGroup(id, account.getId());
+        return "home";
     }
 
     @GetMapping("/{id}/add")
-    public String addToGroup(@PathVariable("accountId") Integer accountId, Model model) {
-        List<Contact> byAccountId = contactService.getByAccountId(accountId);
-        model.addAttribute("contacts", byAccountId);
-        return "groups/add";
+    public ModelAndView addToGroup(@PathVariable("id") int id, Authentication authentication) {
+        ModelAndView model = new ModelAndView("groups/add");
+        Account account = accountService.getByEmail(authentication.getName());
+        List<Contact> byAccountId = contactService.getByAccountId(account.getId());
+        model.addObject("contacts", byAccountId);
+        model.addObject("groupId", id);
+        return model;
     }
 
     @PostMapping("/{id}/add")
-    public String add(@PathVariable("accountId") Integer accountId,
-                      @PathVariable("id") Integer id, @RequestParam("contact") String contact,
-                      Model model) {
-        String text = groupService.temp(accountId, id, contact);
-        if (text != null) {
-            model.addAttribute("text", text);
-        }
-
-        model.addAttribute("group", groupService.get(id));
+    public ModelAndView add(@PathVariable("id") Integer id, @RequestParam("contact") String contact,
+                            Authentication authentication) {
+        ModelAndView model = new ModelAndView("groups/show");
+        Account account = accountService.getByEmail(authentication.getName());
+        groupService.addToGroup(account.getId(), id, contact);
+        model.addObject("group", groupService.get(id));
         List<Contact> contacts = groupService.getContacts(id);
-        model.addAttribute("contacts", contacts);
-        model.addAttribute("accountId", accountId);
-        model.addAttribute("text", null);
-        return "groups/show";
+        model.addObject("contacts", contacts);
+        return model;
     }
 
     @GetMapping("/{id}/leave")
-    public String leaveGroup(@PathVariable("accountId") Integer accountId,
-                             @PathVariable("id") Integer id, Model model) {
-        groupService.leaveGroup(id, accountId);
-        List<Group> groups = groupService.getAllByAccountId(accountId);
-        model.addAttribute("accountId", accountId);
-        model.addAttribute("groups", groups);
-        return "groups/index";
+    public ModelAndView leaveGroup(@PathVariable("id") Integer id, Authentication authentication) {
+        ModelAndView model = new ModelAndView("groups/index");
+        Account account = accountService.getByEmail(authentication.getName());
+        groupService.leaveGroup(id, account.getId());
+        List<Group> groups = groupService.getAllByAccountId(account.getId());
+        model.addObject("groups", groups);
+        return model;
     }
 }

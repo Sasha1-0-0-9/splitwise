@@ -40,12 +40,12 @@
 </div>
 <div th:unless="${groups.isEmpty()}">
     <div th:each="group : ${groups}">
-        <a  class="link-dark" th:href="@{/accounts/{accountId}/groups/{groupId}(accountId=${accountId}, groupId=${group.getId()})}"
+        <a  class="link-dark" th:href="@{/accounts/groups/{groupId}(groupId=${group.getId()})}"
            th:text="${group.getName()}">user</a>
     </div>
 </div>
 
-<form class="pt-3" th:method="GET" th:action="@{/accounts/{accountId}/groups/new(accountId=${accountId})}">
+<form class="pt-3" th:method="GET" th:action="@{/accounts/groups/new}">
     <input class="btn btn-success" type="submit" value="Create new group"/>
 </form>
 </div>

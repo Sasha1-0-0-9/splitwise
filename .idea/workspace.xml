@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e2b68d0-e184-415b-b358-3a1a9b3b09a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/build/resources/main/assets/expenses.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/images/poor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/stylesheets/accounts/show.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/stylesheets/poor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/poor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseExportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/found.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -18,16 +17,99 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/common/IdGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/common/Identifiable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/common/SortType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/common/validator/AccountCreationValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/common/validator/GroupCreationValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/AccountExpenseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/AccountExpenseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/GroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/controller/GroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/AccountGroupInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/AccountGroupInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Balance.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Balance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Contact.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Contact.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense$ExpenseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense$ExpenseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Expense.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/entity/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/exception/AccountCreationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/exception/AccountGroupInfoCreationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/exception/GroupCreationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/AccountRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/repository/AccountRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountGroupInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountGroupInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/AccountService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/BalanceLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/BalanceLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/BalanceLoaderImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ContactService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ExpenseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/ExpenseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/service/GroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/PasswordEncoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/UserDatailsImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/UserDetailsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/MvcConfig.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/ss/security_config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/console" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/accounts/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/expenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/expenses/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/expenses/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/groups/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/expense.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/expense.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss/security_config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/IdGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/Identifiable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/SortType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/validator/AccountCreationValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/validator/GroupCreationValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/AccountExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/AccountExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/GroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/GroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/GroupExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/GroupExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/AccountGroupInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/AccountGroupInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Balance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Balance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Expense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/exception/AccountCreationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/exception/AccountGroupInfoCreationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/exception/GroupCreationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/exception/handler/ErrorInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/exception/handler/RestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/exception/handler/RestExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountGroupInfoRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountGroupInfoRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ConverterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ConverterRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ExpenseRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ExpenseRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/GroupRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/GroupRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/remove/AccountContactRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/security/config/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/security/config/MvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountGroupInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountGroupInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BalanceLoaderImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ContactService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/GroupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/console" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/expenses/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groupExpenses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groupExpenses/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/groups/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
     </list>
@@ -81,7 +163,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="final_branch" />
+        <entry key="$PROJECT_DIR$" value="final_branch_2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -142,7 +224,7 @@
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="PasswordEncoder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.ss.PasswordEncoder" />
+      <option name="MAIN_CLASS_NAME" value="com.example.security.PasswordEncoder" />
       <module name="splitwise.main" />
       <extension name="coverage">
         <pattern>
@@ -229,7 +311,8 @@
       <workItem from="1642325635481" duration="4000000" />
       <workItem from="1642450085076" duration="1442000" />
       <workItem from="1642515614288" duration="6186000" />
-      <workItem from="1642581061993" duration="42197000" />
+      <workItem from="1642581061993" duration="42426000" />
+      <workItem from="1642666742619" duration="5528000" />
     </task>
     <servers />
   </component>
@@ -252,8 +335,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/GroupController.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="7" />
+          <line>39</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

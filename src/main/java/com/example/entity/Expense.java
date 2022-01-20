@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 @Table(name = "expenses")
@@ -138,22 +137,5 @@ public class Expense {
         public Expense build() {
             return expense;
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Expense expense = (Expense) o;
-        return Objects.equals(lenderId, expense.lenderId) &&
-                Objects.equals(amount, expense.amount) &&
-                expenseType == expense.expenseType &&
-                Objects.equals(localDateTime, expense.localDateTime) &&
-                currency == expense.currency;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lenderId, amount, expenseType, localDateTime, currency);
     }
 }

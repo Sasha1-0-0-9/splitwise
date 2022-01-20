@@ -36,19 +36,19 @@
 <br>
 <div class="container">
     <h3>Add to group</h3>
-<form th:method="POST" th:action="@{/accounts/{accountId}/groups/{groupId}/add(accountId=${accountId}, groupId=${id})}">
-    Choose a contact: <select name="contact">
-    <option th:each="contact : ${contacts}"
-            th:value="${contact.getPhoneNumber()}"
-            th:text="${contact.getName()}">
-    </option>
-</select>
-    <br><br>
-    <input class="btn btn-success" type="submit" value="Add"/>
-</form>
+    <form th:method="POST" th:action="@{/accounts/groups/{groupId}/add(groupId=${id})}">
+        Choose a contact: <select name="contact">
+        <option th:each="contact : ${contacts}"
+                th:value="${contact.getPhoneNumber()}"
+                th:text="${contact.getName()}">
+        </option>
+    </select>
+        <br><br>
+        <input class="btn btn-success" type="submit" value="Add"/>
+    </form>
 
-<br/>
-<hr/>
-
+    <br/>
+    <hr/>
+</div>
 </body>
 </html>

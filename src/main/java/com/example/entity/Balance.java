@@ -1,14 +1,12 @@
 package com.example.entity;
 
-import java.util.Objects;
-
 public class Balance {
 
     private final double amount;
     private final Currency currency;
 
     public Balance(double amount, Currency currency) {
-        this.amount = amount;
+        this.amount = round(amount);
         this.currency = currency;
     }
 
@@ -20,22 +18,13 @@ public class Balance {
         return currency;
     }
 
+    private static double round(double value) {
+        double scale = Math.pow(10, 3);
+        return Math.round(value * scale) / scale;
+    }
+
     @Override
     public String toString() {
         return amount + " " + currency;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Balance)) return false;
-        Balance balance = (Balance) o;
-        return Double.compare(balance.getAmount(), getAmount()) == 0 &&
-                getCurrency() == balance.getCurrency();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAmount(), getCurrency());
     }
 }

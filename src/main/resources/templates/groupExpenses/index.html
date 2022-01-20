@@ -36,30 +36,24 @@
 <h4 class="d-flex justify-content-center"> Here you can </h4>
 
 <div class="d-flex justify-content-center pt-3">
-    <form th:method="GET" th:action="@{/accounts/{accountId}/expenses/new(accountId=${accountId})}">
+    <form th:method="GET" th:action="@{/accounts/expenses/new}">
         <input class="btn btn-success" type="submit" value="Create new expense"/>
     </form>
 </div>
 <br>
 <h5 class="d-flex justify-content-center">Or</h5>
 <div class="d-flex justify-content-center pt-3">
-    <form th:method="GET" th:action="@{/accounts/{accountId}/groups/{groupId}/expenses/excel(accountId=${accountId}, groupId=${groupId})}">
+    <form th:method="GET" th:action="@{/accounts/groups/{id}/expenses/excel(id=${groupId})}">
         <input class="btn btn-success" type="submit" value="Export to Excel"/>
     </form>
 </div>
 <br>
 <div class="container">
     <h6> Your expenses </h6>
-<div th:each="expense : ${expenses}">
-    <a th:href="@{/accounts/{accountId}/expenses/{expenseId}(accountId=${accountId}, expenseId=${expense.getId()})}"
-       th:text="${expense.getLocalDateTime() + ' - ' + expense.getAmount()}">expense</a>
-</div>
-</div>
-
-<div th:if="${text == null}">
-</div>
-<div th:unless="${text == null}">
-    <p th:text="${text}"></p>
+    <div th:each="expense : ${expenses}">
+        <a th:href="@{/accounts/expenses/{expenseId}(expenseId=${expense.getId()})}"
+           th:text="${expense.getLocalDateTime() + ' - ' + expense.getAmount()}">expense</a>
+    </div>
 </div>
 
 </body>

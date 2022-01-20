@@ -1,16 +1,16 @@
 package com.example.service;
 
 import com.example.entity.*;
-import com.example.exception.AccountNotFoundException;
 import com.example.exception.GroupNotFoundException;
+import com.example.repository.AccountRepo;
 import com.example.repository.GroupRepo;
-import com.example.repository.remove.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,11 +19,12 @@ public class GroupService {
 
     private final AccountGroupInfoService accountGroupInfoService;
     private final ContactService contactService;
-    private final AccountRepository accountRepository;
+    private final AccountRepo accountRepository;
     private final GroupRepo groupRepository;
 
     @Autowired
-    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepo groupRepository, ContactService contactService, AccountRepository accountRepository) {
+    public GroupService(AccountGroupInfoService accountGroupInfoService, GroupRepo groupRepository,
+                        ContactService contactService, AccountRepo accountRepository) {
         this.accountGroupInfoService = accountGroupInfoService;
         this.groupRepository = groupRepository;
         this.contactService = contactService;
@@ -43,10 +44,6 @@ public class GroupService {
     }
 
     public void leaveGroup(Integer groupId, Integer accountId) {
-        if (accountId == null || groupId == null) {
-            throw new NullPointerException("The group id or account id is null!");
-        }
-
         AccountGroupInfo accountGroupInfo = accountGroupInfoService.getAccountGroupInfo(groupId, accountId);
         if (!groupRepository.getById(groupId).getCreatorId().equals(accountId)) {
             accountGroupInfoService.deleteAccountGroupInfo(accountGroupInfo);
@@ -61,17 +58,13 @@ public class GroupService {
     }
 
     public Group get(Integer id) {
-        if (id == null) {
-            throw new NullPointerException("The group id is null!");
-        }
-
         return groupRepository.getById(id);
     }
 
     public List<Group> getAllByAccountId(Integer id) {
         List<AccountGroupInfo> list = accountGroupInfoService.getAccountGroupInfosByAccountId(id);
         return list.stream()
-                .map(s -> groupRepository.getById(s.getGroupId()))
+                .map(s -> groupRepository.findGroupById(s.getGroupId()))
                 .collect(Collectors.toList());
     }
 
@@ -101,30 +94,25 @@ public class GroupService {
     public List<Contact> getContacts(Integer id) {
         List<Integer> idList = getIdAccounts(id);
         List<Account> accounts = idList.stream()
-                .map(accountRepository::get)
+                .map(accountRepository::findAccountById)
                 .collect(Collectors.toList());
         return accounts.stream()
                 .map(s -> contactService.get(s.getTelephoneNumber()))
                 .collect(Collectors.toList());
     }
 
-    public String temp(Integer accountId, Integer id, String contact) {
+    public void addToGroup(Integer accountId, Integer id, String phoneNumber) {
         List<Contact> groupContacts = getContacts(id);
 
         Contact value = groupContacts.stream()
-                .filter(p -> p.getPhoneNumber().equals(contact))
+                .filter(p -> p.getPhoneNumber().equals(phoneNumber))
                 .findAny().orElse(null);
 
         if (value != null) {
-            return "An account with this number is already in the group";
-        } else {
-            try {
-                Account account = accountRepository.getByTelephoneNumber(contact);
-                addToGroup(id, accountId, account.getId());
-                return null;
-            } catch (AccountNotFoundException e) {
-                return e.getMessage();
-            }
+            throw new RuntimeException("An account with this number is already in the group");
         }
+
+        Account account = accountRepository.findAccountByTelephoneNumber(phoneNumber);
+        addToGroup(id, accountId, account.getId());
     }
 }

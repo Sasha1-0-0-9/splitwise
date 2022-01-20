@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 
 public interface AccountRepo extends JpaRepository<Account, Integer> {
 
+    Account findAccountById(Integer id);
+
     Account findAccountByEmail(String email);
 
     Account findAccountByTelephoneNumber(String telephoneNumber);
@@ -18,5 +20,4 @@ public interface AccountRepo extends JpaRepository<Account, Integer> {
     @Modifying
     @Query("UPDATE Account a SET a.email = :email WHERE a.id = :id")
     void update(@Param("email") String email, @Param("id") int id);
-
 }

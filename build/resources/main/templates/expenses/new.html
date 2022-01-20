@@ -18,8 +18,8 @@
         }
         function groupExpense()
         {
-            for (var i = 0; i <= [[${contacts}]].length; i++){
-                let newOption = new Option([[${contacts}]][i].phoneNumber,[[${contacts}]][i].phoneNumber);
+            for (var i = 0; i <= [[${groups}]].length; i++){
+                let newOption = new Option([[${groups}]][i].name,[[${groups}]][i].name);
                 borrowerName.append(newOption);
                 newOption.selected = true;
             }
@@ -56,38 +56,32 @@
 <br>
 <div class="d-flex justify-content-center">
 
-<form th:method="POST" th:action="@{/accounts/{accountId}/expenses/new(accountId=${accountId})}">
-    <label for="amount">Enter amount: </label>
-    <input type="text" name="amount" id="amount"/>
-    <br/>
-    <br>
-    Currency: <select name="currency">
-    <option>EUR</option>
-    <option>UAH</option>
-    <option>USD</option>
+    <form th:method="POST" th:action="@{/accounts/expenses/new}">
+        <label for="amount">Enter amount: </label>
+        <input type="text" name="amount" id="amount"/>
+        <br/>
+        <br>
+        Currency: <select name="currency">
+        <option>EUR</option>
+        <option>UAH</option>
+        <option>USD</option>
     </select>
-    <br/>
-    <br>
-    Type: <input onClick="userExpense()" id="user" type="radio" name="expenseType" value="USER" />USER
-    <input onClick="groupExpense()" id="group" type="radio" name="expenseType" value="GROUP" />GROUP
-    <br/>
-    <br>
-    <label for="lenderName">Enter lender phone number: </label>
-    <input readonly th:value="${phoneNumber}" type="text" name="lenderName" id="lenderName"/>
-    <br/>
-    <br>
-    <label for="borrowerName">Enter borrower user phone number or group name: </label>
-    <select name="borrowerName" id="borrowerName"></select>
-    <br/>
-    <div th:if="${text == null}">
-    </div>
-    <div th:unless="${text == null}">
-        <p th:text="${text}"></p>
-    </div>
-    <br/>
+        <br/>
+        <br>
+        Type: <input onClick="userExpense()" id="user" type="radio" name="expenseType" value="USER" />USER
+        <input onClick="groupExpense()" id="group" type="radio" name="expenseType" value="GROUP" />GROUP
+        <br/>
+        <br>
+        <label for="lenderName">Enter lender phone number: </label>
+        <input readonly th:value="${phoneNumber}" type="text" name="lenderName" id="lenderName"/>
+        <br/>
+        <br>
+        <label for="borrowerName">Enter borrower user phone number or group name: </label>
+        <select name="borrowerName" id="borrowerName"></select>
+        <br/>
 
-    <input class="btn btn-success" type="submit" value="Create!"/>
-</form>
+        <input class="btn btn-success" type="submit" value="Create!"/>
+    </form>
 </div>
 
 </body>

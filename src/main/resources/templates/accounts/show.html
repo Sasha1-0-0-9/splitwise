@@ -32,46 +32,46 @@
 <div class="pt-5"></div>
 <h3 class="pt-5 d-flex justify-content-center"> User info </h3>
 <div class="container">
-<table style="text-align: center" class="table table-bordered">
-    <thead>
-    <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone</th>
-        <th scope="col"> <img style="height: 40px; width: 40px;"
-                              src="https://cdn-icons-png.flaticon.com/512/5501/5501391.png"></th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><p th:text="${contact.getName()}">VALUE</p></td>
-        <td><p th:text="${account.getEmail()}">VALUE</p></td>
-        <td><p th:text="${account.getTelephoneNumber()}">VALUE</p></td>
-        <td><p th:text="${balance}">VALUE</p></td>
-        <td><form th:method="GET" th:action="@{/accounts/{id}/edit(id=${account.getId()})}">
-            <input class="btn btn-success" type="submit" value="Edit"/>
-        </form></td>
-        <td><form th:method="DELETE" th:action="@{/accounts/{id}(id=${account.getId()})}">
-            <input class="btn btn-danger" type="submit" value="Delete"/>
-        </form></td>
-    </tr>
-    </tbody>
-</table>
+    <table style="text-align: center" class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col"> <img style="height: 40px; width: 40px;"
+                                  src="https://cdn-icons-png.flaticon.com/512/5501/5501391.png"></th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><p th:text="${contact.getName()}">VALUE</p></td>
+            <td><p th:text="${account.getEmail()}">VALUE</p></td>
+            <td><p th:text="${account.getTelephoneNumber()}">VALUE</p></td>
+            <td><p th:text="${balance}">VALUE</p></td>
+            <td><form th:method="GET" th:action="@{/accounts/edit}">
+                <input class="btn btn-success" type="submit" value="Edit"/>
+            </form></td>
+            <td><form th:method="GET" th:action="@{/accounts/delete}">
+                <input class="btn btn-danger" type="submit" value="Delete"/>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
 
-<form th:method="GET" th:action="@{/accounts/contacts}">
-    <input class="btn btn-outline-dark" type="submit" value="My contacts"/>
-</form>
-<br>
+    <form th:method="GET" th:action="@{/accounts/contacts}">
+        <input class="btn btn-outline-dark" type="submit" value="My contacts"/>
+    </form>
+    <br>
 
-<form th:method="GET" th:action="@{/accounts/{id}/groups(id=${account.getId()})}">
-    <input class="btn btn-outline-dark" type="submit" value="My group"/>
-</form>
-<br>
-<form th:method="GET" th:action="@{/accounts/{id}/expenses(id=${account.getId()})}">
-    <input class="btn btn-outline-dark" type="submit" value="My expenses"/>
-</form>
+    <form th:method="GET" th:action="@{/accounts/groups}">
+        <input class="btn btn-outline-dark" type="submit" value="My group"/>
+    </form>
+    <br>
+    <form th:method="GET" th:action="@{/accounts/expenses}">
+        <input class="btn btn-outline-dark" type="submit" value="My expenses"/>
+    </form>
 </div>
 </body>
 </html>

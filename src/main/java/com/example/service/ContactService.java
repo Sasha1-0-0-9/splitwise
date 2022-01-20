@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.Account;
 import com.example.entity.Contact;
 import com.example.exception.ContactCreationException;
 import com.example.repository.ContactRepo;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Service
@@ -44,4 +47,23 @@ public class ContactService {
 
         contactRepository.save(contact);
     }
+
+    public void add(Account account,
+                    @NotEmpty(message = "Telephone number should not be empty")
+                    @Pattern(regexp = "(^$|[0-9]{10})") String phoneNumber) {
+        if (account.getTelephoneNumber().equals(phoneNumber)) {
+            throw new RuntimeException("This phone number belongs to you!");
+        }
+
+        Contact contact = getByAccountId(account.getId()).stream()
+                .filter(s -> s.getPhoneNumber().equals(phoneNumber))
+                .findAny().orElse(null);
+
+        if (contact != null) {
+            throw new RuntimeException("You already have a contact with this number!");
+        }
+
+        accountContactRepository.save(account.getId(), phoneNumber);
+    }
 }
+
